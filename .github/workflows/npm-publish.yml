@@ -19,8 +19,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
-        run: yarn --no-bin-links --ignore-optional --ignore-scripts
-      - run: yarn clean && yarn build
-      - run: yarn publish --access public
+        run: yarn --ignore-optional --ignore-scripts
+      - run: yarn clean
+      - run: yarn build
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
