@@ -5,19 +5,40 @@ const CopyPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 const patches = [
-  '\\bObject\\.keys\\(json\\)\\.forEach\\([\\s\\S]*?, packageName, requestedVersion\\] = match;',
-  `let resolvable = null;
-  if (includeScopes.length) {
-    includeScopes = includeScopes.filter(v => !['^', '~', '*'].includes(v) || !(resolvable = v));
-  }
-  $&
-  if (resolvable === '*') {
-    requestedVersion = '*';
-  } else if (resolvable === '^' && /(^|\\s|\\|)~\\s*\\d/.test(requestedVersion)) {
-    requestedVersion = requestedVersion.replace(/(^|\\s|\\|)~\\s*(\\d)/g, '$$1^$$2');
-  } else if (resolvable && /^\\d[\\w.-]*$$/.test(requestedVersion = semver.clean(requestedVersion))) {
-    requestedVersion = resolvable + requestedVersion.replace(/^(0)\\..*$$/, '$$1');
-  }`,
+  {
+    search: '^(\\s*)-d, --debug',
+    flags: 'm',
+    replace: '$1--virtual-path                      Virtual directory for the server\n$&',
+  },
+  { search: '(-C, --cors)\\t{6}', flags: '', replace: '$1                        ' },
+  { search: ' interface of ', replace: ' netInterface of ' },
+  { search: '} = interface;', replace: '} = netInterface;' },
+  {
+    search: '^(\\s*)const serverHandler = async .*',
+    flags: 'm',
+    replace:
+      "$1const virtualPath = args['--virtual-path']\
+        ? new RegExp(`^([^/]*//[^/]+)?/$${args['--virtual-path'].replace(/[^\\w\\s]/g, '\\\\$$&')}(/|$$)`, 'i')\
+        : null;\
+      $&\
+        if (virtualPath) request.url = request.url.replace(virtualPath, '$$1/');",
+  },
+  {
+    search: '^(\\s*)let localAddress = null',
+    flags: 'm',
+    replace: "$1const addressSuffix = args['--virtual-path'] ? `/$${args['--virtual-path']}` : '';\n$&",
+  },
+  { search: '^(\\s*localAddress = details);', flags: 'm', replace: '$1 + addressSuffix;' },
+  { search: '(:\\$\\{details\\.port\\})`', flags: 'g', replace: '$1$${addressSuffix}`' },
+  { search: '{public} = config;', replace: 'publicDir = config.public;' },
+  { search: '(public ? path.resolve(entry, public)', replace: '(publicDir ? path.resolve(entry, publicDir)' },
+  { search: "^(\\s*)'--listen': \\[parseEndpoint.*", flags: 'm', replace: "$&\n$1'--virtual-path': String," },
+  {
+    search: '^(\\s*)if \\(args\\._\\.length > 1\\)',
+    flags: 'm',
+    replace:
+      "$1if (args['--virtual-path']) args['--virtual-path'] = args['--virtual-path'].replace(/^\\/|\\/$$/g, '');\n$&",
+  },
 ];
 
 module.exports = {
@@ -54,22 +75,22 @@ module.exports = {
         test: path.resolve(__dirname, 'node_modules/serve/bin/serve.js'),
         loader: 'string-replace-loader',
         options: {
-          multiple: [
-            { search: patches[0], flags: '', replace: patches[1] },
-            { search: '^#!.*[\\r\\n]+', flags: '', replace: '' },
-            { search: "require('./package.json').version", replace: `'${pkg.version}'` },
-          ],
+          multiple: [...patches, { search: '^#!.*[\\r\\n]+', flags: '', replace: '' }],
         },
       },
       {
         test: path.resolve(__dirname, 'node_modules/serve/package.json'),
         loader: 'string-replace-loader',
-        options: { search: ',\\s*"scripts"[\\s\\S]*$', flags: '', replace: '\n}' },
+        options: {
+          search: '[\\s\\S]*',
+          flags: '',
+          replace: JSON.stringify({ name: pkg.name, version: pkg.version, description: pkg.description }),
+        },
       },
       {
         test: /node_modules.clipboardy\b.*\.js$/,
         loader: 'string-replace-loader',
-        options: { search: '(\\.*/)?fallbacks/', flags: 'g', replace: 'vendor/' },
+        options: { search: '\\.+/fallbacks/', flags: 'g', replace: 'vendor/' },
       },
     ],
   },
