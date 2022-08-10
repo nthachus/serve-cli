@@ -1,6 +1,6 @@
 {
   "name": "@nthachus/serve",
-  "version": "11.4.1",
+  "version": "11.4.3",
   "description": "CLI bundle of vercel/serve, static file serving and directory listing",
   "keywords": [
     "vercel",
