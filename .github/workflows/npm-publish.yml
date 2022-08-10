@@ -20,7 +20,7 @@ jobs:
           scope: '@nthachus'
 
       - name: Install dependencies
-        run: yarn --ignore-optional --ignore-scripts
+        run: yarn --ignore-optional --ignore-scripts --ignore-engines
       - run: yarn clean
       - run: yarn build
       - run: yarn publish --access public
