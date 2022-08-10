@@ -62,7 +62,8 @@ module.exports = {
       {
         // transpile ES6-8 into ES5
         test: /\.m?js$/,
-        exclude: /node_modules.(ajv|color-convert|cross-spawn|debug|isexe|negotiator|signal-exit|uri-js)\b/,
+        exclude:
+          /node_modules.(ajv|color-convert|cross-spawn|debug|es-abstract|isexe|negotiator|object|signal-exit|uri-js|util)\b/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -75,7 +76,7 @@ module.exports = {
         test: path.resolve(__dirname, 'node_modules/serve/bin/serve.js'),
         loader: 'string-replace-loader',
         options: {
-          multiple: [...patches, { search: '^#!.*[\\r\\n]+', flags: '', replace: '' }],
+          multiple: [...patches, { search: '^#!.*', flags: '', replace: "require('util.promisify/shim')();" }],
         },
       },
       {

@@ -1,6 +1,6 @@
 {
   "name": "@nthachus/serve",
-  "version": "11.4.2",
+  "version": "11.4.1",
   "description": "CLI bundle of vercel/serve, static file serving and directory listing",
   "keywords": [
     "vercel",
@@ -31,6 +31,7 @@
     "copy-webpack-plugin": "^5.0.5",
     "serve": "^11.3.2",
     "string-replace-loader": "^2.2.0",
+    "util.promisify": "^1.0.0",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.2.2"
   },
