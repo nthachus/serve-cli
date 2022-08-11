@@ -62,8 +62,7 @@ module.exports = {
       {
         // transpile ES6-8 into ES5
         test: /\.m?js$/,
-        exclude:
-          /node_modules.(ajv|color-convert|cross-spawn|debug|es-abstract|isexe|negotiator|object|signal-exit|uri-js|util)\b/,
+        exclude: /node_modules.(ajv|color-convert|debug|es-abstract|isexe|negotiator|object|signal-exit|uri-js|util)\b/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -99,7 +98,7 @@ module.exports = {
     new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true }),
     new CopyPlugin([
       { from: 'node_modules/clipboardy/fallbacks', to: 'vendor/', ignore: ['.DS_Store'] },
-      { from: 'node_modules/term-size/vendor', to: 'vendor/' },
+      { from: 'node_modules/term-size/vendor', to: 'vendor/', ignore: ['.DS_Store'] },
     ]),
   ],
   optimization: {

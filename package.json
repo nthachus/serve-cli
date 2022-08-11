@@ -1,6 +1,6 @@
 {
   "name": "@nthachus/serve",
-  "version": "12.1.0",
+  "version": "13.1.0",
   "description": "CLI bundle of vercel/serve, static file serving and directory listing",
   "keywords": [
     "vercel",
@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.6.4",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.0.5",
-    "serve": "^12.0.1",
+    "serve": "^13.0.2",
     "string-replace-loader": "^2.2.0",
     "util.promisify": "^1.0.0",
     "webpack": "^4.35.3",
@@ -37,10 +37,11 @@
   },
   "resolutions": {
     "**/assert/util": "^0.11.0",
-    "**/cliui/wrap-ansi": "~3.0.0",
     "**/debug/ms": "^2.1.1",
     "**/define-property/is-descriptor": "^1.0.0",
-    "serve/boxen/term-size/execa": "^0.8.0",
+    "**/string-width": "^4.0.0",
+    "serve/boxen": "^4.1.0",
+    "serve/chalk": "^2.4.2",
     "serve/serve-handler/mime-types": "~2.1.24"
   }
 }
