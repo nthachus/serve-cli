@@ -1,4 +1,0 @@
-# .gitattributes
-# Makes sure all line endings are LF.
-
-*	text=auto eol=lf
