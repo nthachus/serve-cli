@@ -63,9 +63,10 @@ const patchUriJS = (content) =>
 
 const templatePatches = [
   // fix _WEBPACK_ definition
-  { search: /^\(function\(\)\{/, replace: '' },
+  { search: /^\(function *\(\) *\{/, replace: '' },
   {
-    search: /(\})var (itself)=(\w+), _encodeHTML=\([\s\S]*\);if\(typeof module\b.*\) (module\.exports=)\2;.*$/,
+    search:
+      /(\})\s*var (itself)=(\w+), *_encodeHTML=\([\s\S]*\);\s*if *\(typeof module\b[^()]*\) *(module\.exports=)\2;.*$/,
     replace: '$1\n$4$3;',
   },
   { search: " typeof _encodeHTML !== 'undefined'", replace: ' false' },
@@ -87,13 +88,21 @@ const templatePatches = [
 
 module.exports = {
   mode: 'production',
-  entry: { index: './node_modules/serve/bin/serve' },
+  entry: {
+    'vendor/ajv': { import: './node_modules/ajv/lib/ajv', library: { type: 'commonjs2' } },
+    'vendor/chalk': { import: './node_modules/chalk/index', library: { type: 'commonjs2' } },
+    'vendor/execa': { import: './node_modules/execa/index', library: { type: 'commonjs2' } },
+    index: './node_modules/serve/bin/serve',
+  },
   output: { path: __dirname },
   context: __dirname,
   target: `node${nodeVersion}`,
   node: { __filename: false, __dirname: false },
   externals: {
-    'uri-js': 'commonjs ./vendor/uri-js.js',
+    ajv: 'commonjs2 ./vendor/ajv.js',
+    chalk: 'commonjs2 ./vendor/chalk.js',
+    execa: 'commonjs2 ./vendor/execa.js',
+    'uri-js': 'commonjs ./uri-js.js',
     'mime-db': 'commonjs2 ./vendor/mime-db.json',
   },
   stats: { modulesSpace: Infinity },
@@ -179,9 +188,19 @@ module.exports = {
         test: /node_modules[\\/]chalk.index\.js$/i,
         loader: 'webpack/lib/replace-loader',
         options: {
-          search: /^for *\(const (\w+) of (Object\.keys\(.*?\))\) *(\{\n[\s\S]*?\n\})/gm,
+          search: /^for *\(const (\w+) of (Object\.keys\([^()]*\))\) *(\{\n[\s\S]*?\n\})/gm,
           replace: (_, p1, p2, p3) => `${p2}.forEach(${p1} => ${p3.replace(/^(\s*)continue\b/m, '$1return')});`,
         },
+      },
+      {
+        test: /node_modules[\\/]rc.index\.js$/i,
+        loader: 'webpack/lib/replace-loader',
+        options: { search: /\brequire\('minimist'\)\(process\.argv\b([\w.]|\(\w*\))*\)/, replace: '{}' },
+      },
+      {
+        test: /node_modules[\\/](ini.ini|content-disposition.index)\.js$/i,
+        loader: 'webpack/lib/replace-loader',
+        options: { search: /^(exports\.(stringify|safe)|module\.exports\.parse) *=/gm, replace: '//$&' },
       },
     ],
   },
