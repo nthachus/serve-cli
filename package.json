@@ -1,6 +1,6 @@
 {
   "name": "@nthachus/serve",
-  "version": "11.4.3",
+  "version": "12.1.0",
   "description": "CLI bundle of vercel/serve, static file serving and directory listing",
   "keywords": [
     "vercel",
@@ -14,31 +14,33 @@
     "serve": "index.js"
   },
   "files": [
-    "index.js*",
-    "vendor/"
+    "index.js",
+    "vendor"
   ],
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
   "scripts": {
-    "build": "node node_modules/webpack-cli/bin/cli.js --progress",
-    "clean": "node node_modules/rimraf/bin.js index.js vendor/ node_modules/.cache"
+    "build": "node node_modules/webpack-cli/bin/cli.js --progress --display-modules",
+    "clean": "node node_modules/rimraf/bin.js index.js* vendor node_modules/.cache"
   },
   "devDependencies": {
-    "@babel/core": "thachnn/webpack-bundle#_babel/core-7.17.10",
-    "@babel/plugin-transform-runtime": "thachnn/webpack-bundle#_babel/plugin-transform-runtime-7.17.10",
-    "@babel/preset-env": "thachnn/webpack-bundle#_babel/preset-env-7.17.10",
-    "@babel/runtime": "^7.8.4",
-    "babel-loader": "thachnn/webpack-bundle#babel-loader-8.2.5",
-    "rimraf": "^2.2.8",
-    "serve": "^11.3.2",
-    "term-size": "~2.2.0",
-    "tiny-promisify": "^0.1.1",
-    "webpack": "thachnn/webpack-bundle#v5.74.0",
-    "webpack-cli": "thachnn/webpack-bundle#cli-4.10.0"
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.4",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.5",
+    "serve": "^12.0.1",
+    "string-replace-loader": "^2.2.0",
+    "util.promisify": "^1.0.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.2.2"
   },
   "resolutions": {
-    "**/boxen/term-size/execa": "^0.8.0",
-    "**/serve-handler/mime-types": "~2.1.24"
+    "**/assert/util": "^0.11.0",
+    "**/cliui/wrap-ansi": "~3.0.0",
+    "**/debug/ms": "^2.1.1",
+    "**/define-property/is-descriptor": "^1.0.0",
+    "serve/boxen/term-size/execa": "^0.8.0",
+    "serve/serve-handler/mime-types": "~2.1.24"
   }
 }
