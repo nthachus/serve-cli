@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 !function() {
+  "use strict";
   var __webpack_modules__ = {
     8926: function(module) {
       function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -37,13 +38,6 @@
         }, module.exports.__esModule = !0, module.exports.default = module.exports, _extends.apply(this, arguments);
       }
       module.exports = _extends, module.exports.__esModule = !0, module.exports.default = module.exports;
-    },
-    5318: function(module) {
-      module.exports = function(obj) {
-        return obj && obj.__esModule ? obj : {
-          default: obj
-        };
-      }, module.exports.__esModule = !0, module.exports.default = module.exports;
     },
     9187: function(module) {
       module.exports = {
@@ -121,7 +115,6 @@
       };
     },
     9078: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var Negotiator = __webpack_require__(159), mime = __webpack_require__(983);
       function Accepts(req) {
         if (!(this instanceof Accepts)) return new Accepts(req);
@@ -167,7 +160,6 @@
       };
     },
     5096: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var compileSchema = __webpack_require__(7153), resolve = __webpack_require__(3610), Cache = __webpack_require__(7531), SchemaObject = __webpack_require__(4022), stableStringify = __webpack_require__(5035), formats = __webpack_require__(1516), rules = __webpack_require__(7753), $dataMetaSchema = __webpack_require__(3978), util = __webpack_require__(2889);
       module.exports = Ajv, Ajv.prototype.validate = function(schemaKeyRef, data) {
         var v;
@@ -395,7 +387,6 @@
       function noop() {}
     },
     7531: function(module) {
-      "use strict";
       var Cache = module.exports = function() {
         this._cache = {};
       };
@@ -410,7 +401,6 @@
       };
     },
     2931: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var MissingRefError = __webpack_require__(7802).MissingRef;
       module.exports = function compileAsync(schema, meta, callback) {
         var self = this;
@@ -459,7 +449,6 @@
       };
     },
     7802: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var resolve = __webpack_require__(3610);
       function MissingRefError(baseId, ref, message) {
         this.message = message || MissingRefError.message(baseId, ref), this.missingRef = resolve.url(baseId, ref), 
@@ -479,7 +468,6 @@
       };
     },
     1516: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var util = __webpack_require__(2889), DATE = /^(\d\d\d\d)-(\d\d)-(\d\d)$/, DAYS = [ 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ], TIME = /^(\d\d):(\d\d):(\d\d)(\.\d+)?(z|[+-]\d\d(?::?\d\d)?)?$/i, HOSTNAME = /^(?=.{1,253}\.?$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[-0-9a-z]{0,61}[0-9a-z])?)*\.?$/i, URI = /^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i, URITEMPLATE = /^(?:(?:[^\x00-\x20"'<>%\\^`{|}]|%[0-9a-f]{2})|\{[+#./;?&=,!@|]?(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?(?:,(?:[a-z0-9_]|%[0-9a-f]{2})+(?::[1-9][0-9]{0,3}|\*)?)*\})*$/i, URL = /^(?:(?:http[s\u017F]?|ftp):\/\/)(?:(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+(?::(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?@)?(?:(?!10(?:\.[0-9]{1,3}){3})(?!127(?:\.[0-9]{1,3}){3})(?!169\.254(?:\.[0-9]{1,3}){2})(?!192\.168(?:\.[0-9]{1,3}){2})(?!172\.(?:1[6-9]|2[0-9]|3[01])(?:\.[0-9]{1,3}){2})(?:[1-9][0-9]?|1[0-9][0-9]|2[01][0-9]|22[0-3])(?:\.(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])){2}(?:\.(?:[1-9][0-9]?|1[0-9][0-9]|2[0-4][0-9]|25[0-4]))|(?:(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)(?:\.(?:(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+-)*(?:[0-9a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])+)*(?:\.(?:(?:[a-z\xA1-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]){2,})))(?::[0-9]{2,5})?(?:\/(?:[\0-\x08\x0E-\x1F!-\x9F\xA1-\u167F\u1681-\u1FFF\u200B-\u2027\u202A-\u202E\u2030-\u205E\u2060-\u2FFF\u3001-\uD7FF\uE000-\uFEFE\uFF00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])*)?$/i, UUID = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i, JSON_POINTER = /^(?:\/(?:[^~/]|~0|~1)*)*$/, JSON_POINTER_URI_FRAGMENT = /^#(?:\/(?:[a-z0-9_\-.!$&'()*+,;:=@]|%[0-9a-f]{2}|~0|~1)*)*$/i, RELATIVE_JSON_POINTER = /^(?:0|[1-9][0-9]*)(?:#|(?:\/(?:[^~/]|~0|~1)*)*)$/;
       function formats(mode) {
         return mode = "full" == mode ? "full" : "fast", util.copy(formats[mode]);
@@ -551,7 +539,6 @@
       }
     },
     7153: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var resolve = __webpack_require__(3610), util = __webpack_require__(2889), errorClasses = __webpack_require__(7802), stableStringify = __webpack_require__(5035), validateGenerator = __webpack_require__(9508), ucs2length = util.ucs2length, equal = __webpack_require__(4063), ValidationError = errorClasses.Validation;
       function checkCompiling(schema, root, baseId) {
         var index = compIndex.call(this, schema, root, baseId);
@@ -743,7 +730,6 @@
       };
     },
     3610: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var URI = __webpack_require__(2754), equal = __webpack_require__(4063), util = __webpack_require__(2889), SchemaObject = __webpack_require__(4022), traverse = __webpack_require__(9461);
       function resolve(compile, root, ref) {
         var refVal = this._refs[ref];
@@ -874,7 +860,6 @@
       }
     },
     7753: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var ruleModules = __webpack_require__(6674), toHash = __webpack_require__(2889).toHash;
       module.exports = function() {
         var RULES = [ {
@@ -922,21 +907,18 @@
       };
     },
     4022: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var util = __webpack_require__(2889);
       module.exports = function(obj) {
         util.copy(obj, this);
       };
     },
     4442: function(module) {
-      "use strict";
       module.exports = function(str) {
         for (var value, length = 0, len = str.length, pos = 0; pos < len; ) length++, (value = str.charCodeAt(pos++)) >= 55296 && value <= 56319 && pos < len && 56320 == (64512 & (value = str.charCodeAt(pos))) && pos++;
         return length;
       };
     },
     2889: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       function checkDataType(dataType, data, strictNumbers, negate) {
         var EQUAL = negate ? " !== " : " === ", AND = negate ? " || " : " && ", OK = negate ? "!" : "", NOT = negate ? "" : "!";
         switch (dataType) {
@@ -1075,7 +1057,6 @@
       }
     },
     3978: function(module) {
-      "use strict";
       var KEYWORDS = [ "multipleOf", "maximum", "exclusiveMaximum", "minimum", "exclusiveMinimum", "maxLength", "minLength", "pattern", "additionalItems", "maxItems", "minItems", "uniqueItems", "maxProperties", "minProperties", "required", "additionalProperties", "enum", "format", "const" ];
       module.exports = function(metaSchema, keywordsJsonPointers) {
         for (var i = 0; i < keywordsJsonPointers.length; i++) {
@@ -1095,7 +1076,6 @@
       };
     },
     1128: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var metaSchema = __webpack_require__(6680);
       module.exports = {
         $id: "https://github.com/ajv-validator/ajv/blob/master/lib/definition_schema.js",
@@ -1153,7 +1133,6 @@
       };
     },
     8210: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         $isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1206,7 +1185,6 @@
       };
     },
     3038: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         if ($isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1226,7 +1204,6 @@
       };
     },
     425: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         if ($isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1248,7 +1225,6 @@
       };
     },
     8204: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         if ($isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1268,7 +1244,6 @@
       };
     },
     2988: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1283,7 +1258,6 @@
       };
     },
     9996: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1313,7 +1287,6 @@
       };
     },
     7812: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $schema = it.schema[$keyword], $errSchemaPath = it.errSchemaPath + "/" + $keyword, $comment = (it.opts.allErrors, 
         it.util.toQuotedString($schema));
@@ -1322,7 +1295,6 @@
       };
     },
     5306: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $isData = it.opts.$data && $schema && $schema.$data;
         $isData && (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; "), 
@@ -1339,7 +1311,6 @@
       };
     },
     2840: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $it = it.util.copy(it);
         $it.level++;
@@ -1368,7 +1339,6 @@
       };
     },
     4165: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $errorKeyword, $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $isData = it.opts.$data && $schema && $schema.$data;
         $isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1434,7 +1404,6 @@
       };
     },
     6659: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $errs = "errs__" + $lvl, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1499,7 +1468,6 @@
       };
     },
     1740: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $isData = it.opts.$data && $schema && $schema.$data;
         $isData && (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ");
@@ -1519,7 +1487,6 @@
       };
     },
     9014: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || "");
         if (!1 === it.opts.format) return $breakOnError && (out += " if (true) { "), out;
@@ -1575,7 +1542,6 @@
       };
     },
     7231: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $it = it.util.copy(it);
         $it.level++;
@@ -1606,7 +1572,6 @@
       };
     },
     6674: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       module.exports = {
         $ref: __webpack_require__(2392),
         allOf: __webpack_require__(2988),
@@ -1639,7 +1604,6 @@
       };
     },
     7482: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1698,7 +1662,6 @@
       };
     },
     3673: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         if ($isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1718,7 +1681,6 @@
       };
     },
     8528: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $errs = "errs__" + $lvl, $it = it.util.copy(it);
         $it.level++;
@@ -1747,7 +1709,6 @@
       };
     },
     9709: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $errs = "errs__" + $lvl, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1773,7 +1734,6 @@
       };
     },
     9614: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $isData = it.opts.$data && $schema && $schema.$data;
         $isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -1792,7 +1752,6 @@
       };
     },
     1175: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $errs = "errs__" + $lvl, $it = it.util.copy(it), $closingBraces = "";
         $it.level++;
@@ -1923,7 +1882,6 @@
       };
     },
     8441: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $errs = "errs__" + $lvl, $it = it.util.copy(it);
         $it.level++;
@@ -1949,7 +1907,6 @@
       };
     },
     2392: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $async, $refCode, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl;
         if ("#" == $schema || "#/" == $schema) it.isRoot ? ($async = it.async, $refCode = "validate") : ($async = !0 === it.root.schema.$async, 
@@ -1995,7 +1952,6 @@
       };
     },
     1287: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $isData = it.opts.$data && $schema && $schema.$data;
         $isData && (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ");
@@ -2081,7 +2037,6 @@
       };
     },
     3603: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var $schemaValue, out = " ", $lvl = it.level, $dataLvl = it.dataLevel, $schema = it.schema[$keyword], $schemaPath = it.schemaPath + it.util.getProperty($keyword), $errSchemaPath = it.errSchemaPath + "/" + $keyword, $breakOnError = !it.opts.allErrors, $data = "data" + ($dataLvl || ""), $valid = "valid" + $lvl, $isData = it.opts.$data && $schema && $schema.$data;
         if ($isData ? (out += " var schema" + $lvl + " = " + it.util.getData($schema.$data, $dataLvl, it.dataPathArr) + "; ", 
@@ -2110,7 +2065,6 @@
       };
     },
     9508: function(module) {
-      "use strict";
       module.exports = function(it, $keyword, $ruleType) {
         var out = "", $async = !0 === it.schema.$async, $refKeywords = it.util.schemaHasRulesExcept(it.schema, it.RULES.all, "$ref"), $id = it.self._getId(it.schema);
         if (it.opts.strictKeywords) {
@@ -2278,7 +2232,6 @@
       };
     },
     4895: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var IDENTIFIER = /^[a-z_$][a-z0-9_$-]*$/i, customRuleCode = __webpack_require__(4165), definitionSchema = __webpack_require__(1128);
       module.exports = {
         add: function(keyword, definition) {
@@ -2363,7 +2316,6 @@
       };
     },
     839: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var stringWidth = __webpack_require__(1852);
       function ansiAlign(text, opts) {
         if (!text) return text;
@@ -2403,14 +2355,112 @@
       }, module.exports = ansiAlign;
     },
     4619: function(module) {
-      "use strict";
       module.exports = () => {
         var pattern = [ "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[a-zA-Z\\d]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))" ].join("|");
         return new RegExp(pattern, "g");
       };
     },
+    3896: function(module, __unused_webpack_exports, __webpack_require__) {
+      var colorConvert = __webpack_require__(2085), wrapAnsi16 = (fn, offset) => function() {
+        var code = fn.apply(colorConvert, arguments);
+        return `[${code + offset}m`;
+      }, wrapAnsi256 = (fn, offset) => function() {
+        var code = fn.apply(colorConvert, arguments);
+        return `[${38 + offset};5;${code}m`;
+      }, wrapAnsi16m = (fn, offset) => function() {
+        var rgb = fn.apply(colorConvert, arguments);
+        return `[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m`;
+      };
+      module.exports = function() {
+        var codes = new Map, styles = {
+          modifier: {
+            reset: [ 0, 0 ],
+            bold: [ 1, 22 ],
+            dim: [ 2, 22 ],
+            italic: [ 3, 23 ],
+            underline: [ 4, 24 ],
+            inverse: [ 7, 27 ],
+            hidden: [ 8, 28 ],
+            strikethrough: [ 9, 29 ]
+          },
+          color: {
+            black: [ 30, 39 ],
+            red: [ 31, 39 ],
+            green: [ 32, 39 ],
+            yellow: [ 33, 39 ],
+            blue: [ 34, 39 ],
+            magenta: [ 35, 39 ],
+            cyan: [ 36, 39 ],
+            white: [ 37, 39 ],
+            gray: [ 90, 39 ],
+            redBright: [ 91, 39 ],
+            greenBright: [ 92, 39 ],
+            yellowBright: [ 93, 39 ],
+            blueBright: [ 94, 39 ],
+            magentaBright: [ 95, 39 ],
+            cyanBright: [ 96, 39 ],
+            whiteBright: [ 97, 39 ]
+          },
+          bgColor: {
+            bgBlack: [ 40, 49 ],
+            bgRed: [ 41, 49 ],
+            bgGreen: [ 42, 49 ],
+            bgYellow: [ 43, 49 ],
+            bgBlue: [ 44, 49 ],
+            bgMagenta: [ 45, 49 ],
+            bgCyan: [ 46, 49 ],
+            bgWhite: [ 47, 49 ],
+            bgBlackBright: [ 100, 49 ],
+            bgRedBright: [ 101, 49 ],
+            bgGreenBright: [ 102, 49 ],
+            bgYellowBright: [ 103, 49 ],
+            bgBlueBright: [ 104, 49 ],
+            bgMagentaBright: [ 105, 49 ],
+            bgCyanBright: [ 106, 49 ],
+            bgWhiteBright: [ 107, 49 ]
+          }
+        };
+        for (var groupName of (styles.color.grey = styles.color.gray, Object.keys(styles))) {
+          var group = styles[groupName];
+          for (var styleName of Object.keys(group)) {
+            var style = group[styleName];
+            styles[styleName] = {
+              open: `[${style[0]}m`,
+              close: `[${style[1]}m`
+            }, group[styleName] = styles[styleName], codes.set(style[0], style[1]);
+          }
+          Object.defineProperty(styles, groupName, {
+            value: group,
+            enumerable: !1
+          }), Object.defineProperty(styles, "codes", {
+            value: codes,
+            enumerable: !1
+          });
+        }
+        var ansi2ansi = n => n, rgb2rgb = (r, g, b) => [ r, g, b ];
+        for (var key of (styles.color.close = "[39m", styles.bgColor.close = "[49m", styles.color.ansi = {
+          ansi: wrapAnsi16(ansi2ansi, 0)
+        }, styles.color.ansi256 = {
+          ansi256: wrapAnsi256(ansi2ansi, 0)
+        }, styles.color.ansi16m = {
+          rgb: wrapAnsi16m(rgb2rgb, 0)
+        }, styles.bgColor.ansi = {
+          ansi: wrapAnsi16(ansi2ansi, 10)
+        }, styles.bgColor.ansi256 = {
+          ansi256: wrapAnsi256(ansi2ansi, 10)
+        }, styles.bgColor.ansi16m = {
+          rgb: wrapAnsi16m(rgb2rgb, 10)
+        }, Object.keys(colorConvert))) if ("object" == typeof colorConvert[key]) {
+          var suite = colorConvert[key];
+          "ansi16" === key && (key = "ansi"), "ansi16" in suite && (styles.color.ansi[key] = wrapAnsi16(suite.ansi16, 0), 
+          styles.bgColor.ansi[key] = wrapAnsi16(suite.ansi16, 10)), "ansi256" in suite && (styles.color.ansi256[key] = wrapAnsi256(suite.ansi256, 0), 
+          styles.bgColor.ansi256[key] = wrapAnsi256(suite.ansi256, 10)), "rgb" in suite && (styles.color.ansi16m[key] = wrapAnsi16m(suite.rgb, 0), 
+          styles.bgColor.ansi16m[key] = wrapAnsi16m(suite.rgb, 10));
+        }
+        return styles;
+      }();
+    },
     2101: function(module) {
-      "use strict";
       module.exports = function(opts, _temp) {
         var _ref = void 0 === _temp ? {} : _temp, argv = _ref.argv, _ref$permissive = _ref.permissive, permissive = void 0 !== _ref$permissive && _ref$permissive;
         if (!opts) throw new Error("Argument specification must be specified");
@@ -2453,8 +2503,7 @@
       };
     },
     2069: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var stringWidth = __webpack_require__(1852), chalk = __webpack_require__(8446), widestLine = __webpack_require__(4953), cliBoxes = __webpack_require__(94), camelCase = __webpack_require__(4302), ansiAlign = __webpack_require__(839), termSize = __webpack_require__(5498), getObject = detail => "number" == typeof detail ? {
+      var stringWidth = __webpack_require__(1852), chalk = __webpack_require__(3857), widestLine = __webpack_require__(4953), cliBoxes = __webpack_require__(94), camelCase = __webpack_require__(4302), ansiAlign = __webpack_require__(839), termSize = __webpack_require__(5498), getObject = detail => "number" == typeof detail ? {
         top: detail,
         right: 3 * detail,
         bottom: detail,
@@ -2509,7 +2558,6 @@
       }, module.exports._borderStyles = cliBoxes;
     },
     4302: function(module) {
-      "use strict";
       function preserveCamelCase(str) {
         for (var isLastCharLower = !1, isLastCharUpper = !1, isLastLastCharUpper = !1, i = 0; i < str.length; i++) {
           var c = str[i];
@@ -2529,546 +2577,8 @@
         return hasUpperCase && (str = preserveCamelCase(str)), str.replace(/^[_.\- ]+/, "").toLowerCase().replace(/[_.\- ]+(\w|$)/g, ((m, p1) => p1.toUpperCase()));
       };
     },
-    8890: function(module) {
-      "use strict";
-      var TEMPLATE_REGEX = /(?:\\(u[a-f\d]{4}|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi, STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g, STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/, ESCAPE_REGEX = /\\(u[a-f\d]{4}|x[a-f\d]{2}|.)|([^\\])/gi, ESCAPES = new Map([ [ "n", "\n" ], [ "r", "\r" ], [ "t", "\t" ], [ "b", "\b" ], [ "f", "\f" ], [ "v", "\v" ], [ "0", "\0" ], [ "\\", "\\" ], [ "e", "" ], [ "a", "" ] ]);
-      function unescape(c) {
-        return "u" === c[0] && 5 === c.length || "x" === c[0] && 3 === c.length ? String.fromCharCode(parseInt(c.slice(1), 16)) : ESCAPES.get(c) || c;
-      }
-      function parseArguments(name, args) {
-        var matches, results = [], chunks = args.trim().split(/\s*,\s*/g);
-        for (var chunk of chunks) if (isNaN(chunk)) {
-          if (!(matches = chunk.match(STRING_REGEX))) throw new Error(`Invalid Chalk template style argument: ${chunk} (in style '${name}')`);
-          results.push(matches[2].replace(ESCAPE_REGEX, ((m, escape, chr) => escape ? unescape(escape) : chr)));
-        } else results.push(Number(chunk));
-        return results;
-      }
-      function parseStyle(style) {
-        STYLE_REGEX.lastIndex = 0;
-        for (var matches, results = []; null !== (matches = STYLE_REGEX.exec(style)); ) {
-          var name = matches[1];
-          if (matches[2]) {
-            var args = parseArguments(name, matches[2]);
-            results.push([ name ].concat(args));
-          } else results.push([ name ]);
-        }
-        return results;
-      }
-      function buildStyle(chalk, styles) {
-        var enabled = {};
-        for (var layer of styles) for (var style of layer.styles) enabled[style[0]] = layer.inverse ? null : style.slice(1);
-        var current = chalk;
-        for (var styleName of Object.keys(enabled)) if (Array.isArray(enabled[styleName])) {
-          if (!(styleName in current)) throw new Error(`Unknown Chalk style: ${styleName}`);
-          current = enabled[styleName].length > 0 ? current[styleName].apply(current, enabled[styleName]) : current[styleName];
-        }
-        return current;
-      }
-      module.exports = (chalk, tmp) => {
-        var styles = [], chunks = [], chunk = [];
-        if (tmp.replace(TEMPLATE_REGEX, ((m, escapeChar, inverse, style, close, chr) => {
-          if (escapeChar) chunk.push(unescape(escapeChar)); else if (style) {
-            var str = chunk.join("");
-            chunk = [], chunks.push(0 === styles.length ? str : buildStyle(chalk, styles)(str)), 
-            styles.push({
-              inverse: inverse,
-              styles: parseStyle(style)
-            });
-          } else if (close) {
-            if (0 === styles.length) throw new Error("Found extraneous } in Chalk template literal");
-            chunks.push(buildStyle(chalk, styles)(chunk.join(""))), chunk = [], styles.pop();
-          } else chunk.push(chr);
-        })), chunks.push(chunk.join("")), styles.length > 0) {
-          var errMsg = `Chalk template literal is missing ${styles.length} closing bracket${1 === styles.length ? "" : "s"} (\`}\`)`;
-          throw new Error(errMsg);
-        }
-        return chunks.join("");
-      };
-    },
-    3605: function(__unused_webpack_module, exports, __webpack_require__) {
-      "use strict";
-      var _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), isWSL = __webpack_require__(9215), termux = __webpack_require__(3788), linux = __webpack_require__(1775), macos = __webpack_require__(6613), windows = __webpack_require__(1714), platformLib = (() => {
-        switch (process.platform) {
-         case "darwin":
-          return macos;
-
-         case "win32":
-          return windows;
-
-         case "android":
-          if ("/data/data/com.termux/files/usr" !== process.env.PREFIX) throw new Error("You need to install Termux for this module to work on Android: https://termux.com");
-          return termux;
-
-         default:
-          return isWSL ? windows : linux;
-        }
-      })();
-      exports.write = function() {
-        var _ref = (0, _asyncToGenerator2.default)((function*(text) {
-          if ("string" != typeof text) throw new TypeError("Expected a string, got " + typeof text);
-          yield platformLib.copy({
-            input: text
-          });
-        }));
-        return function(_x) {
-          return _ref.apply(this, arguments);
-        };
-      }(), exports.read = (0, _asyncToGenerator2.default)((function*() {
-        return platformLib.paste({
-          stripEof: !1
-        });
-      })), exports.writeSync = text => {
-        if ("string" != typeof text) throw new TypeError("Expected a string, got " + typeof text);
-        platformLib.copySync({
-          input: text
-        });
-      }, exports.readSync = () => platformLib.pasteSync({
-        stripEof: !1
-      }).stdout;
-    },
-    6613: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _ref2, _ref, _interopRequireDefault = __webpack_require__(5318), _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(8926)), _extends2 = _interopRequireDefault(__webpack_require__(7154)), execa = __webpack_require__(7443), env = (0, 
-      _extends2.default)({}, process.env, {
-        LC_CTYPE: "UTF-8"
-      });
-      module.exports = {
-        copy: (_ref = (0, _asyncToGenerator2.default)((function*(options) {
-          return execa("pbcopy", (0, _extends2.default)({}, options, {
-            env: env
-          }));
-        })), function(_x) {
-          return _ref.apply(this, arguments);
-        }),
-        paste: (_ref2 = (0, _asyncToGenerator2.default)((function*(options) {
-          return execa.stdout("pbpaste", (0, _extends2.default)({}, options, {
-            env: env
-          }));
-        })), function(_x2) {
-          return _ref2.apply(this, arguments);
-        }),
-        copySync: options => execa.sync("pbcopy", (0, _extends2.default)({}, options, {
-          env: env
-        })),
-        pasteSync: options => execa.sync("pbpaste", (0, _extends2.default)({}, options, {
-          env: env
-        }))
-      };
-    },
-    3788: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _ref2, _ref, _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), execa = __webpack_require__(7443), handler = error => {
-        if ("ENOENT" === error.code) throw new Error("Couldn't find the termux-api scripts. You can install them with: apt install termux-api");
-        throw error;
-      };
-      module.exports = {
-        copy: (_ref = (0, _asyncToGenerator2.default)((function*(options) {
-          try {
-            yield execa("termux-clipboard-set", options);
-          } catch (error) {
-            handler(error);
-          }
-        })), function(_x) {
-          return _ref.apply(this, arguments);
-        }),
-        paste: (_ref2 = (0, _asyncToGenerator2.default)((function*(options) {
-          try {
-            return yield execa.stdout("termux-clipboard-get", options);
-          } catch (error) {
-            handler(error);
-          }
-        })), function(_x2) {
-          return _ref2.apply(this, arguments);
-        }),
-        copySync: options => {
-          try {
-            execa.sync("termux-clipboard-set", options);
-          } catch (error) {
-            handler(error);
-          }
-        },
-        pasteSync: options => {
-          try {
-            return execa.sync("termux-clipboard-get", options);
-          } catch (error) {
-            handler(error);
-          }
-        }
-      };
-    },
-    1729: function(module) {
-      "use strict";
-      var isWin = "win32" === process.platform;
-      function notFoundError(original, syscall) {
-        return Object.assign(new Error(`${syscall} ${original.command} ENOENT`), {
-          code: "ENOENT",
-          errno: "ENOENT",
-          syscall: `${syscall} ${original.command}`,
-          path: original.command,
-          spawnargs: original.args
-        });
-      }
-      function verifyENOENT(status, parsed) {
-        return isWin && 1 === status && !parsed.file ? notFoundError(parsed.original, "spawn") : null;
-      }
-      module.exports = {
-        hookChildProcess: function(cp, parsed) {
-          if (isWin) {
-            var originalEmit = cp.emit;
-            cp.emit = function(name, arg1) {
-              if ("exit" === name) {
-                var err = verifyENOENT(arg1, parsed);
-                if (err) return originalEmit.call(cp, "error", err);
-              }
-              return originalEmit.apply(cp, arguments);
-            };
-          }
-        },
-        verifyENOENT: verifyENOENT,
-        verifyENOENTSync: function(status, parsed) {
-          return isWin && 1 === status && !parsed.file ? notFoundError(parsed.original, "spawnSync") : null;
-        },
-        notFoundError: notFoundError
-      };
-    },
-    4153: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var path = __webpack_require__(1017), niceTry = __webpack_require__(1150), resolveCommand = __webpack_require__(6329), escape = __webpack_require__(913), readShebang = __webpack_require__(9228), semver = __webpack_require__(1741), isWin = "win32" === process.platform, isExecutableRegExp = /\.(?:com|exe)$/i, isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i, supportsShellOption = niceTry((() => semver.satisfies(process.version, "^4.8.0 || ^5.7.0 || >= 6.0.0", !0))) || !1;
-      function parseNonShell(parsed) {
-        if (!isWin) return parsed;
-        var commandFile = function(parsed) {
-          parsed.file = resolveCommand(parsed);
-          var shebang = parsed.file && readShebang(parsed.file);
-          return shebang ? (parsed.args.unshift(parsed.file), parsed.command = shebang, resolveCommand(parsed)) : parsed.file;
-        }(parsed), needsShell = !isExecutableRegExp.test(commandFile);
-        if (parsed.options.forceShell || needsShell) {
-          var needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-          parsed.command = path.normalize(parsed.command), parsed.command = escape.command(parsed.command), 
-          parsed.args = parsed.args.map((arg => escape.argument(arg, needsDoubleEscapeMetaChars)));
-          var shellCommand = [ parsed.command ].concat(parsed.args).join(" ");
-          parsed.args = [ "/d", "/s", "/c", `"${shellCommand}"` ], parsed.command = process.env.comspec || "cmd.exe", 
-          parsed.options.windowsVerbatimArguments = !0;
-        }
-        return parsed;
-      }
-      module.exports = function(command, args, options) {
-        args && !Array.isArray(args) && (options = args, args = null);
-        var parsed = {
-          command: command,
-          args: args = args ? args.slice(0) : [],
-          options: options = Object.assign({}, options),
-          file: void 0,
-          original: {
-            command: command,
-            args: args
-          }
-        };
-        return options.shell ? function(parsed) {
-          if (supportsShellOption) return parsed;
-          var shellCommand = [ parsed.command ].concat(parsed.args).join(" ");
-          return isWin ? (parsed.command = "string" == typeof parsed.options.shell ? parsed.options.shell : process.env.comspec || "cmd.exe", 
-          parsed.args = [ "/d", "/s", "/c", `"${shellCommand}"` ], parsed.options.windowsVerbatimArguments = !0) : ("string" == typeof parsed.options.shell ? parsed.command = parsed.options.shell : "android" === process.platform ? parsed.command = "/system/bin/sh" : parsed.command = "/bin/sh", 
-          parsed.args = [ "-c", shellCommand ]), parsed;
-        }(parsed) : parseNonShell(parsed);
-      };
-    },
-    913: function(module) {
-      "use strict";
-      var metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
-      module.exports.command = function(arg) {
-        return arg = arg.replace(metaCharsRegExp, "^$1");
-      }, module.exports.argument = function(arg, doubleEscapeMetaChars) {
-        return arg = (arg = `"${arg = (arg = (arg = `${arg}`).replace(/(\\*)"/g, '$1$1\\"')).replace(/(\\*)$/, "$1$1")}"`).replace(metaCharsRegExp, "^$1"), 
-        doubleEscapeMetaChars && (arg = arg.replace(metaCharsRegExp, "^$1")), arg;
-      };
-    },
-    9228: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var fs = __webpack_require__(7147), shebangCommand = __webpack_require__(2063);
-      module.exports = function(command) {
-        var buffer, fd;
-        Buffer.alloc ? buffer = Buffer.alloc(150) : (buffer = new Buffer(150)).fill(0);
-        try {
-          fd = fs.openSync(command, "r"), fs.readSync(fd, buffer, 0, 150, 0), fs.closeSync(fd);
-        } catch (e) {}
-        return shebangCommand(buffer.toString());
-      };
-    },
-    6329: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var path = __webpack_require__(1017), which = __webpack_require__(2806), pathKey = __webpack_require__(2170)();
-      function resolveCommandAttempt(parsed, withoutPathExt) {
-        var resolved, cwd = process.cwd(), hasCustomCwd = null != parsed.options.cwd;
-        if (hasCustomCwd) try {
-          process.chdir(parsed.options.cwd);
-        } catch (err) {}
-        try {
-          resolved = which.sync(parsed.command, {
-            path: (parsed.options.env || process.env)[pathKey],
-            pathExt: withoutPathExt ? path.delimiter : void 0
-          });
-        } catch (e) {} finally {
-          process.chdir(cwd);
-        }
-        return resolved && (resolved = path.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved)), 
-        resolved;
-      }
-      module.exports = function(parsed) {
-        return resolveCommandAttempt(parsed) || resolveCommandAttempt(parsed, !0);
-      };
-    },
-    4127: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var uv, util = __webpack_require__(3837);
-      if ("function" == typeof util.getSystemErrorName) module.exports = util.getSystemErrorName; else {
-        try {
-          if ("function" != typeof (uv = process.binding("uv")).errname) throw new TypeError("uv.errname is not a function");
-        } catch (err) {
-          console.error("execa/lib/errname: unable to establish process.binding('uv')", err), 
-          uv = null;
-        }
-        module.exports = code => errname(uv, code);
-      }
-      function errname(uv, code) {
-        if (uv) return uv.errname(code);
-        if (!(code < 0)) throw new Error("err >= 0");
-        return `Unknown system error ${code}`;
-      }
-      module.exports.__test__ = errname;
-    },
-    883: function(module) {
-      "use strict";
-      var alias = [ "stdin", "stdout", "stderr" ];
-      module.exports = opts => {
-        if (!opts) return null;
-        if (opts.stdio && (opts => alias.some((x => Boolean(opts[x]))))(opts)) throw new Error(`It's not possible to provide \`stdio\` in combination with one of ${alias.map((x => `\`${x}\``)).join(", ")}`);
-        if ("string" == typeof opts.stdio) return opts.stdio;
-        var stdio = opts.stdio || [];
-        if (!Array.isArray(stdio)) throw new TypeError(`Expected \`stdio\` to be of type \`string\` or \`Array\`, got \`${typeof stdio}\``);
-        for (var result = [], len = Math.max(stdio.length, alias.length), i = 0; i < len; i++) {
-          var value = null;
-          void 0 !== stdio[i] ? value = stdio[i] : void 0 !== opts[alias[i]] && (value = opts[alias[i]]), 
-          result[i] = value;
-        }
-        return result;
-      };
-    },
-    3518: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var PassThrough = __webpack_require__(2781).PassThrough;
-      module.exports = options => {
-        var array = (options = Object.assign({}, options)).array, encoding = options.encoding, buffer = "buffer" === encoding, objectMode = !1;
-        array ? objectMode = !(encoding || buffer) : encoding = encoding || "utf8", buffer && (encoding = null);
-        var len = 0, ret = [], stream = new PassThrough({
-          objectMode: objectMode
-        });
-        return encoding && stream.setEncoding(encoding), stream.on("data", (chunk => {
-          ret.push(chunk), objectMode ? len = ret.length : len += chunk.length;
-        })), stream.getBufferedValue = () => array ? ret : buffer ? Buffer.concat(ret, len) : ret.join(""), 
-        stream.getBufferedLength = () => len, stream;
-      };
-    },
-    9860: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var pump = __webpack_require__(4286), bufferStream = __webpack_require__(3518);
-      class MaxBufferError extends Error {
-        constructor() {
-          super("maxBuffer exceeded"), this.name = "MaxBufferError";
-        }
-      }
-      function getStream(inputStream, options) {
-        if (!inputStream) return Promise.reject(new Error("Expected a stream"));
-        var stream, maxBuffer = (options = Object.assign({
-          maxBuffer: 1 / 0
-        }, options)).maxBuffer;
-        return new Promise(((resolve, reject) => {
-          var rejectPromise = error => {
-            error && (error.bufferedData = stream.getBufferedValue()), reject(error);
-          };
-          (stream = pump(inputStream, bufferStream(options), (error => {
-            error ? rejectPromise(error) : resolve();
-          }))).on("data", (() => {
-            stream.getBufferedLength() > maxBuffer && rejectPromise(new MaxBufferError);
-          }));
-        })).then((() => stream.getBufferedValue()));
-      }
-      module.exports = getStream, module.exports.buffer = (stream, options) => getStream(stream, Object.assign({}, options, {
-        encoding: "buffer"
-      })), module.exports.array = (stream, options) => getStream(stream, Object.assign({}, options, {
-        array: !0
-      })), module.exports.MaxBufferError = MaxBufferError;
-    },
-    4409: function(module) {
-      "use strict";
-      module.exports = (flag, argv) => {
-        argv = argv || process.argv;
-        var prefix = flag.startsWith("-") ? "" : 1 === flag.length ? "-" : "--", pos = argv.indexOf(prefix + flag), terminatorPos = argv.indexOf("--");
-        return -1 !== pos && (-1 === terminatorPos || pos < terminatorPos);
-      };
-    },
-    6936: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var isDocker, fs = __webpack_require__(7147);
-      module.exports = () => (void 0 === isDocker && (isDocker = function() {
-        try {
-          return fs.statSync("/.dockerenv"), !0;
-        } catch (_) {
-          return !1;
-        }
-      }() || function() {
-        try {
-          return fs.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
-        } catch (_) {
-          return !1;
-        }
-      }()), isDocker);
-    },
-    9215: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var os = __webpack_require__(2037), fs = __webpack_require__(7147), isDocker = __webpack_require__(6936), isWsl = () => {
-        if ("linux" !== process.platform) return !1;
-        if (os.release().toLowerCase().includes("microsoft")) return !isDocker();
-        try {
-          return !!fs.readFileSync("/proc/version", "utf8").toLowerCase().includes("microsoft") && !isDocker();
-        } catch (_) {
-          return !1;
-        }
-      };
-      process.env.__IS_WSL_TEST__ ? module.exports = isWsl : module.exports = isWsl();
-    },
-    7648: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var path = __webpack_require__(1017), pathKey = __webpack_require__(2170);
-      module.exports = opts => {
-        var prev;
-        opts = Object.assign({
-          cwd: process.cwd(),
-          path: process.env[pathKey()]
-        }, opts);
-        for (var pth = path.resolve(opts.cwd), ret = []; prev !== pth; ) ret.push(path.join(pth, "node_modules/.bin")), 
-        prev = pth, pth = path.resolve(pth, "..");
-        return ret.push(path.dirname(process.execPath)), ret.concat(opts.path).join(path.delimiter);
-      }, module.exports.env = opts => {
-        opts = Object.assign({
-          env: process.env
-        }, opts);
-        var env = Object.assign({}, opts.env), path = pathKey({
-          env: env
-        });
-        return opts.path = env[path], env[path] = module.exports(opts), env;
-      };
-    },
-    2170: function(module) {
-      "use strict";
-      module.exports = opts => {
-        var env = (opts = opts || {}).env || process.env;
-        return "win32" !== (opts.platform || process.platform) ? "PATH" : Object.keys(env).find((x => "PATH" === x.toUpperCase())) || "Path";
-      };
-    },
-    8463: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var path = __webpack_require__(1017), normalize = value => path.posix.normalize(path.posix.join("/", value));
-      module.exports = value => "!" === value.charAt(0) ? `!${normalize(value.substr(1))}` : normalize(value), 
-      module.exports.normalize = normalize;
-    },
-    1852: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var stripAnsi = __webpack_require__(8999), isFullwidthCodePoint = __webpack_require__(1903);
-      module.exports = str => {
-        if ("string" != typeof str || 0 === str.length) return 0;
-        str = stripAnsi(str);
-        for (var width = 0, i = 0; i < str.length; i++) {
-          var code = str.codePointAt(i);
-          code <= 31 || code >= 127 && code <= 159 || (code >= 768 && code <= 879 || (code > 65535 && i++, 
-          width += isFullwidthCodePoint(code) ? 2 : 1));
-        }
-        return width;
-      };
-    },
-    5788: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var forceColor, os = __webpack_require__(2037), hasFlag = __webpack_require__(4409), env = process.env;
-      function getSupportLevel(stream) {
-        var level = function(stream) {
-          if (!1 === forceColor) return 0;
-          if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) return 3;
-          if (hasFlag("color=256")) return 2;
-          if (stream && !stream.isTTY && !0 !== forceColor) return 0;
-          var min = forceColor ? 1 : 0;
-          if ("win32" === process.platform) {
-            var osRelease = os.release().split(".");
-            return Number(process.versions.node.split(".")[0]) >= 8 && Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586 ? Number(osRelease[2]) >= 14931 ? 3 : 2 : 1;
-          }
-          if ("CI" in env) return [ "TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI" ].some((sign => sign in env)) || "codeship" === env.CI_NAME ? 1 : min;
-          if ("TEAMCITY_VERSION" in env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
-          if ("truecolor" === env.COLORTERM) return 3;
-          if ("TERM_PROGRAM" in env) {
-            var version = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-            switch (env.TERM_PROGRAM) {
-             case "iTerm.app":
-              return version >= 3 ? 3 : 2;
-
-             case "Apple_Terminal":
-              return 2;
-            }
-          }
-          return /-256(color)?$/i.test(env.TERM) ? 2 : /^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM) || "COLORTERM" in env ? 1 : (env.TERM, 
-          min);
-        }(stream);
-        return function(level) {
-          return 0 !== level && {
-            level: level,
-            hasBasic: !0,
-            has256: level >= 2,
-            has16m: level >= 3
-          };
-        }(level);
-      }
-      hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") ? forceColor = !1 : (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) && (forceColor = !0), 
-      "FORCE_COLOR" in env && (forceColor = 0 === env.FORCE_COLOR.length || 0 !== parseInt(env.FORCE_COLOR, 10)), 
-      module.exports = {
-        supportsColor: getSupportLevel,
-        stdout: getSupportLevel(process.stdout),
-        stderr: getSupportLevel(process.stderr)
-      };
-    },
-    5498: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var execFileSync = __webpack_require__(2081).execFileSync, path = __webpack_require__(1017), exec = (command, arguments_, shell) => execFileSync(command, arguments_, {
-        encoding: "utf8",
-        shell: shell
-      }).trim(), create = (columns, rows) => ({
-        columns: parseInt(columns, 10),
-        rows: parseInt(rows, 10)
-      });
-      module.exports = () => {
-        var _process = process, env = _process.env, stdout = _process.stdout, stderr = _process.stderr;
-        if (stdout && stdout.columns && stdout.rows) return create(stdout.columns, stdout.rows);
-        if (stderr && stderr.columns && stderr.rows) return create(stderr.columns, stderr.rows);
-        if (env.COLUMNS && env.LINES) return create(env.COLUMNS, env.LINES);
-        if ("win32" === process.platform) try {
-          var size = exec(path.join(__dirname, "vendor/windows/term-size.exe")).split(/\r?\n/);
-          if (2 === size.length) return create(size[0], size[1]);
-        } catch (_) {} else {
-          if ("darwin" === process.platform) try {
-            var _size = exec(path.join(__dirname, "vendor/macos/term-size"), [], !0).split(/\r?\n/);
-            if (2 === _size.length) return create(_size[0], _size[1]);
-          } catch (_) {}
-          try {
-            var _size2 = exec("resize", [ "-u" ]).match(/\d+/g);
-            if (2 === _size2.length) return create(_size2[0], _size2[1]);
-          } catch (_) {}
-          if (process.env.TERM) try {
-            var columns = exec("tput", [ "cols" ]), rows = exec("tput", [ "lines" ]);
-            if (columns && rows) return create(columns, rows);
-          } catch (_) {}
-        }
-        return create(80, 24);
-      };
-    },
-    8446: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var escapeStringRegexp = __webpack_require__(3150), ansiStyles = __webpack_require__(1413), stdoutColor = __webpack_require__(5788).stdout, template = __webpack_require__(8890), isSimpleWindowsTerm = "win32" === process.platform && !(process.env.TERM || "").toLowerCase().startsWith("xterm"), levelMapping = [ "ansi", "ansi", "ansi256", "ansi16m" ], skipModels = new Set([ "gray" ]), styles = Object.create(null);
+    3857: function(module, __unused_webpack_exports, __webpack_require__) {
+      var escapeStringRegexp = __webpack_require__(3150), ansiStyles = __webpack_require__(3896), stdoutColor = __webpack_require__(5788).stdout, template = __webpack_require__(8890), isSimpleWindowsTerm = "win32" === process.platform && !(process.env.TERM || "").toLowerCase().startsWith("xterm"), levelMapping = [ "ansi", "ansi", "ansi256", "ansi16m" ], skipModels = new Set([ "gray" ]), styles = Object.create(null);
       function applyOptions(obj, options) {
         options = options || {};
         var scLevel = stdoutColor ? stdoutColor.level : 0;
@@ -3172,938 +2682,285 @@
       Object.defineProperties(Chalk.prototype, styles), module.exports = Chalk(), module.exports.supportsColor = stdoutColor, 
       module.exports.default = module.exports;
     },
-    1171: function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), http = __webpack_require__(3685), https = __webpack_require__(5687), path = __webpack_require__(1017), fs = __webpack_require__(7147), promisify = __webpack_require__(3837).promisify || __webpack_require__(7183), parse = __webpack_require__(7310).parse, os = __webpack_require__(2037), Ajv = __webpack_require__(5096), checkForUpdate = __webpack_require__(1529), chalk = __webpack_require__(8446), arg = __webpack_require__(2101), copy = __webpack_require__(3605).write, handler = __webpack_require__(8144), schema = __webpack_require__(9187), boxen = __webpack_require__(2069), compression = __webpack_require__(4051), pkg = __webpack_require__(4278), readFile = promisify(fs.readFile), compressionHandler = promisify(compression()), interfaces = os.networkInterfaces(), warning = message => chalk`{yellow WARNING:} ${message}`, info = message => chalk`{magenta INFO:} ${message}`, error = message => chalk`{red ERROR:} ${message}`, updateCheck = function() {
-        var _ref = (0, _asyncToGenerator2.default)((function*(isDebugging) {
-          var update = null;
-          try {
-            update = yield checkForUpdate(pkg);
-          } catch (err) {
-            var suffix = isDebugging ? ":" : " (use `--debug` to see full error)";
-            console.error(warning(`Checking for updates failed${suffix}`)), isDebugging && console.error(err);
-          }
-          update && console.log(`${chalk.bgRed("UPDATE AVAILABLE")} The latest version of \`serve\` is ${update.latest}`);
-        }));
-        return function(_x) {
-          return _ref.apply(this, arguments);
-        };
-      }(), parseEndpoint = str => {
-        if (!isNaN(str)) return [ str ];
-        var url = parse(str);
-        switch (url.protocol) {
-         case "pipe:":
-          var cutStr = str.replace(/^pipe:/, "");
-          if ("\\\\.\\" !== cutStr.slice(0, 4)) throw new Error(`Invalid Windows named pipe endpoint: ${str}`);
-          return [ cutStr ];
+    8890: function(module) {
+      var TEMPLATE_REGEX = /(?:\\(u[a-f\d]{4}|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi, STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g, STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/, ESCAPE_REGEX = /\\(u[a-f\d]{4}|x[a-f\d]{2}|.)|([^\\])/gi, ESCAPES = new Map([ [ "n", "\n" ], [ "r", "\r" ], [ "t", "\t" ], [ "b", "\b" ], [ "f", "\f" ], [ "v", "\v" ], [ "0", "\0" ], [ "\\", "\\" ], [ "e", "" ], [ "a", "" ] ]);
+      function unescape(c) {
+        return "u" === c[0] && 5 === c.length || "x" === c[0] && 3 === c.length ? String.fromCharCode(parseInt(c.slice(1), 16)) : ESCAPES.get(c) || c;
+      }
+      function parseArguments(name, args) {
+        var matches, results = [], chunks = args.trim().split(/\s*,\s*/g);
+        for (var chunk of chunks) if (isNaN(chunk)) {
+          if (!(matches = chunk.match(STRING_REGEX))) throw new Error(`Invalid Chalk template style argument: ${chunk} (in style '${name}')`);
+          results.push(matches[2].replace(ESCAPE_REGEX, ((m, escape, chr) => escape ? unescape(escape) : chr)));
+        } else results.push(Number(chunk));
+        return results;
+      }
+      function parseStyle(style) {
+        STYLE_REGEX.lastIndex = 0;
+        for (var matches, results = []; null !== (matches = STYLE_REGEX.exec(style)); ) {
+          var name = matches[1];
+          if (matches[2]) {
+            var args = parseArguments(name, matches[2]);
+            results.push([ name ].concat(args));
+          } else results.push([ name ]);
+        }
+        return results;
+      }
+      function buildStyle(chalk, styles) {
+        var enabled = {};
+        for (var layer of styles) for (var style of layer.styles) enabled[style[0]] = layer.inverse ? null : style.slice(1);
+        var current = chalk;
+        for (var styleName of Object.keys(enabled)) if (Array.isArray(enabled[styleName])) {
+          if (!(styleName in current)) throw new Error(`Unknown Chalk style: ${styleName}`);
+          current = enabled[styleName].length > 0 ? current[styleName].apply(current, enabled[styleName]) : current[styleName];
+        }
+        return current;
+      }
+      module.exports = (chalk, tmp) => {
+        var styles = [], chunks = [], chunk = [];
+        if (tmp.replace(TEMPLATE_REGEX, ((m, escapeChar, inverse, style, close, chr) => {
+          if (escapeChar) chunk.push(unescape(escapeChar)); else if (style) {
+            var str = chunk.join("");
+            chunk = [], chunks.push(0 === styles.length ? str : buildStyle(chalk, styles)(str)), 
+            styles.push({
+              inverse: inverse,
+              styles: parseStyle(style)
+            });
+          } else if (close) {
+            if (0 === styles.length) throw new Error("Found extraneous } in Chalk template literal");
+            chunks.push(buildStyle(chalk, styles)(chunk.join(""))), chunk = [], styles.pop();
+          } else chunk.push(chr);
+        })), chunks.push(chunk.join("")), styles.length > 0) {
+          var errMsg = `Chalk template literal is missing ${styles.length} closing bracket${1 === styles.length ? "" : "s"} (\`}\`)`;
+          throw new Error(errMsg);
+        }
+        return chunks.join("");
+      };
+    },
+    3605: function(__unused_webpack_module, exports, __webpack_require__) {
+      var _asyncToGenerator2 = __webpack_require__(8926), isWSL = __webpack_require__(9215), termux = __webpack_require__(3788), linux = __webpack_require__(5825), macos = __webpack_require__(6613), windows = __webpack_require__(3354), platformLib = (() => {
+        switch (process.platform) {
+         case "darwin":
+          return macos;
 
-         case "unix:":
-          if (!url.pathname) throw new Error(`Invalid UNIX domain socket endpoint: ${str}`);
-          return [ url.pathname ];
+         case "win32":
+          return windows;
 
-         case "tcp:":
-          return url.port = url.port || "5000", [ parseInt(url.port, 10), url.hostname ];
+         case "android":
+          if ("/data/data/com.termux/files/usr" !== process.env.PREFIX) throw new Error("You need to install Termux for this module to work on Android: https://termux.com");
+          return termux;
 
          default:
-          throw new Error(`Unknown --listen endpoint scheme (protocol): ${url.protocol}`);
+          return isWSL ? windows : linux;
         }
-      }, registerShutdown = fn => {
-        var run = !1, wrapper = () => {
-          run || (run = !0, fn());
-        };
-        process.on("SIGINT", wrapper), process.on("SIGTERM", wrapper), process.on("exit", wrapper);
-      }, startEndpoint = (endpoint, config, args, previous) => {
-        var isTTY = process.stdout.isTTY, clipboard = !0 !== args["--no-clipboard"], compress = !0 !== args["--no-compression"], httpMode = args["--ssl-cert"] && args["--ssl-key"] ? "https" : "http", virtualPath = args["--virtual-path"] ? new RegExp(`^([^/]*//[^/]+)?/${args["--virtual-path"].replace(/[^\w\s]/g, "\\$&")}(/|$)`, "i") : null, serverHandler = function() {
-          var _ref2 = (0, _asyncToGenerator2.default)((function*(request, response) {
-            return virtualPath && (request.url = request.url.replace(virtualPath, "$1/")), args["--cors"] && response.setHeader("Access-Control-Allow-Origin", "*"), 
-            compress && (yield compressionHandler(request, response)), handler(request, response, config);
-          }));
-          return function(_x2, _x3) {
-            return _ref2.apply(this, arguments);
-          };
-        }(), sslPass = args["--ssl-pass"], server = "https" === httpMode ? https.createServer({
-          key: fs.readFileSync(args["--ssl-key"]),
-          cert: fs.readFileSync(args["--ssl-cert"]),
-          passphrase: sslPass ? fs.readFileSync(sslPass) : ""
-        }, serverHandler) : http.createServer(serverHandler);
-        server.on("error", (err => {
-          "EADDRINUSE" !== err.code || 1 !== endpoint.length || isNaN(endpoint[0]) || !0 === args["--no-port-switching"] ? (console.error(error(`Failed to serve: ${err.stack}`)), 
-          process.exit(1)) : startEndpoint([ 0 ], config, args, endpoint[0]);
-        })), server.listen.apply(server, endpoint.concat([ (0, _asyncToGenerator2.default)((function*() {
-          var details = server.address();
-          registerShutdown((() => server.close()));
-          var addressSuffix = args["--virtual-path"] ? `/${args["--virtual-path"]}` : "", localAddress = null, networkAddress = null;
-          if ("string" == typeof details) localAddress = details + addressSuffix; else if ("object" == typeof details && details.port) {
-            var address = "::" === details.address ? "localhost" : details.address, ip = (() => {
-              for (var name of Object.keys(interfaces)) for (var netInterface of interfaces[name]) {
-                var address = netInterface.address, family = netInterface.family, internal = netInterface.internal;
-                if ("IPv4" === family && !internal) return address;
-              }
-            })();
-            localAddress = `${httpMode}://${address}:${details.port}${addressSuffix}`, networkAddress = ip ? `${httpMode}://${ip}:${details.port}${addressSuffix}` : null;
-          }
-          if (isTTY && "production" !== process.env.NODE_ENV) {
-            var message = chalk.green("Serving!");
-            if (localAddress) {
-              var prefix = networkAddress ? "- " : "", space = networkAddress ? "            " : "  ";
-              message += `\n\n${chalk.bold(`${prefix}Local:`)}${space}${localAddress}`;
-            }
-            if (networkAddress && (message += `\n${chalk.bold("- On Your Network:")}  ${networkAddress}`), 
-            previous && (message += chalk.red(`\n\nThis port was picked because ${chalk.underline(previous)} is in use.`)), 
-            clipboard) try {
-              yield copy(localAddress), message += `\n\n${chalk.grey("Copied local address to clipboard!")}`;
-            } catch (err) {
-              console.error(error(`Cannot copy to clipboard: ${err.message}`));
-            }
-            console.log(boxen(message, {
-              padding: 1,
-              borderColor: "green",
-              margin: 1
-            }));
-          } else {
-            var suffix = localAddress ? ` at ${localAddress}` : "";
-            console.log(info(`Accepting connections${suffix}`));
-          }
-        })) ]));
-      }, loadConfig = function() {
-        var _ref4 = (0, _asyncToGenerator2.default)((function*(cwd, entry, args) {
-          var files = [ "serve.json", "now.json", "package.json" ];
-          args["--config"] && files.unshift(args["--config"]);
-          var config = {};
-          for (var file of files) {
-            var location = path.resolve(entry, file), content = null;
-            try {
-              content = yield readFile(location, "utf8");
-            } catch (err) {
-              if ("ENOENT" === err.code) continue;
-              console.error(error(`Not able to read ${location}: ${err.message}`)), process.exit(1);
-            }
-            try {
-              content = JSON.parse(content);
-            } catch (err) {
-              console.error(error(`Could not parse ${location} as JSON: ${err.message}`)), process.exit(1);
-            }
-            if ("object" == typeof content) {
-              try {
-                switch (file) {
-                 case "now.json":
-                  content = content.static;
-                  break;
-
-                 case "package.json":
-                  content = content.now.static;
-                }
-              } catch (err) {
-                continue;
-              }
-              Object.assign(config, content), console.log(info(`Discovered configuration in \`${file}\``)), 
-              "now.json" !== file && "package.json" !== file || console.error(warning("The config files `now.json` and `package.json` are deprecated. Please use `serve.json`."));
-              break;
-            }
-            console.error(warning(`Didn't find a valid object in ${location}. Skipping...`));
-          }
-          if (entry) {
-            var publicDir = config.public;
-            config.public = path.relative(cwd, publicDir ? path.resolve(entry, publicDir) : entry);
-          }
-          if (0 !== Object.keys(config).length) {
-            var validateSchema = (new Ajv).compile(schema);
-            if (!validateSchema(config)) {
-              var defaultMessage = error("The configuration you provided is wrong:"), _validateSchema$error = validateSchema.errors[0], message = _validateSchema$error.message, params = _validateSchema$error.params;
-              console.error(`${defaultMessage}\n${message}\n${JSON.stringify(params)}`), process.exit(1);
-            }
-          }
-          return config.etag = !args["--no-etag"], config.virtualPath = args["--virtual-path"], 
-          config;
-        }));
-        return function(_x4, _x5, _x6) {
-          return _ref4.apply(this, arguments);
-        };
-      }();
-      (0, _asyncToGenerator2.default)((function*() {
-        var args = null;
-        try {
-          args = arg({
-            "--help": Boolean,
-            "--version": Boolean,
-            "--listen": [ parseEndpoint ],
-            "--virtual-path": String,
-            "--single": Boolean,
-            "--debug": Boolean,
-            "--config": String,
-            "--no-clipboard": Boolean,
-            "--no-compression": Boolean,
-            "--no-etag": Boolean,
-            "--symlinks": Boolean,
-            "--cors": Boolean,
-            "--no-port-switching": Boolean,
-            "--ssl-cert": String,
-            "--ssl-key": String,
-            "--ssl-pass": String,
-            "-h": "--help",
-            "-v": "--version",
-            "-l": "--listen",
-            "-s": "--single",
-            "-d": "--debug",
-            "-c": "--config",
-            "-n": "--no-clipboard",
-            "-u": "--no-compression",
-            "-S": "--symlinks",
-            "-C": "--cors",
-            "-p": "--listen"
+      })();
+      exports.write = function() {
+        var _ref = _asyncToGenerator2((function*(text) {
+          if ("string" != typeof text) throw new TypeError("Expected a string, got " + typeof text);
+          yield platformLib.copy({
+            input: text
           });
-        } catch (err) {
-          console.error(error(err.message)), process.exit(1);
-        }
-        if ("1" !== process.env.NO_UPDATE_CHECK && (yield updateCheck(args["--debug"])), 
-        args["--version"]) console.log(pkg.version); else if (args["--help"]) console.log(chalk`
-  {bold.cyan serve} - Static file serving and directory listing
-
-  {bold USAGE}
-
-      {bold $} {cyan serve} --help
-      {bold $} {cyan serve} --version
-      {bold $} {cyan serve} folder_name
-      {bold $} {cyan serve} [-l {underline listen_uri} [-l ...]] [{underline directory}]
-
-      By default, {cyan serve} will listen on {bold 0.0.0.0:5000} and serve the
-      current working directory on that address.
-
-      Specifying a single {bold --listen} argument will overwrite the default, not supplement it.
-
-  {bold OPTIONS}
-
-      --help                              Shows this help message
-
-      -v, --version                       Displays the current version of serve
-
-      -l, --listen {underline listen_uri}             Specify a URI endpoint on which to listen (see below) -
-                                          more than one may be specified to listen in multiple places
-
-      -p                                  Specify custom port
-
-      --virtual-path                      Virtual directory for the server
-
-      -d, --debug                         Show debugging information
-
-      -s, --single                        Rewrite all not-found requests to \`index.html\`
-
-      -c, --config                        Specify custom path to \`serve.json\`
-
-      -C, --cors                          Enable CORS, sets \`Access-Control-Allow-Origin\` to \`*\`
-
-      -n, --no-clipboard                  Do not copy the local address to the clipboard
-
-      -u, --no-compression                Do not compress files
-
-      --no-etag                           Send \`Last-Modified\` header instead of \`ETag\`
-
-      -S, --symlinks                      Resolve symlinks instead of showing 404 errors
-	  
-	  --ssl-cert                          Optional path to an SSL/TLS certificate to serve with HTTPS
-	  
-	  --ssl-key                           Optional path to the SSL/TLS certificate\'s private key
-
-	  --ssl-pass                          Optional path to the SSL/TLS certificate\'s passphrase
-
-      --no-port-switching                 Do not open a port other than the one specified when it\'s taken.
-
-  {bold ENDPOINTS}
-
-      Listen endpoints (specified by the {bold --listen} or {bold -l} options above) instruct {cyan serve}
-      to listen on one or more interfaces/ports, UNIX domain sockets, or Windows named pipes.
-
-      For TCP ports on hostname "localhost":
-
-          {bold $} {cyan serve} -l {underline 1234}
-
-      For TCP (traditional host/port) endpoints:
-
-          {bold $} {cyan serve} -l tcp://{underline hostname}:{underline 1234}
-
-      For UNIX domain socket endpoints:
-
-          {bold $} {cyan serve} -l unix:{underline /path/to/socket.sock}
-
-      For Windows named pipe endpoints:
-
-          {bold $} {cyan serve} -l pipe:\\\\.\\pipe\\{underline PipeName}
-`); else {
-          args["--listen"] || (args["--listen"] = [ [ process.env.PORT || 5e3 ] ]), args["--virtual-path"] && (args["--virtual-path"] = args["--virtual-path"].replace(/^\/|\/$/g, "")), 
-          args._.length > 1 && (console.error(error("Please provide one path argument at maximum")), 
-          process.exit(1));
-          var cwd = process.cwd(), entry = args._.length > 0 ? path.resolve(args._[0]) : cwd, config = yield loadConfig(cwd, entry, args);
-          if (args["--single"]) {
-            var rewrites = config.rewrites, existingRewrites = Array.isArray(rewrites) ? rewrites : [];
-            config.rewrites = [ {
-              source: "**",
-              destination: "/index.html"
-            } ].concat(existingRewrites);
-          }
-          for (var endpoint of (args["--symlinks"] && (config.symlinks = !0), args["--listen"])) startEndpoint(endpoint, config, args);
-          registerShutdown((() => {
-            console.log(`\n${info("Gracefully shutting down. Please wait...")}`), process.on("SIGINT", (() => {
-              console.log(`\n${warning("Force-closing all open sockets...")}`), process.exit(0);
-            }));
-          }));
-        }
-      }))();
-    },
-    8144: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), promisify = __webpack_require__(3837).promisify || __webpack_require__(7183), path = __webpack_require__(1017), createHash = __webpack_require__(6113).createHash, _require2 = __webpack_require__(7147), realpath = _require2.realpath, lstat = _require2.lstat, createReadStream = _require2.createReadStream, readdir = _require2.readdir, url = __webpack_require__(9524), slasher = __webpack_require__(8463), minimatch = __webpack_require__(8108), pathToRegExp = __webpack_require__(4779), mime = __webpack_require__(983), bytes = __webpack_require__(9830), contentDisposition = __webpack_require__(7389), isPathInside = __webpack_require__(5038), parseRange = __webpack_require__(4622), directoryTemplate = __webpack_require__(5172), errorTemplate = __webpack_require__(2108), etags = new Map, sourceMatches = (source, requestPath, allowSegments) => {
-        var keys = [], slashed = slasher(source), resolvedPath = path.posix.resolve(requestPath), results = null;
-        if (allowSegments) {
-          var normalized = slashed.replace("*", "(.*)");
-          (results = pathToRegExp(normalized, keys).exec(resolvedPath)) || (keys.length = 0);
-        }
-        return results || minimatch(resolvedPath, slashed) ? {
-          keys: keys,
-          results: results
-        } : null;
-      }, toTarget = (source, destination, previousPath) => {
-        var matches = sourceMatches(source, previousPath, !0);
-        if (!matches) return null;
-        for (var keys = matches.keys, results = matches.results, props = {}, normalizedDest = url.parse(destination).protocol ? destination : slasher(destination), toPath = pathToRegExp.compile(normalizedDest), index = 0; index < keys.length; index++) {
-          props[keys[index].name] = results[index + 1];
-        }
-        return toPath(props);
-      }, applyRewrites = function(requestPath, rewrites, repetitive) {
-        void 0 === rewrites && (rewrites = []);
-        var rewritesCopy = rewrites.slice(), fallback = repetitive ? requestPath : null;
-        if (0 === rewritesCopy.length) return fallback;
-        for (var index = 0; index < rewritesCopy.length; index++) {
-          var _rewrites$index = rewrites[index], source = _rewrites$index.source, destination = _rewrites$index.destination, target = toTarget(source, destination, requestPath);
-          if (target) return rewritesCopy.splice(index, 1), applyRewrites(slasher(target), rewritesCopy, !0);
-        }
-        return fallback;
-      }, ensureSlashStart = target => target.startsWith("/") ? target : `/${target}`, appendHeaders = (target, source) => {
-        for (var index = 0; index < source.length; index++) {
-          var _source$index = source[index], key = _source$index.key, value = _source$index.value;
-          target[key] = value;
-        }
-      }, getHeaders = function() {
-        var _ref2 = (0, _asyncToGenerator2.default)((function*(handlers, config, current, absolutePath, stats) {
-          var _config$headers = config.headers, customHeaders = void 0 === _config$headers ? [] : _config$headers, _config$etag = config.etag, etag = void 0 !== _config$etag && _config$etag, related = {}, base = path.parse(absolutePath).base, relativePath = path.relative(current, absolutePath);
-          if (customHeaders.length > 0) for (var index = 0; index < customHeaders.length; index++) {
-            var _customHeaders$index = customHeaders[index], source = _customHeaders$index.source, _headers = _customHeaders$index.headers;
-            sourceMatches(source, slasher(relativePath)) && appendHeaders(related, _headers);
-          }
-          var defaultHeaders = {};
-          if (stats) {
-            if (defaultHeaders = {
-              "Content-Length": stats.size,
-              "Content-Disposition": contentDisposition(base, {
-                type: "inline"
-              }),
-              "Accept-Ranges": "bytes"
-            }, etag) {
-              var _ref3 = etags.get(absolutePath) || [], mtime = _ref3[0], sha = _ref3[1];
-              Number(mtime) !== Number(stats.mtime) && (sha = yield ((handlers, absolutePath) => new Promise(((resolve, reject) => {
-                var hash = createHash("sha1");
-                hash.update(path.extname(absolutePath)), hash.update("-");
-                var rs = handlers.createReadStream(absolutePath);
-                rs.on("error", reject), rs.on("data", (buf => hash.update(buf))), rs.on("end", (() => {
-                  var sha = hash.digest("hex");
-                  resolve(sha);
-                }));
-              })))(handlers, absolutePath), etags.set(absolutePath, [ stats.mtime, sha ])), defaultHeaders.ETag = `"${sha}"`;
-            } else defaultHeaders["Last-Modified"] = stats.mtime.toUTCString();
-            var contentType = mime.contentType(base);
-            contentType && (defaultHeaders["Content-Type"] = contentType);
-          }
-          var headers = Object.assign(defaultHeaders, related);
-          for (var key in headers) headers.hasOwnProperty(key) && null === headers[key] && delete headers[key];
-          return headers;
-        }));
-        return function(_x, _x2, _x3, _x4, _x5) {
-          return _ref2.apply(this, arguments);
-        };
-      }(), applicable = (decodedPath, configEntry) => {
-        if ("boolean" == typeof configEntry) return configEntry;
-        if (Array.isArray(configEntry)) {
-          for (var index = 0; index < configEntry.length; index++) {
-            var source = configEntry[index];
-            if (sourceMatches(source, decodedPath)) return !0;
-          }
-          return !1;
-        }
-        return !0;
-      }, findRelated = function() {
-        var _ref4 = (0, _asyncToGenerator2.default)((function*(current, relativePath, rewrittenPath, originalStat) {
-          for (var possible = rewrittenPath ? [ rewrittenPath ] : ((relativePath, extension) => [ path.join(relativePath, `index${extension}`), relativePath.endsWith("/") ? relativePath.replace(/\/$/g, extension) : relativePath + extension ].filter((item => path.basename(item) !== extension)))(relativePath, ".html"), stats = null, index = 0; index < possible.length; index++) {
-            var related = possible[index], absolutePath = path.join(current, related);
-            try {
-              stats = yield originalStat(absolutePath);
-            } catch (err) {
-              if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) throw err;
-            }
-            if (stats) return {
-              stats: stats,
-              absolutePath: absolutePath
-            };
-          }
-          return null;
-        }));
-        return function(_x6, _x7, _x8, _x9) {
-          return _ref4.apply(this, arguments);
-        };
-      }(), canBeListed = (excluded, file) => {
-        for (var slashed = slasher(file), whether = !0, mark = 0; mark < excluded.length; mark++) {
-          var source = excluded[mark];
-          if (sourceMatches(source, slashed)) {
-            whether = !1;
-            break;
-          }
-        }
-        return whether;
-      }, renderDirectory = function() {
-        var _ref5 = (0, _asyncToGenerator2.default)((function*(current, acceptsJSON, handlers, methods, config, paths) {
-          var directoryListing = config.directoryListing, trailingSlash = config.trailingSlash, _config$unlisted = config.unlisted, unlisted = void 0 === _config$unlisted ? [] : _config$unlisted, renderSingle = config.renderSingle, slashSuffix = "boolean" == typeof trailingSlash ? trailingSlash ? "/" : "" : "/", relativePath = paths.relativePath, absolutePath = paths.absolutePath, excluded = [ ".DS_Store", ".git" ].concat(unlisted);
-          if (!applicable(relativePath, directoryListing) && !renderSingle) return {};
-          for (var files = yield handlers.readdir(absolutePath), canRenderSingle = renderSingle && 1 === files.length, index = 0; index < files.length; index++) {
-            var file = files[index], filePath = path.resolve(absolutePath, file), details = path.parse(filePath), stats = null;
-            if (stats = methods.lstat ? yield handlers.lstat(filePath, !0) : yield handlers.lstat(filePath), 
-            details.relative = path.join(config.virtualPath ? `/${config.virtualPath}` : "", relativePath, details.base), 
-            stats.isDirectory()) details.base += slashSuffix, details.relative += slashSuffix, 
-            details.type = "folder"; else {
-              if (canRenderSingle) return {
-                singleFile: !0,
-                absolutePath: filePath,
-                stats: stats
-              };
-              details.ext = details.ext.split(".")[1] || "txt", details.type = "file", details.size = bytes(stats.size, {
-                unitSeparator: " ",
-                decimalPlaces: 0
-              });
-            }
-            details.title = details.base, canBeListed(excluded, file) ? files[index] = details : delete files[index];
-          }
-          var toRoot = path.relative(current, absolutePath), directory = path.join(path.basename(current), toRoot, slashSuffix), pathParts = directory.split(path.sep).filter(Boolean);
-          if (files = files.sort(((a, b) => {
-            var aIsDir = "directory" === a.type, bIsDir = "directory" === b.type;
-            return aIsDir && !bIsDir ? -1 : bIsDir && !aIsDir || a.base > b.base ? 1 : a.base < b.base ? -1 : 0;
-          })).filter(Boolean), toRoot.length > 0) {
-            var directoryPath = [].concat(pathParts).slice(1), relative = path.join.apply(path, [ `/${config.virtualPath || ""}` ].concat(directoryPath, [ "..", slashSuffix ]));
-            files.unshift({
-              type: "directory",
-              base: "..",
-              relative: relative,
-              title: relative,
-              ext: ""
-            });
-          }
-          for (var subPaths = [], _index = 0; _index < pathParts.length; _index++) {
-            for (var parents = [], isLast = _index === pathParts.length - 1, before = 0; before <= _index; ) parents.push(pathParts[before]), 
-            before++;
-            parents.shift(), subPaths.push({
-              name: pathParts[_index] + (isLast ? slashSuffix : "/"),
-              url: (config.virtualPath ? `${config.virtualPath}/` : "") + (0 === _index ? "" : parents.join("/") + slashSuffix)
-            });
-          }
-          var spec = {
-            files: files,
-            directory: directory,
-            paths: subPaths
-          };
-          return {
-            directory: acceptsJSON ? JSON.stringify(spec) : directoryTemplate(spec)
-          };
-        }));
-        return function(_x10, _x11, _x12, _x13, _x14, _x15) {
-          return _ref5.apply(this, arguments);
-        };
-      }(), sendError = function() {
-        var _ref6 = (0, _asyncToGenerator2.default)((function*(absolutePath, response, acceptsJSON, current, handlers, config, spec) {
-          var original = spec.err, message = spec.message, code = spec.code, statusCode = spec.statusCode;
-          if (original && "test" !== process.env.NODE_ENV && console.error(original), response.statusCode = statusCode, 
-          acceptsJSON) return response.setHeader("Content-Type", "application/json; charset=utf-8"), 
-          void response.end(JSON.stringify({
-            error: {
-              code: code,
-              message: message
-            }
-          }));
-          var stats = null, errorPage = path.join(current, `${statusCode}.html`);
-          try {
-            stats = yield handlers.lstat(errorPage);
-          } catch (err) {
-            "ENOENT" !== err.code && console.error(err);
-          }
-          if (stats) {
-            var stream = null;
-            try {
-              stream = yield handlers.createReadStream(errorPage);
-              var _headers2 = yield getHeaders(handlers, config, current, errorPage, stats);
-              return response.writeHead(statusCode, _headers2), void stream.pipe(response);
-            } catch (err) {
-              console.error(err);
-            }
-          }
-          var headers = yield getHeaders(handlers, config, current, absolutePath, null);
-          headers["Content-Type"] = "text/html; charset=utf-8", response.writeHead(statusCode, headers), 
-          response.end(errorTemplate({
-            statusCode: statusCode,
-            message: message
-          }));
-        }));
-        return function(_x16, _x17, _x18, _x19, _x20, _x21, _x22) {
-          return _ref6.apply(this, arguments);
-        };
-      }(), internalError = function() {
-        var _ref7 = (0, _asyncToGenerator2.default)((function*() {
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-          var lastIndex = args.length - 1, err = args[lastIndex];
-          return args[lastIndex] = {
-            statusCode: 500,
-            code: "internal_server_error",
-            message: "A server error has occurred",
-            err: err
-          }, sendError.apply(void 0, args);
         }));
         return function() {
-          return _ref7.apply(this, arguments);
-        };
-      }();
-      module.exports = function() {
-        var _ref8 = (0, _asyncToGenerator2.default)((function*(request, response, config, methods) {
-          void 0 === config && (config = {}), void 0 === methods && (methods = {});
-          var cwd = process.cwd(), current = config.public ? path.resolve(cwd, config.public) : cwd, handlers = (methods => Object.assign({
-            lstat: promisify(lstat),
-            realpath: promisify(realpath),
-            createReadStream: createReadStream,
-            readdir: promisify(readdir),
-            sendError: sendError
-          }, methods))(methods), relativePath = null, acceptsJSON = null;
-          request.headers.accept && (acceptsJSON = request.headers.accept.includes("application/json"));
-          try {
-            relativePath = decodeURIComponent(url.parse(request.url).pathname);
-          } catch (err) {
-            return sendError("/", response, acceptsJSON, current, handlers, config, {
-              statusCode: 400,
-              code: "bad_request",
-              message: "Bad Request"
-            });
-          }
-          var absolutePath = path.join(current, relativePath);
-          if (!isPathInside(absolutePath, current)) return sendError(absolutePath, response, acceptsJSON, current, handlers, config, {
-            statusCode: 400,
-            code: "bad_request",
-            message: "Bad Request"
-          });
-          var cleanUrl = applicable(relativePath, config.cleanUrls), redirect = ((decodedPath, _ref, cleanUrl) => {
-            var _ref$redirects = _ref.redirects, redirects = void 0 === _ref$redirects ? [] : _ref$redirects, trailingSlash = _ref.trailingSlash, slashing = "boolean" == typeof trailingSlash, matchHTML = /(\.html|\/index)$/g;
-            if (0 === redirects.length && !slashing && !cleanUrl) return null;
-            if (cleanUrl && matchHTML.test(decodedPath)) return (decodedPath = decodedPath.replace(matchHTML, "")).indexOf("//") > -1 && (decodedPath = decodedPath.replace(/\/+/g, "/")), 
-            {
-              target: ensureSlashStart(decodedPath),
-              statusCode: 301
-            };
-            if (slashing) {
-              var _path$parse = path.parse(decodedPath), ext = _path$parse.ext, name = _path$parse.name, isTrailed = decodedPath.endsWith("/"), isDotfile = name.startsWith("."), target = null;
-              if (!trailingSlash && isTrailed ? target = decodedPath.slice(0, -1) : !trailingSlash || isTrailed || ext || isDotfile || (target = `${decodedPath}/`), 
-              decodedPath.indexOf("//") > -1 && (target = decodedPath.replace(/\/+/g, "/")), target) return {
-                target: ensureSlashStart(target),
-                statusCode: 301
-              };
-            }
-            for (var index = 0; index < redirects.length; index++) {
-              var _redirects$index = redirects[index], source = _redirects$index.source, destination = _redirects$index.destination, type = _redirects$index.type, _target = toTarget(source, destination, decodedPath);
-              if (_target) return {
-                target: _target,
-                statusCode: type || 301
-              };
-            }
-            return null;
-          })(relativePath, config, cleanUrl);
-          if (redirect) return response.writeHead(redirect.statusCode, {
-            Location: encodeURI(redirect.target)
-          }), void response.end();
-          var stats = null;
-          if ("" !== path.extname(relativePath)) try {
-            stats = yield handlers.lstat(absolutePath);
-          } catch (err) {
-            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
-          }
-          var rewrittenPath = applyRewrites(relativePath, config.rewrites);
-          if (!stats && (cleanUrl || rewrittenPath)) try {
-            var related = yield findRelated(current, relativePath, rewrittenPath, handlers.lstat);
-            related && (stats = related.stats, absolutePath = related.absolutePath);
-          } catch (err) {
-            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
-          }
-          if (!stats) try {
-            stats = yield handlers.lstat(absolutePath);
-          } catch (err) {
-            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
-          }
-          if (stats && stats.isDirectory()) {
-            var directory = null, singleFile = null;
-            try {
-              var _related = yield renderDirectory(current, acceptsJSON, handlers, methods, config, {
-                relativePath: relativePath,
-                absolutePath: absolutePath
-              });
-              _related.singleFile ? (stats = _related.stats, absolutePath = _related.absolutePath, 
-              singleFile = _related.singleFile) : directory = _related.directory;
-            } catch (err) {
-              if ("ENOENT" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
-            }
-            if (directory) {
-              var contentType = acceptsJSON ? "application/json; charset=utf-8" : "text/html; charset=utf-8";
-              return response.statusCode = 200, response.setHeader("Content-Type", contentType), 
-              void response.end(directory);
-            }
-            singleFile || (stats = null);
-          }
-          var isSymLink = stats && stats.isSymbolicLink();
-          if (!stats || !config.symlinks && isSymLink) return handlers.sendError(absolutePath, response, acceptsJSON, current, handlers, config, {
-            statusCode: 404,
-            code: "not_found",
-            message: "The requested path could not be found"
-          });
-          isSymLink && (absolutePath = yield handlers.realpath(absolutePath), stats = yield handlers.lstat(absolutePath));
-          var streamOpts = {};
-          if (request.headers.range && stats.size) {
-            var range = parseRange(stats.size, request.headers.range);
-            if ("object" == typeof range && "bytes" === range.type) {
-              var _range$ = range[0], start = _range$.start, end = _range$.end;
-              streamOpts.start = start, streamOpts.end = end, response.statusCode = 206;
-            } else response.statusCode = 416, response.setHeader("Content-Range", `bytes */${stats.size}`);
-          }
-          var stream = null;
-          try {
-            stream = yield handlers.createReadStream(absolutePath, streamOpts);
-          } catch (err) {
-            return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
-          }
-          var headers = yield getHeaders(handlers, config, current, absolutePath, stats);
-          if (void 0 !== streamOpts.start && void 0 !== streamOpts.end && (headers["Content-Range"] = `bytes ${streamOpts.start}-${streamOpts.end}/${stats.size}`, 
-          headers["Content-Length"] = streamOpts.end - streamOpts.start + 1), null == request.headers.range && headers.ETag && headers.ETag === request.headers["if-none-match"]) return response.statusCode = 304, 
-          void response.end();
-          response.writeHead(response.statusCode || 200, headers), stream.pipe(response);
-        }));
-        return function(_x23, _x24, _x25, _x26) {
-          return _ref8.apply(this, arguments);
-        };
-      }();
-    },
-    1775: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _ref2, _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), path = __webpack_require__(1017), execa = __webpack_require__(7443), xselFallback = path.join(__dirname, "vendor/linux/xsel"), copyArguments = [ "--clipboard", "--input" ], pasteArguments = [ "--clipboard", "--output" ], makeError = (xselError, fallbackError) => {
-        var error;
-        return "ENOENT" === xselError.code ? error = new Error("Couldn't find the `xsel` binary and fallback didn't work. On Debian/Ubuntu you can install xsel with: sudo apt install xsel") : (error = new Error("Both xsel and fallback failed")).xselError = xselError, 
-        error.fallbackError = fallbackError, error;
-      }, xselWithFallback = function() {
-        var _ref = (0, _asyncToGenerator2.default)((function*(argumentList, options) {
-          try {
-            return yield execa.stdout("xsel", argumentList, options);
-          } catch (xselError) {
-            try {
-              return yield execa.stdout(xselFallback, argumentList, options);
-            } catch (fallbackError) {
-              throw makeError(xselError, fallbackError);
-            }
-          }
-        }));
-        return function(_x, _x2) {
           return _ref.apply(this, arguments);
         };
-      }(), xselWithFallbackSync = (argumentList, options) => {
-        try {
-          return execa.sync("xsel", argumentList, options);
-        } catch (xselError) {
-          try {
-            return execa.sync(xselFallback, argumentList, options);
-          } catch (fallbackError) {
-            throw makeError(xselError, fallbackError);
-          }
-        }
+      }(), exports.read = _asyncToGenerator2((function*() {
+        return platformLib.paste({
+          stripEof: !1
+        });
+      })), exports.writeSync = text => {
+        if ("string" != typeof text) throw new TypeError("Expected a string, got " + typeof text);
+        platformLib.copySync({
+          input: text
+        });
+      }, exports.readSync = () => platformLib.pasteSync({
+        stripEof: !1
+      }).stdout;
+    },
+    6613: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _ref2, _ref, _asyncToGenerator2 = __webpack_require__(8926), _extends2 = __webpack_require__(7154), execa = __webpack_require__(6769), env = _extends2({}, process.env, {
+        LC_CTYPE: "UTF-8"
+      });
+      module.exports = {
+        copy: (_ref = _asyncToGenerator2((function*(options) {
+          return execa("pbcopy", _extends2({}, options, {
+            env: env
+          }));
+        })), function() {
+          return _ref.apply(this, arguments);
+        }),
+        paste: (_ref2 = _asyncToGenerator2((function*(options) {
+          return execa.stdout("pbpaste", _extends2({}, options, {
+            env: env
+          }));
+        })), function() {
+          return _ref2.apply(this, arguments);
+        }),
+        copySync: options => execa.sync("pbcopy", _extends2({}, options, {
+          env: env
+        })),
+        pasteSync: options => execa.sync("pbpaste", _extends2({}, options, {
+          env: env
+        }))
+      };
+    },
+    3788: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _ref2, _ref, _asyncToGenerator2 = __webpack_require__(8926), execa = __webpack_require__(6769), handler = error => {
+        if ("ENOENT" === error.code) throw new Error("Couldn't find the termux-api scripts. You can install them with: apt install termux-api");
+        throw error;
       };
       module.exports = {
-        copy: (_ref2 = (0, _asyncToGenerator2.default)((function*(options) {
-          yield xselWithFallback(copyArguments, options);
-        })), function(_x3) {
+        copy: (_ref = _asyncToGenerator2((function*(options) {
+          try {
+            yield execa("termux-clipboard-set", options);
+          } catch (error) {
+            handler(error);
+          }
+        })), function() {
+          return _ref.apply(this, arguments);
+        }),
+        paste: (_ref2 = _asyncToGenerator2((function*(options) {
+          try {
+            return yield execa.stdout("termux-clipboard-get", options);
+          } catch (error) {
+            handler(error);
+          }
+        })), function() {
           return _ref2.apply(this, arguments);
         }),
         copySync: options => {
-          xselWithFallbackSync(copyArguments, options);
-        },
-        paste: options => xselWithFallback(pasteArguments, options),
-        pasteSync: options => xselWithFallbackSync(pasteArguments, options)
-      };
-    },
-    1714: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _ref2, _ref, _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), path = __webpack_require__(1017), execa = __webpack_require__(7443), windowBinaryPath = "x64" === __webpack_require__(3901)() ? path.join(__dirname, "vendor/windows/clipboard_x86_64.exe") : path.join(__dirname, "vendor/windows/clipboard_i686.exe");
-      module.exports = {
-        copy: (_ref = (0, _asyncToGenerator2.default)((function*(options) {
-          return execa(windowBinaryPath, [ "--copy" ], options);
-        })), function(_x) {
-          return _ref.apply(this, arguments);
-        }),
-        paste: (_ref2 = (0, _asyncToGenerator2.default)((function*(options) {
-          return execa.stdout(windowBinaryPath, [ "--paste" ], options);
-        })), function(_x2) {
-          return _ref2.apply(this, arguments);
-        }),
-        copySync: options => execa.sync(windowBinaryPath, [ "--copy" ], options),
-        pasteSync: options => execa.sync(windowBinaryPath, [ "--paste" ], options)
-      };
-    },
-    1529: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var _asyncToGenerator2 = __webpack_require__(5318)(__webpack_require__(8926)), URL = __webpack_require__(7310).URL, join = __webpack_require__(1017).join, fs = __webpack_require__(7147), promisify = __webpack_require__(3837).promisify || __webpack_require__(7183), tmpdir = __webpack_require__(2037).tmpdir, registryUrl = __webpack_require__(4940), writeFile = promisify(fs.writeFile), mkdir = promisify(fs.mkdir), readFile = promisify(fs.readFile), getFile = function() {
-        var _ref = (0, _asyncToGenerator2.default)((function*(details, distTag) {
-          var rootDir = tmpdir(), subDir = join(rootDir, "update-check");
-          fs.existsSync(subDir) || mkdir(subDir);
-          var name = `${details.name}-${distTag}.json`;
-          return details.scope && (name = `${details.scope}-${name}`), join(subDir, name);
-        }));
-        return function(_x, _x2) {
-          return _ref.apply(this, arguments);
-        };
-      }(), evaluateCache = function() {
-        var _ref2 = (0, _asyncToGenerator2.default)((function*(file, time, interval) {
-          if (fs.existsSync(file)) {
-            var content = yield readFile(file, "utf8"), _JSON$parse = JSON.parse(content), lastUpdate = _JSON$parse.lastUpdate, latest = _JSON$parse.latest;
-            if (lastUpdate + interval > time) return {
-              shouldCheck: !1,
-              latest: latest
-            };
-          }
-          return {
-            shouldCheck: !0,
-            latest: null
-          };
-        }));
-        return function(_x3, _x4, _x5) {
-          return _ref2.apply(this, arguments);
-        };
-      }(), updateCache = function() {
-        var _ref3 = (0, _asyncToGenerator2.default)((function*(file, latest, lastUpdate) {
-          var content = JSON.stringify({
-            latest: latest,
-            lastUpdate: lastUpdate
-          });
-          yield writeFile(file, content, "utf8");
-        }));
-        return function(_x6, _x7, _x8) {
-          return _ref3.apply(this, arguments);
-        };
-      }(), loadPackage = (url, authInfo) => new Promise(((resolve, reject) => {
-        var options = {
-          host: url.hostname,
-          path: url.pathname,
-          port: url.port,
-          headers: {
-            accept: "application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*"
-          },
-          timeout: 2e3
-        };
-        authInfo && (options.headers.authorization = `${authInfo.type} ${authInfo.token}`), 
-        (0, __webpack_require__("https:" === url.protocol ? 5687 : 3685).get)(options, (response => {
-          var statusCode = response.statusCode;
-          if (200 !== statusCode) {
-            var error = new Error(`Request failed with code ${statusCode}`);
-            return error.code = statusCode, reject(error), void response.resume();
-          }
-          var rawData = "";
-          response.setEncoding("utf8"), response.on("data", (chunk => {
-            rawData += chunk;
-          })), response.on("end", (() => {
-            try {
-              var parsedData = JSON.parse(rawData);
-              resolve(parsedData);
-            } catch (e) {
-              reject(e);
-            }
-          }));
-        })).on("error", reject).on("timeout", reject);
-      })), getMostRecent = function() {
-        var _ref5 = (0, _asyncToGenerator2.default)((function*(_ref4, distTag) {
-          var full = _ref4.full, scope = _ref4.scope, regURL = registryUrl(scope), url = new URL(full, regURL), spec = null;
           try {
-            spec = yield loadPackage(url);
-          } catch (err) {
-            if (!err.code || !String(err.code).startsWith(4)) throw err;
-            var authInfo = __webpack_require__(4564)(regURL, {
-              recursive: !0
-            });
-            spec = yield loadPackage(url, authInfo);
+            execa.sync("termux-clipboard-set", options);
+          } catch (error) {
+            handler(error);
           }
-          var version = spec["dist-tags"][distTag];
-          if (!version) throw new Error(`Distribution tag ${distTag} is not available`);
-          return version;
-        }));
-        return function(_x9, _x10) {
-          return _ref5.apply(this, arguments);
-        };
-      }(), defaultConfig = {
-        interval: 36e5,
-        distTag: "latest"
+        },
+        pasteSync: options => {
+          try {
+            return execa.sync("termux-clipboard-get", options);
+          } catch (error) {
+            handler(error);
+          }
+        }
       };
-      module.exports = function() {
-        var _ref6 = (0, _asyncToGenerator2.default)((function*(pkg, config) {
-          if ("object" != typeof pkg) throw new Error("The first parameter should be your package.json file content");
-          var shouldCheck, a, b, details = (name => {
-            var value, spec = {
-              full: (value = name, encodeURIComponent(value).replace(/^%40/, "@"))
+    },
+    1729: function(module) {
+      var isWin = "win32" === process.platform;
+      function notFoundError(original, syscall) {
+        return Object.assign(new Error(`${syscall} ${original.command} ENOENT`), {
+          code: "ENOENT",
+          errno: "ENOENT",
+          syscall: `${syscall} ${original.command}`,
+          path: original.command,
+          spawnargs: original.args
+        });
+      }
+      function verifyENOENT(status, parsed) {
+        return isWin && 1 === status && !parsed.file ? notFoundError(parsed.original, "spawn") : null;
+      }
+      module.exports = {
+        hookChildProcess: function(cp, parsed) {
+          if (isWin) {
+            var originalEmit = cp.emit;
+            cp.emit = function(name, arg1) {
+              if ("exit" === name) {
+                var err = verifyENOENT(arg1, parsed);
+                if (err) return originalEmit.call(cp, "error", err);
+              }
+              return originalEmit.apply(cp, arguments);
             };
-            if (name.includes("/")) {
-              var parts = name.split("/");
-              spec.scope = parts[0], spec.name = parts[1];
-            } else spec.scope = null, spec.name = name;
-            return spec;
-          })(pkg.name), time = Date.now(), _Object$assign = Object.assign({}, defaultConfig, config), distTag = _Object$assign.distTag, interval = _Object$assign.interval, file = yield getFile(details, distTag), latest = null, _yield$evaluateCache = yield evaluateCache(file, time, interval);
-          return shouldCheck = _yield$evaluateCache.shouldCheck, latest = _yield$evaluateCache.latest, 
-          shouldCheck && (latest = yield getMostRecent(details, distTag), yield updateCache(file, latest, time)), 
-          -1 === (a = pkg.version, b = latest, a.localeCompare(b, "en-US", {
-            numeric: !0
-          })) ? {
-            latest: latest,
-            fromCache: !shouldCheck
-          } : null;
-        }));
-        return function(_x11, _x12) {
-          return _ref6.apply(this, arguments);
-        };
-      }();
-    },
-    1413: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var colorConvert = __webpack_require__(2085), wrapAnsi16 = (fn, offset) => function() {
-        var code = fn.apply(colorConvert, arguments);
-        return `[${code + offset}m`;
-      }, wrapAnsi256 = (fn, offset) => function() {
-        var code = fn.apply(colorConvert, arguments);
-        return `[${38 + offset};5;${code}m`;
-      }, wrapAnsi16m = (fn, offset) => function() {
-        var rgb = fn.apply(colorConvert, arguments);
-        return `[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m`;
+          }
+        },
+        verifyENOENT: verifyENOENT,
+        verifyENOENTSync: function(status, parsed) {
+          return isWin && 1 === status && !parsed.file ? notFoundError(parsed.original, "spawnSync") : null;
+        },
+        notFoundError: notFoundError
       };
-      module.exports = function() {
-        var codes = new Map, styles = {
-          modifier: {
-            reset: [ 0, 0 ],
-            bold: [ 1, 22 ],
-            dim: [ 2, 22 ],
-            italic: [ 3, 23 ],
-            underline: [ 4, 24 ],
-            inverse: [ 7, 27 ],
-            hidden: [ 8, 28 ],
-            strikethrough: [ 9, 29 ]
-          },
-          color: {
-            black: [ 30, 39 ],
-            red: [ 31, 39 ],
-            green: [ 32, 39 ],
-            yellow: [ 33, 39 ],
-            blue: [ 34, 39 ],
-            magenta: [ 35, 39 ],
-            cyan: [ 36, 39 ],
-            white: [ 37, 39 ],
-            gray: [ 90, 39 ],
-            redBright: [ 91, 39 ],
-            greenBright: [ 92, 39 ],
-            yellowBright: [ 93, 39 ],
-            blueBright: [ 94, 39 ],
-            magentaBright: [ 95, 39 ],
-            cyanBright: [ 96, 39 ],
-            whiteBright: [ 97, 39 ]
-          },
-          bgColor: {
-            bgBlack: [ 40, 49 ],
-            bgRed: [ 41, 49 ],
-            bgGreen: [ 42, 49 ],
-            bgYellow: [ 43, 49 ],
-            bgBlue: [ 44, 49 ],
-            bgMagenta: [ 45, 49 ],
-            bgCyan: [ 46, 49 ],
-            bgWhite: [ 47, 49 ],
-            bgBlackBright: [ 100, 49 ],
-            bgRedBright: [ 101, 49 ],
-            bgGreenBright: [ 102, 49 ],
-            bgYellowBright: [ 103, 49 ],
-            bgBlueBright: [ 104, 49 ],
-            bgMagentaBright: [ 105, 49 ],
-            bgCyanBright: [ 106, 49 ],
-            bgWhiteBright: [ 107, 49 ]
+    },
+    4153: function(module, __unused_webpack_exports, __webpack_require__) {
+      var path = __webpack_require__(1017), niceTry = __webpack_require__(1150), resolveCommand = __webpack_require__(6329), escape = __webpack_require__(913), readShebang = __webpack_require__(9228), semver = __webpack_require__(1741), isWin = "win32" === process.platform, isExecutableRegExp = /\.(?:com|exe)$/i, isCmdShimRegExp = /node_modules[\\/].bin[\\/][^\\/]+\.cmd$/i, supportsShellOption = niceTry((() => semver.satisfies(process.version, "^4.8.0 || ^5.7.0 || >= 6.0.0", !0))) || !1;
+      function parseNonShell(parsed) {
+        if (!isWin) return parsed;
+        var commandFile = function(parsed) {
+          parsed.file = resolveCommand(parsed);
+          var shebang = parsed.file && readShebang(parsed.file);
+          return shebang ? (parsed.args.unshift(parsed.file), parsed.command = shebang, resolveCommand(parsed)) : parsed.file;
+        }(parsed), needsShell = !isExecutableRegExp.test(commandFile);
+        if (parsed.options.forceShell || needsShell) {
+          var needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
+          parsed.command = path.normalize(parsed.command), parsed.command = escape.command(parsed.command), 
+          parsed.args = parsed.args.map((arg => escape.argument(arg, needsDoubleEscapeMetaChars)));
+          var shellCommand = [ parsed.command ].concat(parsed.args).join(" ");
+          parsed.args = [ "/d", "/s", "/c", `"${shellCommand}"` ], parsed.command = process.env.comspec || "cmd.exe", 
+          parsed.options.windowsVerbatimArguments = !0;
+        }
+        return parsed;
+      }
+      module.exports = function(command, args, options) {
+        args && !Array.isArray(args) && (options = args, args = null);
+        var parsed = {
+          command: command,
+          args: args = args ? args.slice(0) : [],
+          options: options = Object.assign({}, options),
+          file: void 0,
+          original: {
+            command: command,
+            args: args
           }
         };
-        for (var groupName of (styles.color.grey = styles.color.gray, Object.keys(styles))) {
-          var group = styles[groupName];
-          for (var styleName of Object.keys(group)) {
-            var style = group[styleName];
-            styles[styleName] = {
-              open: `[${style[0]}m`,
-              close: `[${style[1]}m`
-            }, group[styleName] = styles[styleName], codes.set(style[0], style[1]);
-          }
-          Object.defineProperty(styles, groupName, {
-            value: group,
-            enumerable: !1
-          }), Object.defineProperty(styles, "codes", {
-            value: codes,
-            enumerable: !1
+        return options.shell ? function(parsed) {
+          if (supportsShellOption) return parsed;
+          var shellCommand = [ parsed.command ].concat(parsed.args).join(" ");
+          return isWin ? (parsed.command = "string" == typeof parsed.options.shell ? parsed.options.shell : process.env.comspec || "cmd.exe", 
+          parsed.args = [ "/d", "/s", "/c", `"${shellCommand}"` ], parsed.options.windowsVerbatimArguments = !0) : ("string" == typeof parsed.options.shell ? parsed.command = parsed.options.shell : "android" === process.platform ? parsed.command = "/system/bin/sh" : parsed.command = "/bin/sh", 
+          parsed.args = [ "-c", shellCommand ]), parsed;
+        }(parsed) : parseNonShell(parsed);
+      };
+    },
+    913: function(module) {
+      var metaCharsRegExp = /([()\][%!^"`<>&|;, *?])/g;
+      module.exports.command = function(arg) {
+        return arg = arg.replace(metaCharsRegExp, "^$1");
+      }, module.exports.argument = function(arg, doubleEscapeMetaChars) {
+        return arg = (arg = `"${arg = (arg = (arg = `${arg}`).replace(/(\\*)"/g, '$1$1\\"')).replace(/(\\*)$/, "$1$1")}"`).replace(metaCharsRegExp, "^$1"), 
+        doubleEscapeMetaChars && (arg = arg.replace(metaCharsRegExp, "^$1")), arg;
+      };
+    },
+    9228: function(module, __unused_webpack_exports, __webpack_require__) {
+      var fs = __webpack_require__(7147), shebangCommand = __webpack_require__(2063);
+      module.exports = function(command) {
+        var buffer, fd;
+        Buffer.alloc ? buffer = Buffer.alloc(150) : (buffer = new Buffer(150)).fill(0);
+        try {
+          fd = fs.openSync(command, "r"), fs.readSync(fd, buffer, 0, 150, 0), fs.closeSync(fd);
+        } catch (e) {}
+        return shebangCommand(buffer.toString());
+      };
+    },
+    6329: function(module, __unused_webpack_exports, __webpack_require__) {
+      var path = __webpack_require__(1017), which = __webpack_require__(2806), pathKey = __webpack_require__(2170)();
+      function resolveCommandAttempt(parsed, withoutPathExt) {
+        var resolved, cwd = process.cwd(), hasCustomCwd = null != parsed.options.cwd;
+        if (hasCustomCwd) try {
+          process.chdir(parsed.options.cwd);
+        } catch (err) {}
+        try {
+          resolved = which.sync(parsed.command, {
+            path: (parsed.options.env || process.env)[pathKey],
+            pathExt: withoutPathExt ? path.delimiter : void 0
           });
+        } catch (e) {} finally {
+          process.chdir(cwd);
         }
-        var ansi2ansi = n => n, rgb2rgb = (r, g, b) => [ r, g, b ];
-        for (var key of (styles.color.close = "[39m", styles.bgColor.close = "[49m", styles.color.ansi = {
-          ansi: wrapAnsi16(ansi2ansi, 0)
-        }, styles.color.ansi256 = {
-          ansi256: wrapAnsi256(ansi2ansi, 0)
-        }, styles.color.ansi16m = {
-          rgb: wrapAnsi16m(rgb2rgb, 0)
-        }, styles.bgColor.ansi = {
-          ansi: wrapAnsi16(ansi2ansi, 10)
-        }, styles.bgColor.ansi256 = {
-          ansi256: wrapAnsi256(ansi2ansi, 10)
-        }, styles.bgColor.ansi16m = {
-          rgb: wrapAnsi16m(rgb2rgb, 10)
-        }, Object.keys(colorConvert))) if ("object" == typeof colorConvert[key]) {
-          var suite = colorConvert[key];
-          "ansi16" === key && (key = "ansi"), "ansi16" in suite && (styles.color.ansi[key] = wrapAnsi16(suite.ansi16, 0), 
-          styles.bgColor.ansi[key] = wrapAnsi16(suite.ansi16, 10)), "ansi256" in suite && (styles.color.ansi256[key] = wrapAnsi256(suite.ansi256, 0), 
-          styles.bgColor.ansi256[key] = wrapAnsi256(suite.ansi256, 10)), "rgb" in suite && (styles.color.ansi16m[key] = wrapAnsi16m(suite.rgb, 0), 
-          styles.bgColor.ansi16m[key] = wrapAnsi16m(suite.rgb, 10));
-        }
-        return styles;
-      }();
-    },
-    5172: function(module) {
-      "use strict";
-      module.exports = function(it) {
-        var encodeHTMLRules, matchHTML, encodeHTML = (encodeHTMLRules = {
-          "&": "&#38;",
-          "<": "&#60;",
-          ">": "&#62;",
-          '"': "&#34;",
-          "'": "&#39;",
-          "/": "&#47;"
-        }, matchHTML = /&(?!#?\w+;)|<|>|"|'|\//g, function(code) {
-          return code ? code.toString().replace(matchHTML, (function(m) {
-            return encodeHTMLRules[m] || m;
-          })) : "";
-        }), out = '<!DOCTYPE html><html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Files within ' + encodeHTML(it.directory) + "</title> <style>body { margin: 0; padding: 30px; background: #fff; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif; -webkit-font-smoothing: antialiased;}main { max-width: 920px;}header { display: flex; justify-content: space-between; flex-wrap: wrap;}h1 { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}header h1 a { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}h1 i { font-style: normal;}ul { margin: 0 0 0 -2px; padding: 20px 0 0 0;}ul li { list-style: none; font-size: 14px; display: flex; justify-content: space-between;}a { text-decoration: none;}ul a { color: #000; padding: 10px 5px; margin: 0 -5px; white-space: nowrap; overflow: hidden; display: block; width: 100%; text-overflow: ellipsis;}header a { color: #0076FF; font-size: 11px; font-weight: 400; display: inline-block; line-height: 20px;}svg { height: 13px; vertical-align: text-bottom;}ul a::before { display: inline-block; vertical-align: middle; margin-right: 10px; width: 24px; text-align: center; line-height: 12px;}ul a.file::before { content: url(\"data:image/svg+xml;utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z' fill='black'/></svg>\");}ul a:hover { text-decoration: underline;}ul a.folder::before { content: url(\"data:image/svg+xml;utf8,<svg width='20' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z' fill='black'/></svg>\");}ul a.directory { font-weight: bold; }ul a.directory::before { content: \"\";}ul a.file.gif::before,ul a.file.jpg::before,ul a.file.png::before,ul a.file.svg::before { content: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15.2' height='19' viewBox='0 0 409.6 512'><path d='M256.14 0H64A64 64 0 0 0 0 64v384a64 64 0 0 0 64 64h281.6a64 64 0 0 0 64-64V153.6zm104.15 140.8H307.2a38.44 38.44 0 0 1-38.4-38.4V49.08zM384 448a38.44 38.44 0 0 1-38.4 38.4H64A38.44 38.44 0 0 1 25.6 448V64A38.44 38.44 0 0 1 64 25.6h179.2v76.8a64 64 0 0 0 64 64H384zM275.2 243.2H134.4a32 32 0 0 0-32 32v115.2a32 32 0 0 0 32 32h140.8a32 32 0 0 0 32-32V275.2a32 32 0 0 0-32-32zm6.4 147.2a6.41 6.41 0 0 1-6.4 6.4H134.4a6.41 6.41 0 0 1-6.4-6.4V275.2a6.41 6.41 0 0 1 6.4-6.4h140.8a6.41 6.41 0 0 1 6.4 6.4zM140.8 384h128l-38.4-64-38.4 38.4-12.8-12.8z'/></svg>\");}::selection { background-color: #79FFE1; color: #000;}::-moz-selection { background-color: #79FFE1; color: #000;}@media (min-width: 768px) { ul {display: flex;flex-wrap: wrap; } ul li {width: 230px;padding-right: 20px; }}@media (min-width: 992px) { body {padding: 45px; } h1, header h1 a {font-size: 15px; } ul li {font-size: 13px;box-sizing: border-box;justify-content: flex-start; }}</style> </head> <body> <main> <header> <h1> <i>Index of&nbsp;</i> ", arr1 = it.paths;
-        if (arr1) for (var index = -1, l1 = arr1.length - 1; index < l1; ) out += ' <a href="/' + encodeHTML((value = arr1[index += 1]).url) + '">' + encodeHTML(value.name) + "</a> ";
-        out += ' </h1> </header> <ul id="files"> ';
-        var arr2 = it.files;
-        if (arr2) {
-          index = -1;
-          for (var value, l2 = arr2.length - 1; index < l2; ) out += ' <li> <a href="' + encodeHTML((value = arr2[index += 1]).relative) + '" title="' + encodeHTML(value.title) + '" class="' + encodeHTML(value.type) + " " + encodeHTML(value.ext) + '">' + encodeHTML(value.base) + "</a> </li> ";
-        }
-        return out += " </ul></main> </body></html>";
+        return resolved && (resolved = path.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved)), 
+        resolved;
+      }
+      module.exports = function(parsed) {
+        return resolveCommandAttempt(parsed) || resolveCommandAttempt(parsed, !0);
       };
     },
-    2108: function(module) {
-      "use strict";
-      module.exports = function(it) {
-        return '<!DOCTYPE html><html lang="en"><head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width, initial-scale=1"/> <title>Error</title> <style> body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; } main, aside, section { display: flex; justify-content: center; align-items: center; flex-direction: column; } main { height: 100%; } aside { background: #000; flex-shrink: 1; padding: 30px 20px; } aside p { margin: 0; color: #999999; font-size: 14px; line-height: 24px; } aside a { color: #fff; text-decoration: none; } section span { font-size: 24px; font-weight: 500; display: block; border-bottom: 1px solid #EAEAEA; text-align: center; padding-bottom: 20px; width: 100px; } section p { font-size: 14px; font-weight: 400; } section span + p { margin: 20px 0 0 0; } @media (min-width: 768px) { section { height: 40px; flex-direction: row; } section span, section p { height: 100%; line-height: 40px; } section span { border-bottom: 0; border-right: 1px solid #EAEAEA; padding: 0 20px 0 0; width: auto; } section span + p { margin: 0; padding-left: 20px; } aside { padding: 50px 0; } aside p { max-width: 520px; text-align: center; } } </style></head><body> <main> <section> <span>' + it.statusCode + "</span> <p>" + it.message + "</p> </section> </main></body></html>";
-      };
-    },
-    7443: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
+    6769: function(module, __unused_webpack_exports, __webpack_require__) {
       var path = __webpack_require__(1017), childProcess = __webpack_require__(2081), crossSpawn = {
         _parse: __webpack_require__(4153),
         _enoent: __webpack_require__(1729)
@@ -4277,8 +3134,1064 @@
         };
       }, module.exports.shellSync = (cmd, opts) => handleShell(module.exports.sync, cmd, opts);
     },
+    4127: function(module, __unused_webpack_exports, __webpack_require__) {
+      var uv, util = __webpack_require__(3837);
+      if ("function" == typeof util.getSystemErrorName) module.exports = util.getSystemErrorName; else {
+        try {
+          if ("function" != typeof (uv = process.binding("uv")).errname) throw new TypeError("uv.errname is not a function");
+        } catch (err) {
+          console.error("execa/lib/errname: unable to establish process.binding('uv')", err), 
+          uv = null;
+        }
+        module.exports = code => errname(uv, code);
+      }
+      function errname(uv, code) {
+        if (uv) return uv.errname(code);
+        if (!(code < 0)) throw new Error("err >= 0");
+        return `Unknown system error ${code}`;
+      }
+      module.exports.__test__ = errname;
+    },
+    883: function(module) {
+      var alias = [ "stdin", "stdout", "stderr" ];
+      module.exports = opts => {
+        if (!opts) return null;
+        if (opts.stdio && (opts => alias.some((x => Boolean(opts[x]))))(opts)) throw new Error(`It's not possible to provide \`stdio\` in combination with one of ${alias.map((x => `\`${x}\``)).join(", ")}`);
+        if ("string" == typeof opts.stdio) return opts.stdio;
+        var stdio = opts.stdio || [];
+        if (!Array.isArray(stdio)) throw new TypeError(`Expected \`stdio\` to be of type \`string\` or \`Array\`, got \`${typeof stdio}\``);
+        for (var result = [], len = Math.max(stdio.length, alias.length), i = 0; i < len; i++) {
+          var value = null;
+          void 0 !== stdio[i] ? value = stdio[i] : void 0 !== opts[alias[i]] && (value = opts[alias[i]]), 
+          result[i] = value;
+        }
+        return result;
+      };
+    },
+    3518: function(module, __unused_webpack_exports, __webpack_require__) {
+      var PassThrough = __webpack_require__(2781).PassThrough;
+      module.exports = options => {
+        var array = (options = Object.assign({}, options)).array, encoding = options.encoding, buffer = "buffer" === encoding, objectMode = !1;
+        array ? objectMode = !(encoding || buffer) : encoding = encoding || "utf8", buffer && (encoding = null);
+        var len = 0, ret = [], stream = new PassThrough({
+          objectMode: objectMode
+        });
+        return encoding && stream.setEncoding(encoding), stream.on("data", (chunk => {
+          ret.push(chunk), objectMode ? len = ret.length : len += chunk.length;
+        })), stream.getBufferedValue = () => array ? ret : buffer ? Buffer.concat(ret, len) : ret.join(""), 
+        stream.getBufferedLength = () => len, stream;
+      };
+    },
+    9860: function(module, __unused_webpack_exports, __webpack_require__) {
+      var pump = __webpack_require__(4286), bufferStream = __webpack_require__(3518);
+      class MaxBufferError extends Error {
+        constructor() {
+          super("maxBuffer exceeded"), this.name = "MaxBufferError";
+        }
+      }
+      function getStream(inputStream, options) {
+        if (!inputStream) return Promise.reject(new Error("Expected a stream"));
+        var stream, maxBuffer = (options = Object.assign({
+          maxBuffer: 1 / 0
+        }, options)).maxBuffer;
+        return new Promise(((resolve, reject) => {
+          var rejectPromise = error => {
+            error && (error.bufferedData = stream.getBufferedValue()), reject(error);
+          };
+          (stream = pump(inputStream, bufferStream(options), (error => {
+            error ? rejectPromise(error) : resolve();
+          }))).on("data", (() => {
+            stream.getBufferedLength() > maxBuffer && rejectPromise(new MaxBufferError);
+          }));
+        })).then((() => stream.getBufferedValue()));
+      }
+      module.exports = getStream, module.exports.buffer = (stream, options) => getStream(stream, Object.assign({}, options, {
+        encoding: "buffer"
+      })), module.exports.array = (stream, options) => getStream(stream, Object.assign({}, options, {
+        array: !0
+      })), module.exports.MaxBufferError = MaxBufferError;
+    },
+    4409: function(module) {
+      module.exports = (flag, argv) => {
+        argv = argv || process.argv;
+        var prefix = flag.startsWith("-") ? "" : 1 === flag.length ? "-" : "--", pos = argv.indexOf(prefix + flag), terminatorPos = argv.indexOf("--");
+        return -1 !== pos && (-1 === terminatorPos || pos < terminatorPos);
+      };
+    },
+    6936: function(module, __unused_webpack_exports, __webpack_require__) {
+      var isDocker, fs = __webpack_require__(7147);
+      module.exports = () => (void 0 === isDocker && (isDocker = function() {
+        try {
+          return fs.statSync("/.dockerenv"), !0;
+        } catch (_) {
+          return !1;
+        }
+      }() || function() {
+        try {
+          return fs.readFileSync("/proc/self/cgroup", "utf8").includes("docker");
+        } catch (_) {
+          return !1;
+        }
+      }()), isDocker);
+    },
+    9215: function(module, __unused_webpack_exports, __webpack_require__) {
+      var os = __webpack_require__(2037), fs = __webpack_require__(7147), isDocker = __webpack_require__(6936), isWsl = () => {
+        if ("linux" !== process.platform) return !1;
+        if (os.release().toLowerCase().includes("microsoft")) return !isDocker();
+        try {
+          return !!fs.readFileSync("/proc/version", "utf8").toLowerCase().includes("microsoft") && !isDocker();
+        } catch (_) {
+          return !1;
+        }
+      };
+      process.env.__IS_WSL_TEST__ ? module.exports = isWsl : module.exports = isWsl();
+    },
+    7648: function(module, __unused_webpack_exports, __webpack_require__) {
+      var path = __webpack_require__(1017), pathKey = __webpack_require__(2170);
+      module.exports = opts => {
+        var prev;
+        opts = Object.assign({
+          cwd: process.cwd(),
+          path: process.env[pathKey()]
+        }, opts);
+        for (var pth = path.resolve(opts.cwd), ret = []; prev !== pth; ) ret.push(path.join(pth, "node_modules/.bin")), 
+        prev = pth, pth = path.resolve(pth, "..");
+        return ret.push(path.dirname(process.execPath)), ret.concat(opts.path).join(path.delimiter);
+      }, module.exports.env = opts => {
+        opts = Object.assign({
+          env: process.env
+        }, opts);
+        var env = Object.assign({}, opts.env), path = pathKey({
+          env: env
+        });
+        return opts.path = env[path], env[path] = module.exports(opts), env;
+      };
+    },
+    2170: function(module) {
+      module.exports = opts => {
+        var env = (opts = opts || {}).env || process.env;
+        return "win32" !== (opts.platform || process.platform) ? "PATH" : Object.keys(env).find((x => "PATH" === x.toUpperCase())) || "Path";
+      };
+    },
+    7472: function(module) {
+      module.exports = function(it) {
+        var encodeHTMLRules, matchHTML, encodeHTML = (encodeHTMLRules = {
+          "&": "&#38;",
+          "<": "&#60;",
+          ">": "&#62;",
+          '"': "&#34;",
+          "'": "&#39;",
+          "/": "&#47;"
+        }, matchHTML = /&(?!#?\w+;)|<|>|"|'|\//g, function(code) {
+          return code ? code.toString().replace(matchHTML, (function(m) {
+            return encodeHTMLRules[m] || m;
+          })) : "";
+        }), out = '<!DOCTYPE html><html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Files within ' + encodeHTML(it.directory) + "</title> <style>body { margin: 0; padding: 30px; background: #fff; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif; -webkit-font-smoothing: antialiased;}main { max-width: 920px;}header { display: flex; justify-content: space-between; flex-wrap: wrap;}h1 { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}header h1 a { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}h1 i { font-style: normal;}ul { margin: 0 0 0 -2px; padding: 20px 0 0 0;}ul li { list-style: none; font-size: 14px; display: flex; justify-content: space-between;}a { text-decoration: none;}ul a { color: #000; padding: 10px 5px; margin: 0 -5px; white-space: nowrap; overflow: hidden; display: block; width: 100%; text-overflow: ellipsis;}header a { color: #0076FF; font-size: 11px; font-weight: 400; display: inline-block; line-height: 20px;}svg { height: 13px; vertical-align: text-bottom;}ul a::before { display: inline-block; vertical-align: middle; margin-right: 10px; width: 24px; text-align: center; line-height: 12px;}ul a.file::before { content: url(\"data:image/svg+xml;utf8,<svg width='15' height='19' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z' fill='black'/></svg>\");}ul a:hover { text-decoration: underline;}ul a.folder::before { content: url(\"data:image/svg+xml;utf8,<svg width='20' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z' fill='black'/></svg>\");}ul a.directory { font-weight: bold; }ul a.directory::before { content: \"\";}ul a.file.gif::before,ul a.file.jpg::before,ul a.file.png::before,ul a.file.svg::before { content: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15.2' height='19' viewBox='0 0 409.6 512'><path d='M256.14 0H64A64 64 0 0 0 0 64v384a64 64 0 0 0 64 64h281.6a64 64 0 0 0 64-64V153.6zm104.15 140.8H307.2a38.44 38.44 0 0 1-38.4-38.4V49.08zM384 448a38.44 38.44 0 0 1-38.4 38.4H64A38.44 38.44 0 0 1 25.6 448V64A38.44 38.44 0 0 1 64 25.6h179.2v76.8a64 64 0 0 0 64 64H384zM275.2 243.2H134.4a32 32 0 0 0-32 32v115.2a32 32 0 0 0 32 32h140.8a32 32 0 0 0 32-32V275.2a32 32 0 0 0-32-32zm6.4 147.2a6.41 6.41 0 0 1-6.4 6.4H134.4a6.41 6.41 0 0 1-6.4-6.4V275.2a6.41 6.41 0 0 1 6.4-6.4h140.8a6.41 6.41 0 0 1 6.4 6.4zM140.8 384h128l-38.4-64-38.4 38.4-12.8-12.8z'/></svg>\");}::selection { background-color: #79FFE1; color: #000;}::-moz-selection { background-color: #79FFE1; color: #000;}@media (min-width: 768px) { ul {display: flex;flex-wrap: wrap; } ul li {width: 230px;padding-right: 20px; }}@media (min-width: 992px) { body {padding: 45px; } h1, header h1 a {font-size: 15px; } ul li {font-size: 13px;box-sizing: border-box;justify-content: flex-start; }}</style> </head> <body> <main> <header> <h1> <i>Index of&nbsp;</i> ", arr1 = it.paths;
+        if (arr1) for (var index = -1, l1 = arr1.length - 1; index < l1; ) out += ' <a href="/' + encodeHTML((value = arr1[index += 1]).url) + '">' + encodeHTML(value.name) + "</a> ";
+        out += ' </h1> </header> <ul id="files"> ';
+        var arr2 = it.files;
+        if (arr2) {
+          index = -1;
+          for (var value, l2 = arr2.length - 1; index < l2; ) out += ' <li> <a href="' + encodeHTML((value = arr2[index += 1]).relative) + '" title="' + encodeHTML(value.title) + '" class="' + encodeHTML(value.type) + " " + encodeHTML(value.ext) + '">' + encodeHTML(value.base) + "</a> </li> ";
+        }
+        return out += " </ul></main> </body></html>";
+      };
+    },
+    3764: function(module) {
+      module.exports = function(it) {
+        return '<!DOCTYPE html><html lang="en"><head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width, initial-scale=1"/> <title>Error</title> <style> body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; } main, aside, section { display: flex; justify-content: center; align-items: center; flex-direction: column; } main { height: 100%; } aside { background: #000; flex-shrink: 1; padding: 30px 20px; } aside p { margin: 0; color: #999999; font-size: 14px; line-height: 24px; } aside a { color: #fff; text-decoration: none; } section span { font-size: 24px; font-weight: 500; display: block; border-bottom: 1px solid #EAEAEA; text-align: center; padding-bottom: 20px; width: 100px; } section p { font-size: 14px; font-weight: 400; } section span + p { margin: 20px 0 0 0; } @media (min-width: 768px) { section { height: 40px; flex-direction: row; } section span, section p { height: 100%; line-height: 40px; } section span { border-bottom: 0; border-right: 1px solid #EAEAEA; padding: 0 20px 0 0; width: auto; } section span + p { margin: 0; padding-left: 20px; } aside { padding: 50px 0; } aside p { max-width: 520px; text-align: center; } } </style></head><body> <main> <section> <span>' + it.statusCode + "</span> <p>" + it.message + "</p> </section> </main></body></html>";
+      };
+    },
+    8463: function(module, __unused_webpack_exports, __webpack_require__) {
+      var path = __webpack_require__(1017), normalize = value => path.posix.normalize(path.posix.join("/", value));
+      module.exports = value => "!" === value.charAt(0) ? `!${normalize(value.substr(1))}` : normalize(value), 
+      module.exports.normalize = normalize;
+    },
+    4608: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _asyncToGenerator2 = __webpack_require__(8926), promisify = __webpack_require__(3837).promisify || __webpack_require__(145), path = __webpack_require__(1017), createHash = __webpack_require__(6113).createHash, _require2 = __webpack_require__(7147), realpath = _require2.realpath, lstat = _require2.lstat, createReadStream = _require2.createReadStream, readdir = _require2.readdir, url = __webpack_require__(9524), slasher = __webpack_require__(8463), minimatch = __webpack_require__(1171), pathToRegExp = __webpack_require__(4779), mime = __webpack_require__(983), bytes = __webpack_require__(9830), contentDisposition = __webpack_require__(7389), isPathInside = __webpack_require__(5038), parseRange = __webpack_require__(4622), directoryTemplate = __webpack_require__(7472), errorTemplate = __webpack_require__(3764), etags = new Map, sourceMatches = (source, requestPath, allowSegments) => {
+        var keys = [], slashed = slasher(source), resolvedPath = path.posix.resolve(requestPath), results = null;
+        if (allowSegments) {
+          var normalized = slashed.replace("*", "(.*)");
+          (results = pathToRegExp(normalized, keys).exec(resolvedPath)) || (keys.length = 0);
+        }
+        return results || minimatch(resolvedPath, slashed) ? {
+          keys: keys,
+          results: results
+        } : null;
+      }, toTarget = (source, destination, previousPath) => {
+        var matches = sourceMatches(source, previousPath, !0);
+        if (!matches) return null;
+        for (var keys = matches.keys, results = matches.results, props = {}, normalizedDest = url.parse(destination).protocol ? destination : slasher(destination), toPath = pathToRegExp.compile(normalizedDest), index = 0; index < keys.length; index++) {
+          props[keys[index].name] = results[index + 1];
+        }
+        return toPath(props);
+      }, applyRewrites = function(requestPath, rewrites, repetitive) {
+        void 0 === rewrites && (rewrites = []);
+        var rewritesCopy = rewrites.slice(), fallback = repetitive ? requestPath : null;
+        if (0 === rewritesCopy.length) return fallback;
+        for (var index = 0; index < rewritesCopy.length; index++) {
+          var _rewrites$index = rewrites[index], source = _rewrites$index.source, destination = _rewrites$index.destination, target = toTarget(source, destination, requestPath);
+          if (target) return rewritesCopy.splice(index, 1), applyRewrites(slasher(target), rewritesCopy, !0);
+        }
+        return fallback;
+      }, ensureSlashStart = target => target.startsWith("/") ? target : `/${target}`, appendHeaders = (target, source) => {
+        for (var index = 0; index < source.length; index++) {
+          var _source$index = source[index], key = _source$index.key, value = _source$index.value;
+          target[key] = value;
+        }
+      }, getHeaders = function() {
+        var _ref2 = _asyncToGenerator2((function*(handlers, config, current, absolutePath, stats) {
+          var _config$headers = config.headers, customHeaders = void 0 === _config$headers ? [] : _config$headers, _config$etag = config.etag, etag = void 0 !== _config$etag && _config$etag, related = {}, base = path.parse(absolutePath).base, relativePath = path.relative(current, absolutePath);
+          if (customHeaders.length > 0) for (var index = 0; index < customHeaders.length; index++) {
+            var _customHeaders$index = customHeaders[index], source = _customHeaders$index.source, _headers = _customHeaders$index.headers;
+            sourceMatches(source, slasher(relativePath)) && appendHeaders(related, _headers);
+          }
+          var defaultHeaders = {};
+          if (stats) {
+            if (defaultHeaders = {
+              "Content-Length": stats.size,
+              "Content-Disposition": contentDisposition(base, {
+                type: "inline"
+              }),
+              "Accept-Ranges": "bytes"
+            }, etag) {
+              var _ref3 = etags.get(absolutePath) || [], mtime = _ref3[0], sha = _ref3[1];
+              Number(mtime) !== Number(stats.mtime) && (sha = yield ((handlers, absolutePath) => new Promise(((resolve, reject) => {
+                var hash = createHash("sha1");
+                hash.update(path.extname(absolutePath)), hash.update("-");
+                var rs = handlers.createReadStream(absolutePath);
+                rs.on("error", reject), rs.on("data", (buf => hash.update(buf))), rs.on("end", (() => {
+                  var sha = hash.digest("hex");
+                  resolve(sha);
+                }));
+              })))(handlers, absolutePath), etags.set(absolutePath, [ stats.mtime, sha ])), defaultHeaders.ETag = `"${sha}"`;
+            } else defaultHeaders["Last-Modified"] = stats.mtime.toUTCString();
+            var contentType = mime.contentType(base);
+            contentType && (defaultHeaders["Content-Type"] = contentType);
+          }
+          var headers = Object.assign(defaultHeaders, related);
+          for (var key in headers) headers.hasOwnProperty(key) && null === headers[key] && delete headers[key];
+          return headers;
+        }));
+        return function() {
+          return _ref2.apply(this, arguments);
+        };
+      }(), applicable = (decodedPath, configEntry) => {
+        if ("boolean" == typeof configEntry) return configEntry;
+        if (Array.isArray(configEntry)) {
+          for (var index = 0; index < configEntry.length; index++) {
+            var source = configEntry[index];
+            if (sourceMatches(source, decodedPath)) return !0;
+          }
+          return !1;
+        }
+        return !0;
+      }, findRelated = function() {
+        var _ref4 = _asyncToGenerator2((function*(current, relativePath, rewrittenPath, originalStat) {
+          for (var possible = rewrittenPath ? [ rewrittenPath ] : ((relativePath, extension) => [ path.join(relativePath, `index${extension}`), relativePath.endsWith("/") ? relativePath.replace(/\/$/g, extension) : relativePath + extension ].filter((item => path.basename(item) !== extension)))(relativePath, ".html"), stats = null, index = 0; index < possible.length; index++) {
+            var related = possible[index], absolutePath = path.join(current, related);
+            try {
+              stats = yield originalStat(absolutePath);
+            } catch (err) {
+              if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) throw err;
+            }
+            if (stats) return {
+              stats: stats,
+              absolutePath: absolutePath
+            };
+          }
+          return null;
+        }));
+        return function() {
+          return _ref4.apply(this, arguments);
+        };
+      }(), canBeListed = (excluded, file) => {
+        for (var slashed = slasher(file), whether = !0, mark = 0; mark < excluded.length; mark++) {
+          var source = excluded[mark];
+          if (sourceMatches(source, slashed)) {
+            whether = !1;
+            break;
+          }
+        }
+        return whether;
+      }, renderDirectory = function() {
+        var _ref5 = _asyncToGenerator2((function*(current, acceptsJSON, handlers, methods, config, paths) {
+          var directoryListing = config.directoryListing, trailingSlash = config.trailingSlash, _config$unlisted = config.unlisted, unlisted = void 0 === _config$unlisted ? [] : _config$unlisted, renderSingle = config.renderSingle, slashSuffix = "boolean" == typeof trailingSlash ? trailingSlash ? "/" : "" : "/", relativePath = paths.relativePath, absolutePath = paths.absolutePath, excluded = [ ".DS_Store", ".git" ].concat(unlisted);
+          if (!applicable(relativePath, directoryListing) && !renderSingle) return {};
+          for (var files = yield handlers.readdir(absolutePath), canRenderSingle = renderSingle && 1 === files.length, index = 0; index < files.length; index++) {
+            var file = files[index], filePath = path.resolve(absolutePath, file), details = path.parse(filePath), stats = null;
+            if (stats = methods.lstat ? yield handlers.lstat(filePath, !0) : yield handlers.lstat(filePath), 
+            details.relative = path.join(config.virtualPath ? `/${config.virtualPath}` : "", relativePath, details.base), 
+            stats.isDirectory()) details.base += slashSuffix, details.relative += slashSuffix, 
+            details.type = "folder"; else {
+              if (canRenderSingle) return {
+                singleFile: !0,
+                absolutePath: filePath,
+                stats: stats
+              };
+              details.ext = details.ext.split(".")[1] || "txt", details.type = "file", details.size = bytes(stats.size, {
+                unitSeparator: " ",
+                decimalPlaces: 0
+              });
+            }
+            details.title = details.base, canBeListed(excluded, file) ? files[index] = details : delete files[index];
+          }
+          var toRoot = path.relative(current, absolutePath), directory = path.join(path.basename(current), toRoot, slashSuffix), pathParts = directory.split(path.sep).filter(Boolean);
+          if (files = files.sort(((a, b) => {
+            var aIsDir = "directory" === a.type, bIsDir = "directory" === b.type;
+            return aIsDir && !bIsDir ? -1 : bIsDir && !aIsDir || a.base > b.base ? 1 : a.base < b.base ? -1 : 0;
+          })).filter(Boolean), toRoot.length > 0) {
+            var directoryPath = [].concat(pathParts).slice(1), relative = path.join.apply(path, [ `/${config.virtualPath || ""}` ].concat(directoryPath, [ "..", slashSuffix ]));
+            files.unshift({
+              type: "directory",
+              base: "..",
+              relative: relative,
+              title: relative,
+              ext: ""
+            });
+          }
+          for (var subPaths = [], _index = 0; _index < pathParts.length; _index++) {
+            for (var parents = [], isLast = _index === pathParts.length - 1, before = 0; before <= _index; ) parents.push(pathParts[before]), 
+            before++;
+            parents.shift(), subPaths.push({
+              name: pathParts[_index] + (isLast ? slashSuffix : "/"),
+              url: (config.virtualPath ? `${config.virtualPath}/` : "") + (0 === _index ? "" : parents.join("/") + slashSuffix)
+            });
+          }
+          var spec = {
+            files: files,
+            directory: directory,
+            paths: subPaths
+          };
+          return {
+            directory: acceptsJSON ? JSON.stringify(spec) : directoryTemplate(spec)
+          };
+        }));
+        return function() {
+          return _ref5.apply(this, arguments);
+        };
+      }(), sendError = function() {
+        var _ref6 = _asyncToGenerator2((function*(absolutePath, response, acceptsJSON, current, handlers, config, spec) {
+          var original = spec.err, message = spec.message, code = spec.code, statusCode = spec.statusCode;
+          if (original && "test" !== process.env.NODE_ENV && console.error(original), response.statusCode = statusCode, 
+          acceptsJSON) return response.setHeader("Content-Type", "application/json; charset=utf-8"), 
+          void response.end(JSON.stringify({
+            error: {
+              code: code,
+              message: message
+            }
+          }));
+          var stats = null, errorPage = path.join(current, `${statusCode}.html`);
+          try {
+            stats = yield handlers.lstat(errorPage);
+          } catch (err) {
+            "ENOENT" !== err.code && console.error(err);
+          }
+          if (stats) {
+            var stream = null;
+            try {
+              stream = yield handlers.createReadStream(errorPage);
+              var _headers2 = yield getHeaders(handlers, config, current, errorPage, stats);
+              return response.writeHead(statusCode, _headers2), void stream.pipe(response);
+            } catch (err) {
+              console.error(err);
+            }
+          }
+          var headers = yield getHeaders(handlers, config, current, absolutePath, null);
+          headers["Content-Type"] = "text/html; charset=utf-8", response.writeHead(statusCode, headers), 
+          response.end(errorTemplate({
+            statusCode: statusCode,
+            message: message
+          }));
+        }));
+        return function() {
+          return _ref6.apply(this, arguments);
+        };
+      }(), internalError = function() {
+        var _ref7 = _asyncToGenerator2((function*() {
+          var args = Array.prototype.slice.call(arguments, 0), lastIndex = args.length - 1, err = args[lastIndex];
+          return args[lastIndex] = {
+            statusCode: 500,
+            code: "internal_server_error",
+            message: "A server error has occurred",
+            err: err
+          }, sendError.apply(void 0, args);
+        }));
+        return function() {
+          return _ref7.apply(this, arguments);
+        };
+      }();
+      module.exports = function() {
+        var _ref8 = _asyncToGenerator2((function*(request, response, config, methods) {
+          void 0 === config && (config = {}), void 0 === methods && (methods = {});
+          var cwd = process.cwd(), current = config.public ? path.resolve(cwd, config.public) : cwd, handlers = (methods => Object.assign({
+            lstat: promisify(lstat),
+            realpath: promisify(realpath),
+            createReadStream: createReadStream,
+            readdir: promisify(readdir),
+            sendError: sendError
+          }, methods))(methods), relativePath = null, acceptsJSON = null;
+          request.headers.accept && (acceptsJSON = request.headers.accept.includes("application/json"));
+          try {
+            relativePath = decodeURIComponent(url.parse(request.url).pathname);
+          } catch (err) {
+            return sendError("/", response, acceptsJSON, current, handlers, config, {
+              statusCode: 400,
+              code: "bad_request",
+              message: "Bad Request"
+            });
+          }
+          var absolutePath = path.join(current, relativePath);
+          if (!isPathInside(absolutePath, current)) return sendError(absolutePath, response, acceptsJSON, current, handlers, config, {
+            statusCode: 400,
+            code: "bad_request",
+            message: "Bad Request"
+          });
+          var cleanUrl = applicable(relativePath, config.cleanUrls), redirect = ((decodedPath, _ref, cleanUrl) => {
+            var _ref$redirects = _ref.redirects, redirects = void 0 === _ref$redirects ? [] : _ref$redirects, trailingSlash = _ref.trailingSlash, slashing = "boolean" == typeof trailingSlash, matchHTML = /(\.html|\/index)$/g;
+            if (0 === redirects.length && !slashing && !cleanUrl) return null;
+            if (cleanUrl && matchHTML.test(decodedPath)) return (decodedPath = decodedPath.replace(matchHTML, "")).indexOf("//") > -1 && (decodedPath = decodedPath.replace(/\/+/g, "/")), 
+            {
+              target: ensureSlashStart(decodedPath),
+              statusCode: 301
+            };
+            if (slashing) {
+              var _path$parse = path.parse(decodedPath), ext = _path$parse.ext, name = _path$parse.name, isTrailed = decodedPath.endsWith("/"), isDotfile = name.startsWith("."), target = null;
+              if (!trailingSlash && isTrailed ? target = decodedPath.slice(0, -1) : !trailingSlash || isTrailed || ext || isDotfile || (target = `${decodedPath}/`), 
+              decodedPath.indexOf("//") > -1 && (target = decodedPath.replace(/\/+/g, "/")), target) return {
+                target: ensureSlashStart(target),
+                statusCode: 301
+              };
+            }
+            for (var index = 0; index < redirects.length; index++) {
+              var _redirects$index = redirects[index], source = _redirects$index.source, destination = _redirects$index.destination, type = _redirects$index.type, _target = toTarget(source, destination, decodedPath);
+              if (_target) return {
+                target: _target,
+                statusCode: type || 301
+              };
+            }
+            return null;
+          })(relativePath, config, cleanUrl);
+          if (redirect) return response.writeHead(redirect.statusCode, {
+            Location: encodeURI(redirect.target)
+          }), void response.end();
+          var stats = null;
+          if ("" !== path.extname(relativePath)) try {
+            stats = yield handlers.lstat(absolutePath);
+          } catch (err) {
+            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
+          }
+          var rewrittenPath = applyRewrites(relativePath, config.rewrites);
+          if (!stats && (cleanUrl || rewrittenPath)) try {
+            var related = yield findRelated(current, relativePath, rewrittenPath, handlers.lstat);
+            related && (stats = related.stats, absolutePath = related.absolutePath);
+          } catch (err) {
+            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
+          }
+          if (!stats) try {
+            stats = yield handlers.lstat(absolutePath);
+          } catch (err) {
+            if ("ENOENT" !== err.code && "ENOTDIR" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
+          }
+          if (stats && stats.isDirectory()) {
+            var directory = null, singleFile = null;
+            try {
+              var _related = yield renderDirectory(current, acceptsJSON, handlers, methods, config, {
+                relativePath: relativePath,
+                absolutePath: absolutePath
+              });
+              _related.singleFile ? (stats = _related.stats, absolutePath = _related.absolutePath, 
+              singleFile = _related.singleFile) : directory = _related.directory;
+            } catch (err) {
+              if ("ENOENT" !== err.code) return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
+            }
+            if (directory) {
+              var contentType = acceptsJSON ? "application/json; charset=utf-8" : "text/html; charset=utf-8";
+              return response.statusCode = 200, response.setHeader("Content-Type", contentType), 
+              void response.end(directory);
+            }
+            singleFile || (stats = null);
+          }
+          var isSymLink = stats && stats.isSymbolicLink();
+          if (!stats || !config.symlinks && isSymLink) return handlers.sendError(absolutePath, response, acceptsJSON, current, handlers, config, {
+            statusCode: 404,
+            code: "not_found",
+            message: "The requested path could not be found"
+          });
+          isSymLink && (absolutePath = yield handlers.realpath(absolutePath), stats = yield handlers.lstat(absolutePath));
+          var streamOpts = {};
+          if (request.headers.range && stats.size) {
+            var range = parseRange(stats.size, request.headers.range);
+            if ("object" == typeof range && "bytes" === range.type) {
+              var _range$ = range[0], start = _range$.start, end = _range$.end;
+              streamOpts.start = start, streamOpts.end = end, response.statusCode = 206;
+            } else response.statusCode = 416, response.setHeader("Content-Range", `bytes */${stats.size}`);
+          }
+          var stream = null;
+          try {
+            stream = yield handlers.createReadStream(absolutePath, streamOpts);
+          } catch (err) {
+            return internalError(absolutePath, response, acceptsJSON, current, handlers, config, err);
+          }
+          var headers = yield getHeaders(handlers, config, current, absolutePath, stats);
+          if (void 0 !== streamOpts.start && void 0 !== streamOpts.end && (headers["Content-Range"] = `bytes ${streamOpts.start}-${streamOpts.end}/${stats.size}`, 
+          headers["Content-Length"] = streamOpts.end - streamOpts.start + 1), null == request.headers.range && headers.ETag && headers.ETag === request.headers["if-none-match"]) return response.statusCode = 304, 
+          void response.end();
+          response.writeHead(response.statusCode || 200, headers), stream.pipe(response);
+        }));
+        return function() {
+          return _ref8.apply(this, arguments);
+        };
+      }();
+    },
+    8325: function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+      var _asyncToGenerator2 = __webpack_require__(8926), http = __webpack_require__(3685), https = __webpack_require__(5687), path = __webpack_require__(1017), fs = __webpack_require__(7147), promisify = __webpack_require__(3837).promisify || __webpack_require__(145), parse = __webpack_require__(7310).parse, os = __webpack_require__(2037), Ajv = __webpack_require__(5096), checkForUpdate = __webpack_require__(1054), chalk = __webpack_require__(3857), arg = __webpack_require__(2101), copy = __webpack_require__(3605).write, handler = __webpack_require__(4608), schema = __webpack_require__(9187), boxen = __webpack_require__(2069), compression = __webpack_require__(4051), pkg = __webpack_require__(2629), readFile = promisify(fs.readFile), compressionHandler = promisify(compression()), interfaces = os.networkInterfaces(), warning = message => chalk`{yellow WARNING:} ${message}`, info = message => chalk`{magenta INFO:} ${message}`, error = message => chalk`{red ERROR:} ${message}`, updateCheck = function() {
+        var _ref = _asyncToGenerator2((function*(isDebugging) {
+          var update = null;
+          try {
+            update = yield checkForUpdate(pkg);
+          } catch (err) {
+            var suffix = isDebugging ? ":" : " (use `--debug` to see full error)";
+            console.error(warning(`Checking for updates failed${suffix}`)), isDebugging && console.error(err);
+          }
+          update && console.log(`${chalk.bgRed("UPDATE AVAILABLE")} The latest version of \`serve\` is ${update.latest}`);
+        }));
+        return function() {
+          return _ref.apply(this, arguments);
+        };
+      }(), parseEndpoint = str => {
+        if (!isNaN(str)) return [ str ];
+        var url = parse(str);
+        switch (url.protocol) {
+         case "pipe:":
+          var cutStr = str.replace(/^pipe:/, "");
+          if ("\\\\.\\" !== cutStr.slice(0, 4)) throw new Error(`Invalid Windows named pipe endpoint: ${str}`);
+          return [ cutStr ];
+
+         case "unix:":
+          if (!url.pathname) throw new Error(`Invalid UNIX domain socket endpoint: ${str}`);
+          return [ url.pathname ];
+
+         case "tcp:":
+          return url.port = url.port || "5000", [ parseInt(url.port, 10), url.hostname ];
+
+         default:
+          throw new Error(`Unknown --listen endpoint scheme (protocol): ${url.protocol}`);
+        }
+      }, registerShutdown = fn => {
+        var run = !1, wrapper = () => {
+          run || (run = !0, fn());
+        };
+        process.on("SIGINT", wrapper), process.on("SIGTERM", wrapper), process.on("exit", wrapper);
+      }, startEndpoint = (endpoint, config, args, previous) => {
+        var isTTY = process.stdout.isTTY, clipboard = !0 !== args["--no-clipboard"], compress = !0 !== args["--no-compression"], httpMode = args["--ssl-cert"] && args["--ssl-key"] ? "https" : "http", virtualPath = args["--virtual-path"] ? new RegExp(`^([^/]*//[^/]+)?/${args["--virtual-path"].replace(/[^\w\s]/g, "\\$&")}(/|$)`, "i") : null, serverHandler = function() {
+          var _ref2 = _asyncToGenerator2((function*(request, response) {
+            return virtualPath && (request.url = request.url.replace(virtualPath, "$1/")), args["--cors"] && response.setHeader("Access-Control-Allow-Origin", "*"), 
+            compress && (yield compressionHandler(request, response)), handler(request, response, config);
+          }));
+          return function() {
+            return _ref2.apply(this, arguments);
+          };
+        }(), sslPass = args["--ssl-pass"], server = "https" === httpMode ? https.createServer({
+          key: fs.readFileSync(args["--ssl-key"]),
+          cert: fs.readFileSync(args["--ssl-cert"]),
+          passphrase: sslPass ? fs.readFileSync(sslPass) : ""
+        }, serverHandler) : http.createServer(serverHandler);
+        server.on("error", (err => {
+          "EADDRINUSE" !== err.code || 1 !== endpoint.length || isNaN(endpoint[0]) || !0 === args["--no-port-switching"] ? (console.error(error(`Failed to serve: ${err.stack}`)), 
+          process.exit(1)) : startEndpoint([ 0 ], config, args, endpoint[0]);
+        })), server.listen.apply(server, endpoint.concat([ _asyncToGenerator2((function*() {
+          var details = server.address();
+          registerShutdown((() => server.close()));
+          var addressSuffix = args["--virtual-path"] ? `/${args["--virtual-path"]}` : "", localAddress = null, networkAddress = null;
+          if ("string" == typeof details) localAddress = details + addressSuffix; else if ("object" == typeof details && details.port) {
+            var address = "::" === details.address ? "localhost" : details.address, ip = (() => {
+              for (var name of Object.keys(interfaces)) for (var netInterface of interfaces[name]) {
+                var address = netInterface.address, family = netInterface.family, internal = netInterface.internal;
+                if ("IPv4" === family && !internal) return address;
+              }
+            })();
+            localAddress = `${httpMode}://${address}:${details.port}${addressSuffix}`, networkAddress = ip ? `${httpMode}://${ip}:${details.port}${addressSuffix}` : null;
+          }
+          if (isTTY && "production" !== process.env.NODE_ENV) {
+            var message = chalk.green("Serving!");
+            if (localAddress) {
+              var prefix = networkAddress ? "- " : "", space = networkAddress ? "            " : "  ";
+              message += `\n\n${chalk.bold(`${prefix}Local:`)}${space}${localAddress}`;
+            }
+            if (networkAddress && (message += `\n${chalk.bold("- On Your Network:")}  ${networkAddress}`), 
+            previous && (message += chalk.red(`\n\nThis port was picked because ${chalk.underline(previous)} is in use.`)), 
+            clipboard) try {
+              yield copy(localAddress), message += `\n\n${chalk.grey("Copied local address to clipboard!")}`;
+            } catch (err) {
+              console.error(error(`Cannot copy to clipboard: ${err.message}`));
+            }
+            console.log(boxen(message, {
+              padding: 1,
+              borderColor: "green",
+              margin: 1
+            }));
+          } else {
+            var suffix = localAddress ? ` at ${localAddress}` : "";
+            console.log(info(`Accepting connections${suffix}`));
+          }
+        })) ]));
+      }, loadConfig = function() {
+        var _ref4 = _asyncToGenerator2((function*(cwd, entry, args) {
+          var files = [ "serve.json", "now.json", "package.json" ];
+          args["--config"] && files.unshift(args["--config"]);
+          var config = {};
+          for (var file of files) {
+            var location = path.resolve(entry, file), content = null;
+            try {
+              content = yield readFile(location, "utf8");
+            } catch (err) {
+              if ("ENOENT" === err.code) continue;
+              console.error(error(`Not able to read ${location}: ${err.message}`)), process.exit(1);
+            }
+            try {
+              content = JSON.parse(content);
+            } catch (err) {
+              console.error(error(`Could not parse ${location} as JSON: ${err.message}`)), process.exit(1);
+            }
+            if ("object" == typeof content) {
+              try {
+                switch (file) {
+                 case "now.json":
+                  content = content.static;
+                  break;
+
+                 case "package.json":
+                  content = content.now.static;
+                }
+              } catch (err) {
+                continue;
+              }
+              Object.assign(config, content), console.log(info(`Discovered configuration in \`${file}\``)), 
+              "now.json" !== file && "package.json" !== file || console.error(warning("The config files `now.json` and `package.json` are deprecated. Please use `serve.json`."));
+              break;
+            }
+            console.error(warning(`Didn't find a valid object in ${location}. Skipping...`));
+          }
+          if (entry) {
+            var publicDir = config.public;
+            config.public = path.relative(cwd, publicDir ? path.resolve(entry, publicDir) : entry);
+          }
+          if (0 !== Object.keys(config).length) {
+            var validateSchema = (new Ajv).compile(schema);
+            if (!validateSchema(config)) {
+              var defaultMessage = error("The configuration you provided is wrong:"), _validateSchema$error = validateSchema.errors[0], message = _validateSchema$error.message, params = _validateSchema$error.params;
+              console.error(`${defaultMessage}\n${message}\n${JSON.stringify(params)}`), process.exit(1);
+            }
+          }
+          return config.etag = !args["--no-etag"], config.virtualPath = args["--virtual-path"], 
+          config;
+        }));
+        return function() {
+          return _ref4.apply(this, arguments);
+        };
+      }();
+      _asyncToGenerator2((function*() {
+        var args = null;
+        try {
+          args = arg({
+            "--help": Boolean,
+            "--version": Boolean,
+            "--listen": [ parseEndpoint ],
+            "--virtual-path": String,
+            "--single": Boolean,
+            "--debug": Boolean,
+            "--config": String,
+            "--no-clipboard": Boolean,
+            "--no-compression": Boolean,
+            "--no-etag": Boolean,
+            "--symlinks": Boolean,
+            "--cors": Boolean,
+            "--no-port-switching": Boolean,
+            "--ssl-cert": String,
+            "--ssl-key": String,
+            "--ssl-pass": String,
+            "-h": "--help",
+            "-v": "--version",
+            "-l": "--listen",
+            "-s": "--single",
+            "-d": "--debug",
+            "-c": "--config",
+            "-n": "--no-clipboard",
+            "-u": "--no-compression",
+            "-S": "--symlinks",
+            "-C": "--cors",
+            "-p": "--listen"
+          });
+        } catch (err) {
+          console.error(error(err.message)), process.exit(1);
+        }
+        if ("1" !== process.env.NO_UPDATE_CHECK && (yield updateCheck(args["--debug"])), 
+        args["--version"]) console.log(pkg.version); else if (args["--help"]) console.log(chalk`
+  {bold.cyan serve} - Static file serving and directory listing
+
+  {bold USAGE}
+
+      {bold $} {cyan serve} --help
+      {bold $} {cyan serve} --version
+      {bold $} {cyan serve} folder_name
+      {bold $} {cyan serve} [-l {underline listen_uri} [-l ...]] [{underline directory}]
+
+      By default, {cyan serve} will listen on {bold 0.0.0.0:5000} and serve the
+      current working directory on that address.
+
+      Specifying a single {bold --listen} argument will overwrite the default, not supplement it.
+
+  {bold OPTIONS}
+
+      --help                              Shows this help message
+
+      -v, --version                       Displays the current version of serve
+
+      -l, --listen {underline listen_uri}             Specify a URI endpoint on which to listen (see below) -
+                                          more than one may be specified to listen in multiple places
+
+      -p                                  Specify custom port
+
+      --virtual-path                      Virtual directory for the server
+
+      -d, --debug                         Show debugging information
+
+      -s, --single                        Rewrite all not-found requests to \`index.html\`
+
+      -c, --config                        Specify custom path to \`serve.json\`
+
+      -C, --cors                          Enable CORS, sets \`Access-Control-Allow-Origin\` to \`*\`
+
+      -n, --no-clipboard                  Do not copy the local address to the clipboard
+
+      -u, --no-compression                Do not compress files
+
+      --no-etag                           Send \`Last-Modified\` header instead of \`ETag\`
+
+      -S, --symlinks                      Resolve symlinks instead of showing 404 errors
+	  
+	  --ssl-cert                          Optional path to an SSL/TLS certificate to serve with HTTPS
+	  
+	  --ssl-key                           Optional path to the SSL/TLS certificate\'s private key
+
+	  --ssl-pass                          Optional path to the SSL/TLS certificate\'s passphrase
+
+      --no-port-switching                 Do not open a port other than the one specified when it\'s taken.
+
+  {bold ENDPOINTS}
+
+      Listen endpoints (specified by the {bold --listen} or {bold -l} options above) instruct {cyan serve}
+      to listen on one or more interfaces/ports, UNIX domain sockets, or Windows named pipes.
+
+      For TCP ports on hostname "localhost":
+
+          {bold $} {cyan serve} -l {underline 1234}
+
+      For TCP (traditional host/port) endpoints:
+
+          {bold $} {cyan serve} -l tcp://{underline hostname}:{underline 1234}
+
+      For UNIX domain socket endpoints:
+
+          {bold $} {cyan serve} -l unix:{underline /path/to/socket.sock}
+
+      For Windows named pipe endpoints:
+
+          {bold $} {cyan serve} -l pipe:\\\\.\\pipe\\{underline PipeName}
+`); else {
+          args["--listen"] || (args["--listen"] = [ [ process.env.PORT || 5e3 ] ]), args["--virtual-path"] && (args["--virtual-path"] = args["--virtual-path"].replace(/^\/|\/$/g, "")), 
+          args._.length > 1 && (console.error(error("Please provide one path argument at maximum")), 
+          process.exit(1));
+          var cwd = process.cwd(), entry = args._.length > 0 ? path.resolve(args._[0]) : cwd, config = yield loadConfig(cwd, entry, args);
+          if (args["--single"]) {
+            var rewrites = config.rewrites, existingRewrites = Array.isArray(rewrites) ? rewrites : [];
+            config.rewrites = [ {
+              source: "**",
+              destination: "/index.html"
+            } ].concat(existingRewrites);
+          }
+          for (var endpoint of (args["--symlinks"] && (config.symlinks = !0), args["--listen"])) startEndpoint(endpoint, config, args);
+          registerShutdown((() => {
+            console.log(`\n${info("Gracefully shutting down. Please wait...")}`), process.on("SIGINT", (() => {
+              console.log(`\n${warning("Force-closing all open sockets...")}`), process.exit(0);
+            }));
+          }));
+        }
+      }))();
+    },
+    1852: function(module, __unused_webpack_exports, __webpack_require__) {
+      var stripAnsi = __webpack_require__(6003), isFullwidthCodePoint = __webpack_require__(1903);
+      module.exports = str => {
+        if ("string" != typeof str || 0 === str.length) return 0;
+        str = stripAnsi(str);
+        for (var width = 0, i = 0; i < str.length; i++) {
+          var code = str.codePointAt(i);
+          code <= 31 || code >= 127 && code <= 159 || (code >= 768 && code <= 879 || (code > 65535 && i++, 
+          width += isFullwidthCodePoint(code) ? 2 : 1));
+        }
+        return width;
+      };
+    },
+    5788: function(module, __unused_webpack_exports, __webpack_require__) {
+      var forceColor, os = __webpack_require__(2037), hasFlag = __webpack_require__(4409), env = process.env;
+      function getSupportLevel(stream) {
+        var level = function(stream) {
+          if (!1 === forceColor) return 0;
+          if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) return 3;
+          if (hasFlag("color=256")) return 2;
+          if (stream && !stream.isTTY && !0 !== forceColor) return 0;
+          var min = forceColor ? 1 : 0;
+          if ("win32" === process.platform) {
+            var osRelease = os.release().split(".");
+            return Number(process.versions.node.split(".")[0]) >= 8 && Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586 ? Number(osRelease[2]) >= 14931 ? 3 : 2 : 1;
+          }
+          if ("CI" in env) return [ "TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI" ].some((sign => sign in env)) || "codeship" === env.CI_NAME ? 1 : min;
+          if ("TEAMCITY_VERSION" in env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
+          if ("truecolor" === env.COLORTERM) return 3;
+          if ("TERM_PROGRAM" in env) {
+            var version = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+            switch (env.TERM_PROGRAM) {
+             case "iTerm.app":
+              return version >= 3 ? 3 : 2;
+
+             case "Apple_Terminal":
+              return 2;
+            }
+          }
+          return /-256(color)?$/i.test(env.TERM) ? 2 : /^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM) || "COLORTERM" in env ? 1 : (env.TERM, 
+          min);
+        }(stream);
+        return function(level) {
+          return 0 !== level && {
+            level: level,
+            hasBasic: !0,
+            has256: level >= 2,
+            has16m: level >= 3
+          };
+        }(level);
+      }
+      hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") ? forceColor = !1 : (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) && (forceColor = !0), 
+      "FORCE_COLOR" in env && (forceColor = 0 === env.FORCE_COLOR.length || 0 !== parseInt(env.FORCE_COLOR, 10)), 
+      module.exports = {
+        supportsColor: getSupportLevel,
+        stdout: getSupportLevel(process.stdout),
+        stderr: getSupportLevel(process.stderr)
+      };
+    },
+    5498: function(module, __unused_webpack_exports, __webpack_require__) {
+      var execFileSync = __webpack_require__(2081).execFileSync, path = __webpack_require__(1017), exec = (command, arguments_, shell) => execFileSync(command, arguments_, {
+        encoding: "utf8",
+        shell: shell
+      }).trim(), create = (columns, rows) => ({
+        columns: parseInt(columns, 10),
+        rows: parseInt(rows, 10)
+      });
+      module.exports = () => {
+        var _process = process, env = _process.env, stdout = _process.stdout, stderr = _process.stderr;
+        if (stdout && stdout.columns && stdout.rows) return create(stdout.columns, stdout.rows);
+        if (stderr && stderr.columns && stderr.rows) return create(stderr.columns, stderr.rows);
+        if (env.COLUMNS && env.LINES) return create(env.COLUMNS, env.LINES);
+        if ("win32" === process.platform) try {
+          var size = exec(path.join(__dirname, "vendor/windows/term-size.exe")).split(/\r?\n/);
+          if (2 === size.length) return create(size[0], size[1]);
+        } catch (_) {} else {
+          if ("darwin" === process.platform) try {
+            var _size = exec(path.join(__dirname, "vendor/macos/term-size"), [], !0).split(/\r?\n/);
+            if (2 === _size.length) return create(_size[0], _size[1]);
+          } catch (_) {}
+          try {
+            var _size2 = exec("resize", [ "-u" ]).match(/\d+/g);
+            if (2 === _size2.length) return create(_size2[0], _size2[1]);
+          } catch (_) {}
+          if (process.env.TERM) try {
+            var columns = exec("tput", [ "cols" ]), rows = exec("tput", [ "lines" ]);
+            if (columns && rows) return create(columns, rows);
+          } catch (_) {}
+        }
+        return create(80, 24);
+      };
+    },
+    1054: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _asyncToGenerator2 = __webpack_require__(8926), URL = __webpack_require__(7310).URL, join = __webpack_require__(1017).join, fs = __webpack_require__(7147), promisify = __webpack_require__(3837).promisify || __webpack_require__(145), tmpdir = __webpack_require__(2037).tmpdir, registryUrl = __webpack_require__(4940), writeFile = promisify(fs.writeFile), mkdir = promisify(fs.mkdir), readFile = promisify(fs.readFile), getFile = function() {
+        var _ref = _asyncToGenerator2((function*(details, distTag) {
+          var rootDir = tmpdir(), subDir = join(rootDir, "update-check");
+          fs.existsSync(subDir) || mkdir(subDir);
+          var name = `${details.name}-${distTag}.json`;
+          return details.scope && (name = `${details.scope}-${name}`), join(subDir, name);
+        }));
+        return function() {
+          return _ref.apply(this, arguments);
+        };
+      }(), evaluateCache = function() {
+        var _ref2 = _asyncToGenerator2((function*(file, time, interval) {
+          if (fs.existsSync(file)) {
+            var content = yield readFile(file, "utf8"), _JSON$parse = JSON.parse(content), lastUpdate = _JSON$parse.lastUpdate, latest = _JSON$parse.latest;
+            if (lastUpdate + interval > time) return {
+              shouldCheck: !1,
+              latest: latest
+            };
+          }
+          return {
+            shouldCheck: !0,
+            latest: null
+          };
+        }));
+        return function() {
+          return _ref2.apply(this, arguments);
+        };
+      }(), updateCache = function() {
+        var _ref3 = _asyncToGenerator2((function*(file, latest, lastUpdate) {
+          var content = JSON.stringify({
+            latest: latest,
+            lastUpdate: lastUpdate
+          });
+          yield writeFile(file, content, "utf8");
+        }));
+        return function() {
+          return _ref3.apply(this, arguments);
+        };
+      }(), loadPackage = (url, authInfo) => new Promise(((resolve, reject) => {
+        var options = {
+          host: url.hostname,
+          path: url.pathname,
+          port: url.port,
+          headers: {
+            accept: "application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*"
+          },
+          timeout: 2e3
+        };
+        authInfo && (options.headers.authorization = `${authInfo.type} ${authInfo.token}`), 
+        (0, __webpack_require__("https:" === url.protocol ? 5687 : 3685).get)(options, (response => {
+          var statusCode = response.statusCode;
+          if (200 !== statusCode) {
+            var error = new Error(`Request failed with code ${statusCode}`);
+            return error.code = statusCode, reject(error), void response.resume();
+          }
+          var rawData = "";
+          response.setEncoding("utf8"), response.on("data", (chunk => {
+            rawData += chunk;
+          })), response.on("end", (() => {
+            try {
+              var parsedData = JSON.parse(rawData);
+              resolve(parsedData);
+            } catch (e) {
+              reject(e);
+            }
+          }));
+        })).on("error", reject).on("timeout", reject);
+      })), getMostRecent = function() {
+        var _ref5 = _asyncToGenerator2((function*(_ref4, distTag) {
+          var full = _ref4.full, scope = _ref4.scope, regURL = registryUrl(scope), url = new URL(full, regURL), spec = null;
+          try {
+            spec = yield loadPackage(url);
+          } catch (err) {
+            if (!err.code || !String(err.code).startsWith(4)) throw err;
+            var authInfo = __webpack_require__(4564)(regURL, {
+              recursive: !0
+            });
+            spec = yield loadPackage(url, authInfo);
+          }
+          var version = spec["dist-tags"][distTag];
+          if (!version) throw new Error(`Distribution tag ${distTag} is not available`);
+          return version;
+        }));
+        return function() {
+          return _ref5.apply(this, arguments);
+        };
+      }(), defaultConfig = {
+        interval: 36e5,
+        distTag: "latest"
+      };
+      module.exports = function() {
+        var _ref6 = _asyncToGenerator2((function*(pkg, config) {
+          if ("object" != typeof pkg) throw new Error("The first parameter should be your package.json file content");
+          var shouldCheck, a, b, details = (name => {
+            var value, spec = {
+              full: (value = name, encodeURIComponent(value).replace(/^%40/, "@"))
+            };
+            if (name.includes("/")) {
+              var parts = name.split("/");
+              spec.scope = parts[0], spec.name = parts[1];
+            } else spec.scope = null, spec.name = name;
+            return spec;
+          })(pkg.name), time = Date.now(), _Object$assign = Object.assign({}, defaultConfig, config), distTag = _Object$assign.distTag, interval = _Object$assign.interval, file = yield getFile(details, distTag), latest = null, _yield$evaluateCache = yield evaluateCache(file, time, interval);
+          return shouldCheck = _yield$evaluateCache.shouldCheck, latest = _yield$evaluateCache.latest, 
+          shouldCheck && (latest = yield getMostRecent(details, distTag), yield updateCache(file, latest, time)), 
+          -1 === (a = pkg.version, b = latest, a.localeCompare(b, "en-US", {
+            numeric: !0
+          })) ? {
+            latest: latest,
+            fromCache: !shouldCheck
+          } : null;
+        }));
+        return function() {
+          return _ref6.apply(this, arguments);
+        };
+      }();
+    },
+    5825: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _ref2, _asyncToGenerator2 = __webpack_require__(8926), path = __webpack_require__(1017), execa = __webpack_require__(6769), xselFallback = path.join(__dirname, "vendor/linux/xsel"), copyArguments = [ "--clipboard", "--input" ], pasteArguments = [ "--clipboard", "--output" ], makeError = (xselError, fallbackError) => {
+        var error;
+        return "ENOENT" === xselError.code ? error = new Error("Couldn't find the `xsel` binary and fallback didn't work. On Debian/Ubuntu you can install xsel with: sudo apt install xsel") : (error = new Error("Both xsel and fallback failed")).xselError = xselError, 
+        error.fallbackError = fallbackError, error;
+      }, xselWithFallback = function() {
+        var _ref = _asyncToGenerator2((function*(argumentList, options) {
+          try {
+            return yield execa.stdout("xsel", argumentList, options);
+          } catch (xselError) {
+            try {
+              return yield execa.stdout(xselFallback, argumentList, options);
+            } catch (fallbackError) {
+              throw makeError(xselError, fallbackError);
+            }
+          }
+        }));
+        return function() {
+          return _ref.apply(this, arguments);
+        };
+      }(), xselWithFallbackSync = (argumentList, options) => {
+        try {
+          return execa.sync("xsel", argumentList, options);
+        } catch (xselError) {
+          try {
+            return execa.sync(xselFallback, argumentList, options);
+          } catch (fallbackError) {
+            throw makeError(xselError, fallbackError);
+          }
+        }
+      };
+      module.exports = {
+        copy: (_ref2 = _asyncToGenerator2((function*(options) {
+          yield xselWithFallback(copyArguments, options);
+        })), function() {
+          return _ref2.apply(this, arguments);
+        }),
+        copySync: options => {
+          xselWithFallbackSync(copyArguments, options);
+        },
+        paste: options => xselWithFallback(pasteArguments, options),
+        pasteSync: options => xselWithFallbackSync(pasteArguments, options)
+      };
+    },
+    3354: function(module, __unused_webpack_exports, __webpack_require__) {
+      var _ref2, _ref, _asyncToGenerator2 = __webpack_require__(8926), path = __webpack_require__(1017), execa = __webpack_require__(6769), windowBinaryPath = "x64" === __webpack_require__(3901)() ? path.join(__dirname, "vendor/windows/clipboard_x86_64.exe") : path.join(__dirname, "vendor/windows/clipboard_i686.exe");
+      module.exports = {
+        copy: (_ref = _asyncToGenerator2((function*(options) {
+          return execa(windowBinaryPath, [ "--copy" ], options);
+        })), function() {
+          return _ref.apply(this, arguments);
+        }),
+        paste: (_ref2 = _asyncToGenerator2((function*(options) {
+          return execa.stdout(windowBinaryPath, [ "--paste" ], options);
+        })), function() {
+          return _ref2.apply(this, arguments);
+        }),
+        copySync: options => execa.sync(windowBinaryPath, [ "--copy" ], options),
+        pasteSync: options => execa.sync(windowBinaryPath, [ "--paste" ], options)
+      };
+    },
     4953: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var stringWidth = __webpack_require__(1852);
       module.exports = input => {
         var max = 0;
@@ -4287,7 +4200,6 @@
       };
     },
     5623: function(module) {
-      "use strict";
       function balanced(a, b, str) {
         a instanceof RegExp && (a = maybeMatch(a, str)), b instanceof RegExp && (b = maybeMatch(b, str));
         var r = range(a, b, str);
@@ -4390,7 +4302,6 @@
       }
     },
     9830: function(module) {
-      "use strict";
       module.exports = function(value, options) {
         if ("string" == typeof value) return parse(value);
         if ("number" == typeof value) return format(value, options);
@@ -4794,7 +4705,6 @@
       };
     },
     8874: function(module) {
-      "use strict";
       module.exports = {
         aliceblue: [ 240, 248, 255 ],
         antiquewhite: [ 250, 235, 215 ],
@@ -4947,7 +4857,6 @@
       };
     },
     7023: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var db = __webpack_require__(3803), COMPRESSIBLE_TYPE_REGEXP = /^text\/|\+(?:json|text|xml)$/i, EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
       module.exports = function(type) {
         if (!type || "string" != typeof type) return !1;
@@ -4957,7 +4866,6 @@
       };
     },
     4051: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var accepts = __webpack_require__(9078), Buffer = __webpack_require__(9509).Buffer, bytes = __webpack_require__(9830), compressible = __webpack_require__(7023), debug = __webpack_require__(5158)("compression"), onHeaders = __webpack_require__(4236), vary = __webpack_require__(5181), zlib = __webpack_require__(9796);
       module.exports = function(options) {
         var opts = options || {}, filter = opts.filter || shouldCompress, threshold = bytes.parse(opts.threshold);
@@ -5021,7 +4929,6 @@
       };
     },
     7389: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       module.exports = function(filename, options) {
         var opts = options || {}, type = opts.type || "attachment", params = function(filename, fallback) {
           if (void 0 === filename) return;
@@ -5259,7 +5166,6 @@
       }, exports.enable(load());
     },
     7698: function(module) {
-      "use strict";
       function isSpecificValue(val) {
         return val instanceof Buffer || val instanceof Date || val instanceof RegExp;
       }
@@ -5331,7 +5237,6 @@
       module.exports = eos;
     },
     3150: function(module) {
-      "use strict";
       var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
       module.exports = function(str) {
         if ("string" != typeof str) throw new TypeError("Expected a string");
@@ -5339,7 +5244,6 @@
       };
     },
     4063: function(module) {
-      "use strict";
       module.exports = function equal(a, b) {
         if (a === b) return !0;
         if (a && b && "object" == typeof a && "object" == typeof b) {
@@ -5365,7 +5269,6 @@
       };
     },
     5035: function(module) {
-      "use strict";
       module.exports = function(data, opts) {
         opts || (opts = {}), "function" == typeof opts && (opts = {
           cmp: opts
@@ -5409,7 +5312,6 @@
       };
     },
     9524: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       function Url() {
         this._protocol = null, this._href = "", this._port = -1, this._query = null, this.auth = null, 
         this.slashes = null, this.host = null, this.hostname = null, this.hash = null, this.search = null, 
@@ -5829,11 +5731,9 @@
       }
     },
     1903: function(module) {
-      "use strict";
       module.exports = x => !Number.isNaN(x) && (x >= 4352 && (x <= 4447 || 9001 === x || 9002 === x || 11904 <= x && x <= 12871 && 12351 !== x || 12880 <= x && x <= 19903 || 19968 <= x && x <= 42182 || 43360 <= x && x <= 43388 || 44032 <= x && x <= 55203 || 63744 <= x && x <= 64255 || 65040 <= x && x <= 65049 || 65072 <= x && x <= 65131 || 65281 <= x && x <= 65376 || 65504 <= x && x <= 65510 || 110592 <= x && x <= 110593 || 127488 <= x && x <= 127569 || 131072 <= x && x <= 262141));
     },
     4970: function(module) {
-      "use strict";
       var isStream = module.exports = function(stream) {
         return null !== stream && "object" == typeof stream && "function" == typeof stream.pipe;
       };
@@ -5915,7 +5815,6 @@
       }
     },
     9461: function(module) {
-      "use strict";
       var traverse = module.exports = function(schema, opts, cb) {
         "function" == typeof opts && (cb = opts, opts = {}), _traverse(opts, "function" == typeof (cb = opts.cb || cb) ? cb : cb.pre || function() {}, cb.post || function() {}, schema, "", schema);
       };
@@ -5972,7 +5871,6 @@
       };
     },
     983: function(__unused_webpack_module, exports, __webpack_require__) {
-      "use strict";
       var extensions, types, preference, db = __webpack_require__(3803), extname = __webpack_require__(1017).extname, EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/, TEXT_TYPE_REGEXP = /^text\//i;
       function charset(type) {
         if (!type || "string" != typeof type) return !1;
@@ -6016,7 +5914,7 @@
         }
       }));
     },
-    8108: function(module, __unused_webpack_exports, __webpack_require__) {
+    1171: function(module, __unused_webpack_exports, __webpack_require__) {
       module.exports = minimatch, minimatch.Minimatch = Minimatch;
       var path = {
         sep: "/"
@@ -6350,6 +6248,9 @@
       function isNumber(x) {
         return "number" == typeof x || (!!/^0x[0-9a-f]+$/i.test(x) || /^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/.test(x));
       }
+      function isConstructorOrProto(obj, key) {
+        return "constructor" === key && "function" == typeof obj[key] || "__proto__" === key;
+      }
       module.exports = function(args, opts) {
         opts || (opts = {});
         var flags = {
@@ -6389,12 +6290,12 @@
         }
         function setKey(obj, keys, value) {
           for (var o = obj, i = 0; i < keys.length - 1; i++) {
-            if ("__proto__" === (key = keys[i])) return;
+            if (isConstructorOrProto(o, key = keys[i])) return;
             void 0 === o[key] && (o[key] = {}), o[key] !== Object.prototype && o[key] !== Number.prototype && o[key] !== String.prototype || (o[key] = {}), 
             o[key] === Array.prototype && (o[key] = []), o = o[key];
           }
           var key;
-          "__proto__" !== (key = keys[keys.length - 1]) && (o !== Object.prototype && o !== Number.prototype && o !== String.prototype || (o = {}), 
+          isConstructorOrProto(o, key = keys[keys.length - 1]) || (o !== Object.prototype && o !== Number.prototype && o !== String.prototype || (o = {}), 
           o === Array.prototype && (o = []), void 0 === o[key] || flags.bools[key] || "boolean" == typeof o[key] ? o[key] = value : Array.isArray(o[key]) ? o[key].push(value) : o[key] = [ o[key], value ]);
         }
         function aliasIsBoolean(key) {
@@ -6527,7 +6428,6 @@
       };
     },
     159: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var modules = Object.create(null);
       function Negotiator(request) {
         if (!(this instanceof Negotiator)) return new Negotiator(request);
@@ -6584,7 +6484,6 @@
       Negotiator.prototype.preferredMediaType = Negotiator.prototype.mediaType, Negotiator.prototype.preferredMediaTypes = Negotiator.prototype.mediaTypes;
     },
     8558: function(module) {
-      "use strict";
       module.exports = preferredCharsets, module.exports.preferredCharsets = preferredCharsets;
       var simpleCharsetRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
       function parseCharset(str, i) {
@@ -6651,7 +6550,6 @@
       }
     },
     4328: function(module) {
-      "use strict";
       module.exports = preferredEncodings, module.exports.preferredEncodings = preferredEncodings;
       var simpleEncodingRegExp = /^\s*([^\s;]+)\s*(?:;(.*))?$/;
       function parseEncoding(str, i) {
@@ -6723,7 +6621,6 @@
       }
     },
     8035: function(module) {
-      "use strict";
       module.exports = preferredLanguages, module.exports.preferredLanguages = preferredLanguages;
       var simpleLanguageRegExp = /^\s*([^\s\-;]+)(?:-([^\s;]+))?\s*(?:;(.*))?$/;
       function parseLanguage(str, i) {
@@ -6793,7 +6690,6 @@
       }
     },
     4097: function(module) {
-      "use strict";
       module.exports = preferredMediaTypes, module.exports.preferredMediaTypes = preferredMediaTypes;
       var simpleMediaTypeRegExp = /^\s*([^\s\/;]+)\/([^;\s]+)\s*(?:;(.*))?$/;
       function parseAccept(accept) {
@@ -6891,7 +6787,6 @@
       }
     },
     1150: function(module) {
-      "use strict";
       module.exports = function(fn) {
         try {
           return fn();
@@ -6899,7 +6794,6 @@
       };
     },
     4236: function(module) {
-      "use strict";
       function setHeadersFromArray(res, headers) {
         for (var i = 0; i < headers.length; i++) res.setHeader(headers[i][0], headers[i][1]);
       }
@@ -6959,7 +6853,6 @@
       }));
     },
     7345: function(module) {
-      "use strict";
       module.exports = (promise, onFinally) => (onFinally = onFinally || (() => {}), promise.then((val => new Promise((resolve => {
         resolve(onFinally());
       })).then((() => val))), (err => new Promise((resolve => {
@@ -6969,7 +6862,6 @@
       })))));
     },
     5038: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var path = __webpack_require__(1017);
       function stripTrailingSep(thePath) {
         return thePath[thePath.length - 1] === path.sep ? thePath.slice(0, -1) : thePath;
@@ -7123,7 +7015,6 @@
       };
     },
     4622: function(module) {
-      "use strict";
       function mapWithIndex(range, index) {
         return {
           start: range.start,
@@ -7192,7 +7083,6 @@
       };
     },
     7513: function(__unused_webpack_module, exports, __webpack_require__) {
-      "use strict";
       var fs = __webpack_require__(7147), ini = __webpack_require__(9915), path = __webpack_require__(1017), stripJsonComments = __webpack_require__(1409), parse = exports.parse = function(content) {
         return /^\s*{/.test(content) ? JSON.parse(stripJsonComments(content)) : ini.parse(content);
       }, file = exports.file = function() {
@@ -7235,8 +7125,19 @@
         return find(process.cwd(), rel);
       };
     },
+    5116: function(module, __unused_webpack_exports, __webpack_require__) {
+      var safeBuffer = __webpack_require__(9509).Buffer;
+      module.exports = {
+        decodeBase64: function(base64) {
+          return safeBuffer.from(base64, "base64").toString("utf8");
+        },
+        encodeBase64: function(string) {
+          return safeBuffer.from(string, "utf8").toString("base64");
+        }
+      };
+    },
     4564: function(module, __unused_webpack_exports, __webpack_require__) {
-      var url = __webpack_require__(7310), base64 = __webpack_require__(2023), decodeBase64 = base64.decodeBase64, encodeBase64 = base64.encodeBase64;
+      var url = __webpack_require__(7310), base64 = __webpack_require__(5116), decodeBase64 = base64.decodeBase64, encodeBase64 = base64.encodeBase64;
       function getRegistryAuthInfo(checkUrl, options) {
         for (var pathname, path, parsed = url.parse(checkUrl, !1, !0); "/" !== pathname && parsed.pathname !== pathname; ) {
           pathname = parsed.pathname || "/";
@@ -7286,7 +7187,6 @@
       };
     },
     4940: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       module.exports = function(scope) {
         var rc = __webpack_require__(1365)("npm", {
           registry: "https://registry.npmjs.org/"
@@ -7320,7 +7220,6 @@
       };
     },
     2063: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
       var shebangRegex = __webpack_require__(9395);
       module.exports = function(str) {
         var match = str.match(shebangRegex);
@@ -7330,7 +7229,6 @@
       };
     },
     9395: function(module) {
-      "use strict";
       module.exports = /^#!.*/;
     },
     7908: function(module, __unused_webpack_exports, __webpack_require__) {
@@ -7396,8 +7294,11 @@
       module.exports = [ "SIGABRT", "SIGALRM", "SIGHUP", "SIGINT", "SIGTERM" ], "win32" !== process.platform && module.exports.push("SIGVTALRM", "SIGXCPU", "SIGXFSZ", "SIGUSR2", "SIGTRAP", "SIGSYS", "SIGQUIT", "SIGIOT"), 
       "linux" === process.platform && module.exports.push("SIGIO", "SIGPOLL", "SIGPWR", "SIGSTKFLT", "SIGUNUSED");
     },
+    6003: function(module, __unused_webpack_exports, __webpack_require__) {
+      var ansiRegex = __webpack_require__(4619);
+      module.exports = input => "string" == typeof input ? input.replace(ansiRegex(), "") : input;
+    },
     4502: function(module) {
-      "use strict";
       module.exports = function(x) {
         var lf = "string" == typeof x ? "\n" : "\n".charCodeAt(), cr = "string" == typeof x ? "\r" : "\r".charCodeAt();
         return x[x.length - 1] === lf && (x = x.slice(0, x.length - 1)), x[x.length - 1] === cr && (x = x.slice(0, x.length - 1)), 
@@ -7405,7 +7306,6 @@
       };
     },
     1409: function(module) {
-      "use strict";
       function stripWithoutWhitespace() {
         return "";
       }
@@ -7436,8 +7336,24 @@
         return ret + (insideComment ? strip(str.substr(offset)) : str.substr(offset));
       };
     },
+    145: function(module) {
+      module.exports = function(fn, options) {
+        if ("function" != typeof fn) throw new TypeError("first parameter is not a function");
+        var opts = Object.assign({
+          context: {},
+          multiArgs: !1
+        }, options);
+        return function() {
+          var callArgs = Array.prototype.slice.call(arguments);
+          return new Promise((function(resolve, reject) {
+            callArgs.push((function(err) {
+              err ? reject(err) : opts.multiArgs ? resolve(Array.prototype.slice.call(arguments, 1)) : resolve(arguments[1]);
+            })), fn.apply(opts.context, callArgs);
+          }));
+        };
+      };
+    },
     5181: function(module) {
-      "use strict";
       module.exports = function(res, field) {
         if (!res || !res.getHeader || !res.setHeader) throw new TypeError("res argument is required");
         var val = res.getHeader("Vary") || "", header = Array.isArray(val) ? val.join(", ") : String(val);
@@ -7472,40 +7388,6 @@
         }
         return list.push(header.substring(start, end)), list;
       }
-    },
-    2023: function(module, __unused_webpack_exports, __webpack_require__) {
-      var safeBuffer = __webpack_require__(9509).Buffer;
-      module.exports = {
-        decodeBase64: function(base64) {
-          return safeBuffer.from(base64, "base64").toString("utf8");
-        },
-        encodeBase64: function(string) {
-          return safeBuffer.from(string, "utf8").toString("base64");
-        }
-      };
-    },
-    8999: function(module, __unused_webpack_exports, __webpack_require__) {
-      "use strict";
-      var ansiRegex = __webpack_require__(4619);
-      module.exports = input => "string" == typeof input ? input.replace(ansiRegex(), "") : input;
-    },
-    7183: function(module) {
-      "use strict";
-      module.exports = function(fn, options) {
-        if ("function" != typeof fn) throw new TypeError("first parameter is not a function");
-        var opts = Object.assign({
-          context: {},
-          multiArgs: !1
-        }, options);
-        return function() {
-          var callArgs = Array.prototype.slice.call(arguments);
-          return new Promise((function(resolve, reject) {
-            callArgs.push((function(err) {
-              err ? reject(err) : opts.multiArgs ? resolve(Array.prototype.slice.call(arguments, 1)) : resolve(arguments[1]);
-            })), fn.apply(opts.context, callArgs);
-          }));
-        };
-      };
     },
     2806: function(module, __unused_webpack_exports, __webpack_require__) {
       module.exports = which, which.sync = function(cmd, opt) {
@@ -7588,104 +7470,79 @@
       };
     },
     2754: function(module) {
-      "use strict";
       module.exports = require("./vendor/uri-js.js");
     },
     3803: function(module) {
-      "use strict";
       module.exports = require("./vendor/mime-db.json");
     },
     1741: function(module) {
-      "use strict";
       module.exports = require("./vendor/semver.js");
     },
     9491: function(module) {
-      "use strict";
       module.exports = require("assert");
     },
     4300: function(module) {
-      "use strict";
       module.exports = require("buffer");
     },
     2081: function(module) {
-      "use strict";
       module.exports = require("child_process");
     },
     6113: function(module) {
-      "use strict";
       module.exports = require("crypto");
     },
     2361: function(module) {
-      "use strict";
       module.exports = require("events");
     },
     7147: function(module) {
-      "use strict";
       module.exports = require("fs");
     },
     3685: function(module) {
-      "use strict";
       module.exports = require("http");
     },
     5687: function(module) {
-      "use strict";
       module.exports = require("https");
     },
     1808: function(module) {
-      "use strict";
       module.exports = require("net");
     },
     2037: function(module) {
-      "use strict";
       module.exports = require("os");
     },
     1017: function(module) {
-      "use strict";
       module.exports = require("path");
     },
     5477: function(module) {
-      "use strict";
       module.exports = require("punycode");
     },
     3477: function(module) {
-      "use strict";
       module.exports = require("querystring");
     },
     2781: function(module) {
-      "use strict";
       module.exports = require("stream");
     },
     6224: function(module) {
-      "use strict";
       module.exports = require("tty");
     },
     7310: function(module) {
-      "use strict";
       module.exports = require("url");
     },
     3837: function(module) {
-      "use strict";
       module.exports = require("util");
     },
     9796: function(module) {
-      "use strict";
       module.exports = require("zlib");
     },
     894: function(module) {
-      "use strict";
       module.exports = JSON.parse('{"$schema":"http://json-schema.org/draft-07/schema#","$id":"https://raw.githubusercontent.com/ajv-validator/ajv/master/lib/refs/data.json#","description":"Meta-schema for $data reference (JSON Schema extension proposal)","type":"object","required":["$data"],"properties":{"$data":{"type":"string","anyOf":[{"format":"relative-json-pointer"},{"format":"json-pointer"}]}},"additionalProperties":false}');
     },
     6680: function(module) {
-      "use strict";
       module.exports = JSON.parse('{"$schema":"http://json-schema.org/draft-07/schema#","$id":"http://json-schema.org/draft-07/schema#","title":"Core schema meta-schema","definitions":{"schemaArray":{"type":"array","minItems":1,"items":{"$ref":"#"}},"nonNegativeInteger":{"type":"integer","minimum":0},"nonNegativeIntegerDefault0":{"allOf":[{"$ref":"#/definitions/nonNegativeInteger"},{"default":0}]},"simpleTypes":{"enum":["array","boolean","integer","null","number","object","string"]},"stringArray":{"type":"array","items":{"type":"string"},"uniqueItems":true,"default":[]}},"type":["object","boolean"],"properties":{"$id":{"type":"string","format":"uri-reference"},"$schema":{"type":"string","format":"uri"},"$ref":{"type":"string","format":"uri-reference"},"$comment":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"default":true,"readOnly":{"type":"boolean","default":false},"examples":{"type":"array","items":true},"multipleOf":{"type":"number","exclusiveMinimum":0},"maximum":{"type":"number"},"exclusiveMaximum":{"type":"number"},"minimum":{"type":"number"},"exclusiveMinimum":{"type":"number"},"maxLength":{"$ref":"#/definitions/nonNegativeInteger"},"minLength":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"pattern":{"type":"string","format":"regex"},"additionalItems":{"$ref":"#"},"items":{"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/schemaArray"}],"default":true},"maxItems":{"$ref":"#/definitions/nonNegativeInteger"},"minItems":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"uniqueItems":{"type":"boolean","default":false},"contains":{"$ref":"#"},"maxProperties":{"$ref":"#/definitions/nonNegativeInteger"},"minProperties":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"required":{"$ref":"#/definitions/stringArray"},"additionalProperties":{"$ref":"#"},"definitions":{"type":"object","additionalProperties":{"$ref":"#"},"default":{}},"properties":{"type":"object","additionalProperties":{"$ref":"#"},"default":{}},"patternProperties":{"type":"object","additionalProperties":{"$ref":"#"},"propertyNames":{"format":"regex"},"default":{}},"dependencies":{"type":"object","additionalProperties":{"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/stringArray"}]}},"propertyNames":{"$ref":"#"},"const":true,"enum":{"type":"array","items":true,"minItems":1,"uniqueItems":true},"type":{"anyOf":[{"$ref":"#/definitions/simpleTypes"},{"type":"array","items":{"$ref":"#/definitions/simpleTypes"},"minItems":1,"uniqueItems":true}]},"format":{"type":"string"},"contentMediaType":{"type":"string"},"contentEncoding":{"type":"string"},"if":{"$ref":"#"},"then":{"$ref":"#"},"else":{"$ref":"#"},"allOf":{"$ref":"#/definitions/schemaArray"},"anyOf":{"$ref":"#/definitions/schemaArray"},"oneOf":{"$ref":"#/definitions/schemaArray"},"not":{"$ref":"#"}},"default":true}');
     },
     94: function(module) {
-      "use strict";
       module.exports = JSON.parse('{"single":{"topLeft":"┌","topRight":"┐","bottomRight":"┘","bottomLeft":"└","vertical":"│","horizontal":"─"},"double":{"topLeft":"╔","topRight":"╗","bottomRight":"╝","bottomLeft":"╚","vertical":"║","horizontal":"═"},"round":{"topLeft":"╭","topRight":"╮","bottomRight":"╯","bottomLeft":"╰","vertical":"│","horizontal":"─"},"single-double":{"topLeft":"╓","topRight":"╖","bottomRight":"╜","bottomLeft":"╙","vertical":"║","horizontal":"─"},"double-single":{"topLeft":"╒","topRight":"╕","bottomRight":"╛","bottomLeft":"╘","vertical":"│","horizontal":"═"},"classic":{"topLeft":"+","topRight":"+","bottomRight":"+","bottomLeft":"+","vertical":"|","horizontal":"-"}}');
     },
-    4278: function(module) {
-      "use strict";
-      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"12.1.0","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
+    2629: function(module) {
+      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"12.1.1","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
     }
   }, __webpack_module_cache__ = {};
   function __webpack_require__(moduleId) {
@@ -7700,5 +7557,5 @@
     module.loaded = !0, module.exports;
   }
   __webpack_require__.c = __webpack_module_cache__;
-  __webpack_require__(1171);
+  __webpack_require__(8325);
 }();
