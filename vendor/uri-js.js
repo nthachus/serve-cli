@@ -275,8 +275,8 @@ function _recomposeAuthority(components, options) {
   return void 0 !== components.userinfo && (uriTokens.push(components.userinfo), uriTokens.push("@")), 
   void 0 !== components.host && uriTokens.push(_normalizeIPv6(_normalizeIPv4(String(components.host), protocol), protocol).replace(protocol.IPV6ADDRESS, (function(_, $1, $2) {
     return "[" + $1 + ($2 ? "%25" + $2 : "") + "]";
-  }))), "number" == typeof components.port && (uriTokens.push(":"), uriTokens.push(components.port.toString(10))), 
-  uriTokens.length ? uriTokens.join("") : void 0;
+  }))), "number" != typeof components.port && "string" != typeof components.port || (uriTokens.push(":"), 
+  uriTokens.push(String(components.port))), uriTokens.length ? uriTokens.join("") : void 0;
 }
 
 var RDS1 = /^\.\.?\//, RDS2 = /^\/\.(\/|$)/, RDS3 = /^\/\.\.(\/|$)/, RDS5 = /^\/?(?:.|\n)*?(?=\/|$)/;
@@ -363,7 +363,8 @@ var handler = {
     components;
   },
   serialize: function(components, options) {
-    return components.port !== ("https" !== String(components.scheme).toLowerCase() ? 80 : 443) && "" !== components.port || (components.port = void 0), 
+    var secure = "https" === String(components.scheme).toLowerCase();
+    return components.port !== (secure ? 443 : 80) && "" !== components.port || (components.port = void 0), 
     components.path || (components.path = "/"), components;
   }
 }, handler$1 = {
@@ -371,6 +372,35 @@ var handler = {
   domainHost: handler.domainHost,
   parse: handler.parse,
   serialize: handler.serialize
+};
+
+function isSecure(wsComponents) {
+  return "boolean" == typeof wsComponents.secure ? wsComponents.secure : "wss" === String(wsComponents.scheme).toLowerCase();
+}
+
+var handler$2 = {
+  scheme: "ws",
+  domainHost: !0,
+  parse: function(components, options) {
+    var wsComponents = components;
+    return wsComponents.secure = isSecure(wsComponents), wsComponents.resourceName = (wsComponents.path || "/") + (wsComponents.query ? "?" + wsComponents.query : ""), 
+    wsComponents.path = void 0, wsComponents.query = void 0, wsComponents;
+  },
+  serialize: function(wsComponents, options) {
+    if (wsComponents.port !== (isSecure(wsComponents) ? 443 : 80) && "" !== wsComponents.port || (wsComponents.port = void 0), 
+    "boolean" == typeof wsComponents.secure && (wsComponents.scheme = wsComponents.secure ? "wss" : "ws", 
+    wsComponents.secure = void 0), wsComponents.resourceName) {
+      var _wsComponents$resourc2 = wsComponents.resourceName.split("?"), path = _wsComponents$resourc2[0], query = _wsComponents$resourc2[1];
+      wsComponents.path = path && "/" !== path ? path : void 0, wsComponents.query = query, 
+      wsComponents.resourceName = void 0;
+    }
+    return wsComponents.fragment = void 0, wsComponents;
+  }
+}, handler$3 = {
+  scheme: "wss",
+  domainHost: handler$2.domainHost,
+  parse: handler$2.parse,
+  serialize: handler$2.serialize
 }, O = {}, isIRI = !0, UNRESERVED$$ = "[A-Za-z0-9\\-\\.\\_\\~" + (isIRI ? "\\xA0-\\u200D\\u2010-\\u2029\\u202F-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF" : "") + "]", HEXDIG$$ = "[0-9A-Fa-f]", PCT_ENCODED$ = subexp(subexp("%[EFef]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%[89A-Fa-f]" + HEXDIG$$ + "%" + HEXDIG$$ + HEXDIG$$) + "|" + subexp("%" + HEXDIG$$ + HEXDIG$$)), ATEXT$$ = "[A-Za-z0-9\\!\\$\\%\\'\\*\\+\\-\\^\\_\\`\\{\\|\\}\\~]", QTEXT$$ = "[\\!\\$\\%\\'\\(\\)\\*\\+\\,\\-\\.0-9\\<\\>A-Z\\x5E-\\x7E]", VCHAR$$ = merge(QTEXT$$, '[\\"\\\\]'), SOME_DELIMS$$ = "[\\!\\$\\'\\(\\)\\*\\+\\,\\;\\:\\@]", UNRESERVED = new RegExp(UNRESERVED$$, "g"), PCT_ENCODED = new RegExp(PCT_ENCODED$, "g"), NOT_LOCAL_PART = new RegExp(merge("[^]", ATEXT$$, "[\\.]", '[\\"]', VCHAR$$), "g"), NOT_HFNAME = new RegExp(merge("[^]", UNRESERVED$$, SOME_DELIMS$$), "g"), NOT_HFVALUE = NOT_HFNAME;
 
 function decodeUnreserved(str) {
@@ -378,7 +408,7 @@ function decodeUnreserved(str) {
   return decStr.match(UNRESERVED) ? decStr : str;
 }
 
-var handler$2 = {
+var handler$4 = {
   scheme: "mailto",
   parse: function(components, options) {
     var mailtoComponents = components, to = mailtoComponents.to = mailtoComponents.path ? mailtoComponents.path.split(",") : [];
@@ -436,7 +466,7 @@ var handler$2 = {
     for (var name in headers) headers[name] !== O[name] && fields.push(name.replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFNAME, pctEncChar) + "=" + headers[name].replace(PCT_ENCODED, decodeUnreserved).replace(PCT_ENCODED, toUpperCase).replace(NOT_HFVALUE, pctEncChar));
     return fields.length && (components.query = fields.join("&")), components;
   }
-}, URN_PARSE = /^([^\:]+)\:(.*)/, handler$3 = {
+}, URN_PARSE = /^([^\:]+)\:(.*)/, handler$5 = {
   scheme: "urn",
   parse: function(components, options) {
     var matches = components.path && components.path.match(URN_PARSE), urnComponents = components;
@@ -452,7 +482,7 @@ var handler$2 = {
     var uriComponents = urnComponents, nss = urnComponents.nss;
     return uriComponents.path = (nid || options.nid) + ":" + nss, uriComponents;
   }
-}, UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/, handler$4 = {
+}, UUID = /^[0-9A-Fa-f]{8}(?:\-[0-9A-Fa-f]{4}){3}\-[0-9A-Fa-f]{12}$/, handler$6 = {
   scheme: "urn:uuid",
   parse: function(urnComponents, options) {
     var uuidComponents = urnComponents;
@@ -466,11 +496,11 @@ var handler$2 = {
 };
 
 SCHEMES[handler.scheme] = handler, SCHEMES[handler$1.scheme] = handler$1, SCHEMES[handler$2.scheme] = handler$2, 
-SCHEMES[handler$3.scheme] = handler$3, SCHEMES[handler$4.scheme] = handler$4, exports.SCHEMES = SCHEMES, 
-exports.pctEncChar = pctEncChar, exports.pctDecChars = pctDecChars, exports.parse = parse, 
-exports.removeDotSegments = removeDotSegments, exports.serialize = serialize, exports.resolveComponents = resolveComponents, 
-exports.resolve = resolve, exports.normalize = normalize, exports.equal = equal, 
-exports.escapeComponent = escapeComponent, exports.unescapeComponent = unescapeComponent, 
-Object.defineProperty(exports, "__esModule", {
+SCHEMES[handler$3.scheme] = handler$3, SCHEMES[handler$4.scheme] = handler$4, SCHEMES[handler$5.scheme] = handler$5, 
+SCHEMES[handler$6.scheme] = handler$6, exports.SCHEMES = SCHEMES, exports.pctEncChar = pctEncChar, 
+exports.pctDecChars = pctDecChars, exports.parse = parse, exports.removeDotSegments = removeDotSegments, 
+exports.serialize = serialize, exports.resolveComponents = resolveComponents, exports.resolve = resolve, 
+exports.normalize = normalize, exports.equal = equal, exports.escapeComponent = escapeComponent, 
+exports.unescapeComponent = unescapeComponent, Object.defineProperty(exports, "__esModule", {
   value: !0
 });

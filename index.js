@@ -2355,9 +2355,9 @@
       }, module.exports = ansiAlign;
     },
     4619: function(module) {
-      module.exports = () => {
-        var pattern = [ "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[a-zA-Z\\d]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))" ].join("|");
-        return new RegExp(pattern, "g");
+      module.exports = function(_temp) {
+        var _ref$onlyFirst = (void 0 === _temp ? {} : _temp).onlyFirst, onlyFirst = void 0 !== _ref$onlyFirst && _ref$onlyFirst, pattern = [ "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))" ].join("|");
+        return new RegExp(pattern, onlyFirst ? void 0 : "g");
       };
     },
     3896: function(module, __unused_webpack_exports, __webpack_require__) {
@@ -2503,79 +2503,84 @@
       };
     },
     2069: function(module, __unused_webpack_exports, __webpack_require__) {
-      var stringWidth = __webpack_require__(1852), chalk = __webpack_require__(3857), widestLine = __webpack_require__(4953), cliBoxes = __webpack_require__(94), camelCase = __webpack_require__(4302), ansiAlign = __webpack_require__(839), termSize = __webpack_require__(5498), getObject = detail => "number" == typeof detail ? {
+      var _extends2 = __webpack_require__(7154), stringWidth = __webpack_require__(1852), chalk = __webpack_require__(3857), widestLine = __webpack_require__(4953), cliBoxes = __webpack_require__(94), camelCase = __webpack_require__(4302), ansiAlign = __webpack_require__(839), termSize = __webpack_require__(5498), getObject = detail => "number" == typeof detail ? {
         top: detail,
         right: 3 * detail,
         bottom: detail,
         left: 3 * detail
-      } : Object.assign({
+      } : _extends2({
         top: 0,
         right: 0,
         bottom: 0,
         left: 0
-      }, detail);
-      module.exports = (text, opts) => {
-        var x;
-        if ((opts = Object.assign({
+      }, detail), isHex = color => color.match(/^#[0-f]{3}(?:[0-f]{3})?$/i), isColorValid = color => "string" == typeof color && (chalk[color] || isHex(color));
+      module.exports = (text, options) => {
+        if ((options = _extends2({
           padding: 0,
           borderStyle: "single",
           dimBorder: !1,
           align: "left",
           float: "left"
-        }, opts)).backgroundColor && (opts.backgroundColor = (x = opts.backgroundColor, 
-        camelCase("bg", x))), opts.borderColor && !chalk[opts.borderColor]) throw new Error(`${opts.borderColor} is not a valid borderColor`);
-        if (opts.backgroundColor && !chalk[opts.backgroundColor]) throw new Error(`${opts.backgroundColor} is not a valid backgroundColor`);
+        }, options)).borderColor && !isColorValid(options.borderColor)) throw new Error(`${options.borderColor} is not a valid borderColor`);
+        if (options.backgroundColor && !isColorValid(options.backgroundColor)) throw new Error(`${options.backgroundColor} is not a valid backgroundColor`);
         var chars = (borderStyle => {
-          var chars;
+          var chararacters;
           if ("string" == typeof borderStyle) {
-            if (!(chars = cliBoxes[borderStyle])) throw new TypeError(`Invalid border style: ${borderStyle}`);
-          } else [ "topLeft", "topRight", "bottomRight", "bottomLeft", "vertical", "horizontal" ].forEach((key => {
-            if (!borderStyle[key] || "string" != typeof borderStyle[key]) throw new TypeError(`Invalid border style: ${key}`);
-          })), chars = borderStyle;
-          return chars;
-        })(opts.borderStyle), padding = getObject(opts.padding), margin = getObject(opts.margin), colorizeBorder = x => {
-          var ret = opts.borderColor ? chalk[opts.borderColor](x) : x;
-          return opts.dimBorder ? chalk.dim(ret) : ret;
+            if (!(chararacters = cliBoxes[borderStyle])) throw new TypeError(`Invalid border style: ${borderStyle}`);
+          } else {
+            for (var side of [ "topLeft", "topRight", "bottomRight", "bottomLeft", "vertical", "horizontal" ]) if (!borderStyle[side] || "string" != typeof borderStyle[side]) throw new TypeError(`Invalid border style: ${side}`);
+            chararacters = borderStyle;
+          }
+          return chararacters;
+        })(options.borderStyle), padding = getObject(options.padding), margin = getObject(options.margin), colorizeBorder = border => {
+          var color, newBorder = options.borderColor ? (color = options.borderColor, isHex(color) ? chalk.hex(color) : chalk[color])(border) : border;
+          return options.dimBorder ? chalk.dim(newBorder) : newBorder;
+        }, colorizeContent = content => {
+          return options.backgroundColor ? (color = options.backgroundColor, isHex(color) ? chalk.bgHex(color) : chalk[camelCase([ "bg", color ])])(content) : content;
+          var color;
         };
         text = ansiAlign(text, {
-          align: opts.align
+          align: options.align
         });
         var lines = text.split("\n");
-        padding.top > 0 && (lines = Array(padding.top).fill("").concat(lines)), padding.bottom > 0 && (lines = lines.concat(Array(padding.bottom).fill("")));
+        padding.top > 0 && (lines = new Array(padding.top).fill("").concat(lines)), padding.bottom > 0 && (lines = lines.concat(new Array(padding.bottom).fill("")));
         var contentWidth = widestLine(text) + padding.left + padding.right, paddingLeft = " ".repeat(padding.left), columns = termSize().columns, marginLeft = " ".repeat(margin.left);
-        if ("center" === opts.float) {
+        if ("center" === options.float) {
           var padWidth = Math.max((columns - contentWidth) / 2, 0);
           marginLeft = " ".repeat(padWidth);
-        } else if ("right" === opts.float) {
+        } else if ("right" === options.float) {
           var _padWidth = Math.max(columns - contentWidth - margin.right - 2, 0);
           marginLeft = " ".repeat(_padWidth);
         }
-        var horizontal = chars.horizontal.repeat(contentWidth), top = colorizeBorder("\n".repeat(margin.top) + marginLeft + chars.topLeft + horizontal + chars.topRight), bottom = colorizeBorder(marginLeft + chars.bottomLeft + horizontal + chars.bottomRight + "\n".repeat(margin.bottom)), side = colorizeBorder(chars.vertical), middle = lines.map((line => {
+        var horizontal = chars.horizontal.repeat(contentWidth), top = colorizeBorder("\n".repeat(margin.top) + marginLeft + chars.topLeft + horizontal + chars.topRight), bottom = colorizeBorder(marginLeft + chars.bottomLeft + horizontal + chars.bottomRight + "\n".repeat(margin.bottom)), side = colorizeBorder(chars.vertical);
+        return top + "\n" + lines.map((line => {
           var paddingRight = " ".repeat(contentWidth - stringWidth(line) - padding.left);
-          return marginLeft + side + (x => opts.backgroundColor ? chalk[opts.backgroundColor](x) : x)(paddingLeft + line + paddingRight) + side;
-        })).join("\n");
-        return top + "\n" + middle + "\n" + bottom;
+          return marginLeft + side + colorizeContent(paddingLeft + line + paddingRight) + side;
+        })).join("\n") + "\n" + bottom;
       }, module.exports._borderStyles = cliBoxes;
     },
     4302: function(module) {
-      function preserveCamelCase(str) {
-        for (var isLastCharLower = !1, isLastCharUpper = !1, isLastLastCharUpper = !1, i = 0; i < str.length; i++) {
-          var c = str[i];
-          isLastCharLower && /[a-zA-Z]/.test(c) && c.toUpperCase() === c ? (str = str.substr(0, i) + "-" + str.substr(i), 
-          isLastCharLower = !1, isLastLastCharUpper = isLastCharUpper, isLastCharUpper = !0, 
-          i++) : isLastCharUpper && isLastLastCharUpper && /[a-zA-Z]/.test(c) && c.toLowerCase() === c ? (str = str.substr(0, i - 1) + "-" + str.substr(i - 1), 
-          isLastLastCharUpper = isLastCharUpper, isLastCharUpper = !1, isLastCharLower = !0) : (isLastCharLower = c.toLowerCase() === c, 
-          isLastLastCharUpper = isLastCharUpper, isLastCharUpper = c.toUpperCase() === c);
-        }
-        return str;
-      }
-      module.exports = function(str) {
-        if (0 === (str = arguments.length > 1 ? Array.from(arguments).map((x => x.trim())).filter((x => x.length)).join("-") : str.trim()).length) return "";
-        if (1 === str.length) return str.toLowerCase();
-        if (/^[a-z0-9]+$/.test(str)) return str;
-        var hasUpperCase = str !== str.toLowerCase();
-        return hasUpperCase && (str = preserveCamelCase(str)), str.replace(/^[_.\- ]+/, "").toLowerCase().replace(/[_.\- ]+(\w|$)/g, ((m, p1) => p1.toUpperCase()));
+      var camelCase = (input, options) => {
+        if ("string" != typeof input && !Array.isArray(input)) throw new TypeError("Expected the input to be `string | string[]`");
+        options = Object.assign({
+          pascalCase: !1
+        }, options);
+        var x;
+        return input = Array.isArray(input) ? input.map((x => x.trim())).filter((x => x.length)).join("-") : input.trim(), 
+        0 === input.length ? "" : 1 === input.length ? options.pascalCase ? input.toUpperCase() : input.toLowerCase() : (input !== input.toLowerCase() && (input = (string => {
+          for (var isLastCharLower = !1, isLastCharUpper = !1, isLastLastCharUpper = !1, i = 0; i < string.length; i++) {
+            var character = string[i];
+            isLastCharLower && /[a-zA-Z]/.test(character) && character.toUpperCase() === character ? (string = string.slice(0, i) + "-" + string.slice(i), 
+            isLastCharLower = !1, isLastLastCharUpper = isLastCharUpper, isLastCharUpper = !0, 
+            i++) : isLastCharUpper && isLastLastCharUpper && /[a-zA-Z]/.test(character) && character.toLowerCase() === character ? (string = string.slice(0, i - 1) + "-" + string.slice(i - 1), 
+            isLastLastCharUpper = isLastCharUpper, isLastCharUpper = !1, isLastCharLower = !0) : (isLastCharLower = character.toLowerCase() === character && character.toUpperCase() !== character, 
+            isLastLastCharUpper = isLastCharUpper, isLastCharUpper = character.toUpperCase() === character && character.toLowerCase() !== character);
+          }
+          return string;
+        })(input)), input = input.replace(/^[_.\- ]+/, "").toLowerCase().replace(/[_.\- ]+(\w|$)/g, ((_, p1) => p1.toUpperCase())).replace(/\d+(\w|$)/g, (m => m.toUpperCase())), 
+        x = input, options.pascalCase ? x.charAt(0).toUpperCase() + x.slice(1) : x);
       };
+      module.exports = camelCase, module.exports.default = camelCase;
     },
     3857: function(module, __unused_webpack_exports, __webpack_require__) {
       var escapeStringRegexp = __webpack_require__(3150), ansiStyles = __webpack_require__(3896), stdoutColor = __webpack_require__(5788).stdout, template = __webpack_require__(8890), isSimpleWindowsTerm = "win32" === process.platform && !(process.env.TERM || "").toLowerCase().startsWith("xterm"), levelMapping = [ "ansi", "ansi", "ansi256", "ansi16m" ], skipModels = new Set([ "gray" ]), styles = Object.create(null);
@@ -3673,7 +3678,7 @@
           return [ url.pathname ];
 
          case "tcp:":
-          return url.port = url.port || "5000", [ parseInt(url.port, 10), url.hostname ];
+          return url.port = url.port || "3000", [ parseInt(url.port, 10), url.hostname ];
 
          default:
           throw new Error(`Unknown --listen endpoint scheme (protocol): ${url.protocol}`);
@@ -3695,7 +3700,7 @@
         }(), sslPass = args["--ssl-pass"], server = "https" === httpMode ? https.createServer({
           key: fs.readFileSync(args["--ssl-key"]),
           cert: fs.readFileSync(args["--ssl-cert"]),
-          passphrase: sslPass ? fs.readFileSync(sslPass) : ""
+          passphrase: sslPass ? fs.readFileSync(sslPass, "utf8") : ""
         }, serverHandler) : http.createServer(serverHandler);
         server.on("error", (err => {
           "EADDRINUSE" !== err.code || 1 !== endpoint.length || isNaN(endpoint[0]) || !0 === args["--no-port-switching"] ? (console.error(error(`Failed to serve: ${err.stack}`)), 
@@ -3746,7 +3751,7 @@
             try {
               content = yield readFile(location, "utf8");
             } catch (err) {
-              if ("ENOENT" === err.code) continue;
+              if ("ENOENT" === err.code && file !== args["--config"]) continue;
               console.error(error(`Not able to read ${location}: ${err.message}`)), process.exit(1);
             }
             try {
@@ -3837,7 +3842,7 @@
       {bold $} {cyan serve} folder_name
       {bold $} {cyan serve} [-l {underline listen_uri} [-l ...]] [{underline directory}]
 
-      By default, {cyan serve} will listen on {bold 0.0.0.0:5000} and serve the
+      By default, {cyan serve} will listen on {bold 0.0.0.0:3000} and serve the
       current working directory on that address.
 
       Specifying a single {bold --listen} argument will overwrite the default, not supplement it.
@@ -3900,7 +3905,7 @@
 
           {bold $} {cyan serve} -l pipe:\\\\.\\pipe\\{underline PipeName}
 `); else {
-          args["--listen"] || (args["--listen"] = [ [ process.env.PORT || 5e3 ] ]), args["--virtual-path"] && (args["--virtual-path"] = args["--virtual-path"].replace(/^\/|\/$/g, "")), 
+          args["--listen"] || (args["--listen"] = [ [ process.env.PORT || 3e3 ] ]), args["--virtual-path"] && (args["--virtual-path"] = args["--virtual-path"].replace(/^\/|\/$/g, "")), 
           args._.length > 1 && (console.error(error("Please provide one path argument at maximum")), 
           process.exit(1));
           var cwd = process.cwd(), entry = args._.length > 0 ? path.resolve(args._[0]) : cwd, config = yield loadConfig(cwd, entry, args);
@@ -3921,17 +3926,18 @@
       }))();
     },
     1852: function(module, __unused_webpack_exports, __webpack_require__) {
-      var stripAnsi = __webpack_require__(6003), isFullwidthCodePoint = __webpack_require__(1903);
-      module.exports = str => {
-        if ("string" != typeof str || 0 === str.length) return 0;
-        str = stripAnsi(str);
-        for (var width = 0, i = 0; i < str.length; i++) {
-          var code = str.codePointAt(i);
+      var stripAnsi = __webpack_require__(6003), isFullwidthCodePoint = __webpack_require__(1903), emojiRegex = __webpack_require__(809), stringWidth = string => {
+        if ("string" != typeof string || 0 === string.length) return 0;
+        if (0 === (string = stripAnsi(string)).length) return 0;
+        string = string.replace(emojiRegex(), "  ");
+        for (var width = 0, i = 0; i < string.length; i++) {
+          var code = string.codePointAt(i);
           code <= 31 || code >= 127 && code <= 159 || (code >= 768 && code <= 879 || (code > 65535 && i++, 
           width += isFullwidthCodePoint(code) ? 2 : 1));
         }
         return width;
       };
+      module.exports = stringWidth, module.exports.default = stringWidth;
     },
     5788: function(module, __unused_webpack_exports, __webpack_require__) {
       var forceColor, os = __webpack_require__(2037), hasFlag = __webpack_require__(4409), env = process.env;
@@ -4192,12 +4198,12 @@
       };
     },
     4953: function(module, __unused_webpack_exports, __webpack_require__) {
-      var stringWidth = __webpack_require__(1852);
-      module.exports = input => {
+      var stringWidth = __webpack_require__(1852), widestLine = input => {
         var max = 0;
-        for (var s of input.split("\n")) max = Math.max(max, stringWidth(s));
+        for (var line of input.split("\n")) max = Math.max(max, stringWidth(line));
         return max;
       };
+      module.exports = widestLine, module.exports.default = widestLine;
     },
     5623: function(module) {
       function balanced(a, b, str) {
@@ -4218,6 +4224,7 @@
       function range(a, b, str) {
         var begs, beg, left, right, result, ai = str.indexOf(a), bi = str.indexOf(b, ai + 1), i = ai;
         if (ai >= 0 && bi > 0) {
+          if (a === b) return [ ai, bi ];
           for (begs = [], left = str.length; i >= 0 && !result; ) i == ai ? (begs.push(i), 
           ai = str.indexOf(a, i + 1)) : 1 == begs.length ? result = [ begs.pop(), bi ] : ((beg = begs.pop()) < left && (left = beg, 
           right = bi), bi = str.indexOf(b, i + 1)), i = ai < bi && ai >= 0 ? ai : bi;
@@ -5198,6 +5205,11 @@
         })), target;
       };
     },
+    809: function(module) {
+      module.exports = function() {
+        return /\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74|\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F|\uD83D\uDC68(?:\uD83C\uDFFC\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68\uD83C\uDFFB|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFE])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFE\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFD])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFC])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83D\uDC68|(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D[\uDC66\uDC67])|[\u2695\u2696\u2708]\uFE0F|\uD83D[\uDC66\uDC67]|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|(?:\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708])\uFE0F|\uD83C\uDFFB\u200D(?:\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C[\uDFFB-\uDFFF])|(?:\uD83E\uDDD1\uD83C\uDFFB\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFC\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)\uD83C\uDFFB|\uD83E\uDDD1(?:\uD83C\uDFFF\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1(?:\uD83C[\uDFFB-\uDFFF])|\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1)|(?:\uD83E\uDDD1\uD83C\uDFFE\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFF\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB-\uDFFE])|(?:\uD83E\uDDD1\uD83C\uDFFC\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFD\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)(?:\uD83C[\uDFFB\uDFFC])|\uD83D\uDC69(?:\uD83C\uDFFE\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFC\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFB\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFC-\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D(?:\uD83D[\uDC68\uDC69])|\uD83D[\uDC68\uDC69])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD]))|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|(?:\uD83E\uDDD1\uD83C\uDFFD\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFE\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)(?:\uD83C[\uDFFB-\uDFFD])|\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D[\uDC66\uDC67])|(?:\uD83D\uDC41\uFE0F\u200D\uD83D\uDDE8|\uD83D\uDC69(?:\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708]|\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\u200D[\u2695\u2696\u2708])|(?:(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)\uFE0F|\uD83D\uDC6F|\uD83E[\uDD3C\uDDDE\uDDDF])\u200D[\u2640\u2642]|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uD83C[\uDFFB-\uDFFF])\u200D[\u2640\u2642]|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD6-\uDDDD])(?:(?:\uD83C[\uDFFB-\uDFFF])\u200D[\u2640\u2642]|\u200D[\u2640\u2642])|\uD83C\uDFF4\u200D\u2620)\uFE0F|\uD83D\uDC69\u200D\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|\uD83C\uDFF3\uFE0F\u200D\uD83C\uDF08|\uD83D\uDC15\u200D\uD83E\uDDBA|\uD83D\uDC69\u200D\uD83D\uDC66|\uD83D\uDC69\u200D\uD83D\uDC67|\uD83C\uDDFD\uD83C\uDDF0|\uD83C\uDDF4\uD83C\uDDF2|\uD83C\uDDF6\uD83C\uDDE6|[#\*0-9]\uFE0F\u20E3|\uD83C\uDDE7(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF])|\uD83C\uDDF9(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF])|\uD83C\uDDEA(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA])|\uD83E\uDDD1(?:\uD83C[\uDFFB-\uDFFF])|\uD83C\uDDF7(?:\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC])|\uD83D\uDC69(?:\uD83C[\uDFFB-\uDFFF])|\uD83C\uDDF2(?:\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF])|\uD83C\uDDE6(?:\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF])|\uD83C\uDDF0(?:\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF])|\uD83C\uDDED(?:\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA])|\uD83C\uDDE9(?:\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF])|\uD83C\uDDFE(?:\uD83C[\uDDEA\uDDF9])|\uD83C\uDDEC(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE])|\uD83C\uDDF8(?:\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF])|\uD83C\uDDEB(?:\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7])|\uD83C\uDDF5(?:\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE])|\uD83C\uDDFB(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA])|\uD83C\uDDF3(?:\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF])|\uD83C\uDDE8(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF])|\uD83C\uDDF1(?:\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE])|\uD83C\uDDFF(?:\uD83C[\uDDE6\uDDF2\uDDFC])|\uD83C\uDDFC(?:\uD83C[\uDDEB\uDDF8])|\uD83C\uDDFA(?:\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF])|\uD83C\uDDEE(?:\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9])|\uD83C\uDDEF(?:\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5])|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD6-\uDDDD])(?:\uD83C[\uDFFB-\uDFFF])|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uD83C[\uDFFB-\uDFFF])|(?:[\u261D\u270A-\u270D]|\uD83C[\uDF85\uDFC2\uDFC7]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC70\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDCAA\uDD74\uDD7A\uDD90\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC]|\uD83E[\uDD0F\uDD18-\uDD1C\uDD1E\uDD1F\uDD30-\uDD36\uDDB5\uDDB6\uDDBB\uDDD2-\uDDD5])(?:\uD83C[\uDFFB-\uDFFF])|(?:[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55]|\uD83C[\uDC04\uDCCF\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF93\uDFA0-\uDFCA\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF4\uDFF8-\uDFFF]|\uD83D[\uDC00-\uDC3E\uDC40\uDC42-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDD7A\uDD95\uDD96\uDDA4\uDDFB-\uDE4F\uDE80-\uDEC5\uDECC\uDED0-\uDED2\uDED5\uDEEB\uDEEC\uDEF4-\uDEFA\uDFE0-\uDFEB]|\uD83E[\uDD0D-\uDD3A\uDD3C-\uDD45\uDD47-\uDD71\uDD73-\uDD76\uDD7A-\uDDA2\uDDA5-\uDDAA\uDDAE-\uDDCA\uDDCD-\uDDFF\uDE70-\uDE73\uDE78-\uDE7A\uDE80-\uDE82\uDE90-\uDE95])|(?:[#\*0-9\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692-\u2697\u2699\u269B\u269C\u26A0\u26A1\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70\uDD71\uDD7E\uDD7F\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF]|\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F\uDD70\uDD73-\uDD7A\uDD87\uDD8A-\uDD8D\uDD90\uDD95\uDD96\uDDA4\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED2\uDED5\uDEE0-\uDEE5\uDEE9\uDEEB\uDEEC\uDEF0\uDEF3-\uDEFA\uDFE0-\uDFEB]|\uD83E[\uDD0D-\uDD3A\uDD3C-\uDD45\uDD47-\uDD71\uDD73-\uDD76\uDD7A-\uDDA2\uDDA5-\uDDAA\uDDAE-\uDDCA\uDDCD-\uDDFF\uDE70-\uDE73\uDE78-\uDE7A\uDE80-\uDE82\uDE90-\uDE95])\uFE0F|(?:[\u261D\u26F9\u270A-\u270D]|\uD83C[\uDF85\uDFC2-\uDFC4\uDFC7\uDFCA-\uDFCC]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66-\uDC78\uDC7C\uDC81-\uDC83\uDC85-\uDC87\uDC8F\uDC91\uDCAA\uDD74\uDD75\uDD7A\uDD90\uDD95\uDD96\uDE45-\uDE47\uDE4B-\uDE4F\uDEA3\uDEB4-\uDEB6\uDEC0\uDECC]|\uD83E[\uDD0F\uDD18-\uDD1F\uDD26\uDD30-\uDD39\uDD3C-\uDD3E\uDDB5\uDDB6\uDDB8\uDDB9\uDDBB\uDDCD-\uDDCF\uDDD1-\uDDDD])/g;
+      };
+    },
     7526: function(module, __unused_webpack_exports, __webpack_require__) {
       var once = __webpack_require__(778), noop = function() {}, eos = function(stream, opts, callback) {
         if ("function" == typeof opts) return eos(stream, null, opts);
@@ -5658,23 +5670,30 @@
           if (line && !line.match(/^\s*[;#]/)) {
             var match = line.match(re);
             if (match) {
-              if (void 0 !== match[1]) return section = unsafe(match[1]), void (p = out[section] = out[section] || {});
-              var key = unsafe(match[2]), value = !match[3] || unsafe(match[4]);
-              switch (value) {
-               case "true":
-               case "false":
-               case "null":
-                value = JSON.parse(value);
+              if (void 0 !== match[1]) return "__proto__" === (section = unsafe(match[1])) ? void (p = {}) : void (p = out[section] = out[section] || {});
+              var key = unsafe(match[2]);
+              if ("__proto__" !== key) {
+                var value = !match[3] || unsafe(match[4]);
+                switch (value) {
+                 case "true":
+                 case "false":
+                 case "null":
+                  value = JSON.parse(value);
+                }
+                if (key.length > 2 && "[]" === key.slice(-2)) {
+                  if ("__proto__" === (key = key.substring(0, key.length - 2))) return;
+                  p[key] ? Array.isArray(p[key]) || (p[key] = [ p[key] ]) : p[key] = [];
+                }
+                Array.isArray(p[key]) ? p[key].push(value) : p[key] = value;
               }
-              key.length > 2 && "[]" === key.slice(-2) && (key = key.substring(0, key.length - 2), 
-              p[key] ? Array.isArray(p[key]) || (p[key] = [ p[key] ]) : p[key] = []), Array.isArray(p[key]) ? p[key].push(value) : p[key] = value;
             }
           }
         })), Object.keys(out).filter((function(k, _, __) {
           if (!out[k] || "object" != typeof out[k] || Array.isArray(out[k])) return !1;
           var parts = dotSplit(k), p = out, l = parts.pop(), nl = l.replace(/\\\./g, ".");
           return parts.forEach((function(part, _, __) {
-            p[part] && "object" == typeof p[part] || (p[part] = {}), p = p[part];
+            "__proto__" !== part && (p[part] && "object" == typeof p[part] || (p[part] = {}), 
+            p = p[part]);
           })), (p !== out || nl !== l) && (p[nl] = out[k], !0);
         })).forEach((function(del, _, __) {
           delete out[del];
@@ -5731,7 +5750,8 @@
       }
     },
     1903: function(module) {
-      module.exports = x => !Number.isNaN(x) && (x >= 4352 && (x <= 4447 || 9001 === x || 9002 === x || 11904 <= x && x <= 12871 && 12351 !== x || 12880 <= x && x <= 19903 || 19968 <= x && x <= 42182 || 43360 <= x && x <= 43388 || 44032 <= x && x <= 55203 || 63744 <= x && x <= 64255 || 65040 <= x && x <= 65049 || 65072 <= x && x <= 65131 || 65281 <= x && x <= 65376 || 65504 <= x && x <= 65510 || 110592 <= x && x <= 110593 || 127488 <= x && x <= 127569 || 131072 <= x && x <= 262141));
+      var isFullwidthCodePoint = codePoint => !Number.isNaN(codePoint) && (codePoint >= 4352 && (codePoint <= 4447 || 9001 === codePoint || 9002 === codePoint || 11904 <= codePoint && codePoint <= 12871 && 12351 !== codePoint || 12880 <= codePoint && codePoint <= 19903 || 19968 <= codePoint && codePoint <= 42182 || 43360 <= codePoint && codePoint <= 43388 || 44032 <= codePoint && codePoint <= 55203 || 63744 <= codePoint && codePoint <= 64255 || 65040 <= codePoint && codePoint <= 65049 || 65072 <= codePoint && codePoint <= 65131 || 65281 <= codePoint && codePoint <= 65376 || 65504 <= codePoint && codePoint <= 65510 || 110592 <= codePoint && codePoint <= 110593 || 127488 <= codePoint && codePoint <= 127569 || 131072 <= codePoint && codePoint <= 262141));
+      module.exports = isFullwidthCodePoint, module.exports.default = isFullwidthCodePoint;
     },
     4970: function(module) {
       var isStream = module.exports = function(stream) {
@@ -7232,63 +7252,70 @@
       module.exports = /^#!.*/;
     },
     7908: function(module, __unused_webpack_exports, __webpack_require__) {
-      var emitter, assert = __webpack_require__(9491), signals = __webpack_require__(5397), isWin = /^win/i.test(process.platform), EE = __webpack_require__(2361);
-      function unload() {
-        loaded && (loaded = !1, signals.forEach((function(sig) {
-          try {
-            process.removeListener(sig, sigListeners[sig]);
-          } catch (er) {}
-        })), process.emit = originalProcessEmit, process.reallyExit = originalProcessReallyExit, 
-        emitter.count -= 1);
+      var process = global.process;
+      function processOk(process) {
+        return process && "object" == typeof process && "function" == typeof process.removeListener && "function" == typeof process.emit && "function" == typeof process.reallyExit && "function" == typeof process.listeners && "function" == typeof process.kill && "number" == typeof process.pid && "function" == typeof process.on;
       }
-      function emit(event, code, signal) {
-        emitter.emitted[event] || (emitter.emitted[event] = !0, emitter.emit(event, code, signal));
-      }
-      "function" != typeof EE && (EE = EE.EventEmitter), process.__signal_exit_emitter__ ? emitter = process.__signal_exit_emitter__ : ((emitter = process.__signal_exit_emitter__ = new EE).count = 0, 
-      emitter.emitted = {}), emitter.infinite || (emitter.setMaxListeners(1 / 0), emitter.infinite = !0), 
-      module.exports = function(cb, opts) {
-        assert.equal(typeof cb, "function", "a callback must be provided for exit handler"), 
-        !1 === loaded && load();
-        var ev = "exit";
-        opts && opts.alwaysLast && (ev = "afterexit");
-        return emitter.on(ev, cb), function() {
-          emitter.removeListener(ev, cb), 0 === emitter.listeners("exit").length && 0 === emitter.listeners("afterexit").length && unload();
+      if (processOk(process)) {
+        var emitter, assert = __webpack_require__(9491), signals = __webpack_require__(5397), isWin = /^win/i.test(process.platform), EE = __webpack_require__(2361);
+        "function" != typeof EE && (EE = EE.EventEmitter), process.__signal_exit_emitter__ ? emitter = process.__signal_exit_emitter__ : ((emitter = process.__signal_exit_emitter__ = new EE).count = 0, 
+        emitter.emitted = {}), emitter.infinite || (emitter.setMaxListeners(1 / 0), emitter.infinite = !0), 
+        module.exports = function(cb, opts) {
+          if (!processOk(global.process)) return function() {};
+          assert.equal(typeof cb, "function", "a callback must be provided for exit handler"), 
+          !1 === loaded && load();
+          var ev = "exit";
+          opts && opts.alwaysLast && (ev = "afterexit");
+          return emitter.on(ev, cb), function() {
+            emitter.removeListener(ev, cb), 0 === emitter.listeners("exit").length && 0 === emitter.listeners("afterexit").length && unload();
+          };
         };
-      }, module.exports.unload = unload;
-      var sigListeners = {};
-      signals.forEach((function(sig) {
-        sigListeners[sig] = function() {
-          process.listeners(sig).length === emitter.count && (unload(), emit("exit", null, sig), 
-          emit("afterexit", null, sig), isWin && "SIGHUP" === sig && (sig = "SIGINT"), process.kill(process.pid, sig));
+        var unload = function() {
+          loaded && processOk(global.process) && (loaded = !1, signals.forEach((function(sig) {
+            try {
+              process.removeListener(sig, sigListeners[sig]);
+            } catch (er) {}
+          })), process.emit = originalProcessEmit, process.reallyExit = originalProcessReallyExit, 
+          emitter.count -= 1);
         };
-      })), module.exports.signals = function() {
-        return signals;
-      }, module.exports.load = load;
-      var loaded = !1;
-      function load() {
-        loaded || (loaded = !0, emitter.count += 1, signals = signals.filter((function(sig) {
-          try {
-            return process.on(sig, sigListeners[sig]), !0;
-          } catch (er) {
-            return !1;
+        module.exports.unload = unload;
+        var emit = function(event, code, signal) {
+          emitter.emitted[event] || (emitter.emitted[event] = !0, emitter.emit(event, code, signal));
+        }, sigListeners = {};
+        signals.forEach((function(sig) {
+          sigListeners[sig] = function() {
+            processOk(global.process) && (process.listeners(sig).length === emitter.count && (unload(), 
+            emit("exit", null, sig), emit("afterexit", null, sig), isWin && "SIGHUP" === sig && (sig = "SIGINT"), 
+            process.kill(process.pid, sig)));
+          };
+        })), module.exports.signals = function() {
+          return signals;
+        };
+        var loaded = !1, load = function() {
+          !loaded && processOk(global.process) && (loaded = !0, emitter.count += 1, signals = signals.filter((function(sig) {
+            try {
+              return process.on(sig, sigListeners[sig]), !0;
+            } catch (er) {
+              return !1;
+            }
+          })), process.emit = processEmit, process.reallyExit = processReallyExit);
+        };
+        module.exports.load = load;
+        var originalProcessReallyExit = process.reallyExit, processReallyExit = function(code) {
+          processOk(global.process) && (process.exitCode = code || 0, emit("exit", process.exitCode, null), 
+          emit("afterexit", process.exitCode, null), originalProcessReallyExit.call(process, process.exitCode));
+        }, originalProcessEmit = process.emit, processEmit = function(ev, arg) {
+          if ("exit" === ev && processOk(global.process)) {
+            void 0 !== arg && (process.exitCode = arg);
+            var ret = originalProcessEmit.apply(this, arguments);
+            return emit("exit", process.exitCode, null), emit("afterexit", process.exitCode, null), 
+            ret;
           }
-        })), process.emit = processEmit, process.reallyExit = processReallyExit);
-      }
-      var originalProcessReallyExit = process.reallyExit;
-      function processReallyExit(code) {
-        process.exitCode = code || 0, emit("exit", process.exitCode, null), emit("afterexit", process.exitCode, null), 
-        originalProcessReallyExit.call(process, process.exitCode);
-      }
-      var originalProcessEmit = process.emit;
-      function processEmit(ev, arg) {
-        if ("exit" === ev) {
-          void 0 !== arg && (process.exitCode = arg);
-          var ret = originalProcessEmit.apply(this, arguments);
-          return emit("exit", process.exitCode, null), emit("afterexit", process.exitCode, null), 
-          ret;
-        }
-        return originalProcessEmit.apply(this, arguments);
-      }
+          return originalProcessEmit.apply(this, arguments);
+        };
+      } else module.exports = function() {
+        return function() {};
+      };
     },
     5397: function(module) {
       module.exports = [ "SIGABRT", "SIGALRM", "SIGHUP", "SIGINT", "SIGTERM" ], "win32" !== process.platform && module.exports.push("SIGVTALRM", "SIGXCPU", "SIGXFSZ", "SIGUSR2", "SIGTRAP", "SIGSYS", "SIGQUIT", "SIGIOT"), 
@@ -7296,7 +7323,7 @@
     },
     6003: function(module, __unused_webpack_exports, __webpack_require__) {
       var ansiRegex = __webpack_require__(4619);
-      module.exports = input => "string" == typeof input ? input.replace(ansiRegex(), "") : input;
+      module.exports = string => "string" == typeof string ? string.replace(ansiRegex(), "") : string;
     },
     4502: function(module) {
       module.exports = function(x) {
@@ -7539,10 +7566,10 @@
       module.exports = JSON.parse('{"$schema":"http://json-schema.org/draft-07/schema#","$id":"http://json-schema.org/draft-07/schema#","title":"Core schema meta-schema","definitions":{"schemaArray":{"type":"array","minItems":1,"items":{"$ref":"#"}},"nonNegativeInteger":{"type":"integer","minimum":0},"nonNegativeIntegerDefault0":{"allOf":[{"$ref":"#/definitions/nonNegativeInteger"},{"default":0}]},"simpleTypes":{"enum":["array","boolean","integer","null","number","object","string"]},"stringArray":{"type":"array","items":{"type":"string"},"uniqueItems":true,"default":[]}},"type":["object","boolean"],"properties":{"$id":{"type":"string","format":"uri-reference"},"$schema":{"type":"string","format":"uri"},"$ref":{"type":"string","format":"uri-reference"},"$comment":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"default":true,"readOnly":{"type":"boolean","default":false},"examples":{"type":"array","items":true},"multipleOf":{"type":"number","exclusiveMinimum":0},"maximum":{"type":"number"},"exclusiveMaximum":{"type":"number"},"minimum":{"type":"number"},"exclusiveMinimum":{"type":"number"},"maxLength":{"$ref":"#/definitions/nonNegativeInteger"},"minLength":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"pattern":{"type":"string","format":"regex"},"additionalItems":{"$ref":"#"},"items":{"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/schemaArray"}],"default":true},"maxItems":{"$ref":"#/definitions/nonNegativeInteger"},"minItems":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"uniqueItems":{"type":"boolean","default":false},"contains":{"$ref":"#"},"maxProperties":{"$ref":"#/definitions/nonNegativeInteger"},"minProperties":{"$ref":"#/definitions/nonNegativeIntegerDefault0"},"required":{"$ref":"#/definitions/stringArray"},"additionalProperties":{"$ref":"#"},"definitions":{"type":"object","additionalProperties":{"$ref":"#"},"default":{}},"properties":{"type":"object","additionalProperties":{"$ref":"#"},"default":{}},"patternProperties":{"type":"object","additionalProperties":{"$ref":"#"},"propertyNames":{"format":"regex"},"default":{}},"dependencies":{"type":"object","additionalProperties":{"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/stringArray"}]}},"propertyNames":{"$ref":"#"},"const":true,"enum":{"type":"array","items":true,"minItems":1,"uniqueItems":true},"type":{"anyOf":[{"$ref":"#/definitions/simpleTypes"},{"type":"array","items":{"$ref":"#/definitions/simpleTypes"},"minItems":1,"uniqueItems":true}]},"format":{"type":"string"},"contentMediaType":{"type":"string"},"contentEncoding":{"type":"string"},"if":{"$ref":"#"},"then":{"$ref":"#"},"else":{"$ref":"#"},"allOf":{"$ref":"#/definitions/schemaArray"},"anyOf":{"$ref":"#/definitions/schemaArray"},"oneOf":{"$ref":"#/definitions/schemaArray"},"not":{"$ref":"#"}},"default":true}');
     },
     94: function(module) {
-      module.exports = JSON.parse('{"single":{"topLeft":"┌","topRight":"┐","bottomRight":"┘","bottomLeft":"└","vertical":"│","horizontal":"─"},"double":{"topLeft":"╔","topRight":"╗","bottomRight":"╝","bottomLeft":"╚","vertical":"║","horizontal":"═"},"round":{"topLeft":"╭","topRight":"╮","bottomRight":"╯","bottomLeft":"╰","vertical":"│","horizontal":"─"},"single-double":{"topLeft":"╓","topRight":"╖","bottomRight":"╜","bottomLeft":"╙","vertical":"║","horizontal":"─"},"double-single":{"topLeft":"╒","topRight":"╕","bottomRight":"╛","bottomLeft":"╘","vertical":"│","horizontal":"═"},"classic":{"topLeft":"+","topRight":"+","bottomRight":"+","bottomLeft":"+","vertical":"|","horizontal":"-"}}');
+      module.exports = JSON.parse('{"single":{"topLeft":"┌","topRight":"┐","bottomRight":"┘","bottomLeft":"└","vertical":"│","horizontal":"─"},"double":{"topLeft":"╔","topRight":"╗","bottomRight":"╝","bottomLeft":"╚","vertical":"║","horizontal":"═"},"round":{"topLeft":"╭","topRight":"╮","bottomRight":"╯","bottomLeft":"╰","vertical":"│","horizontal":"─"},"bold":{"topLeft":"┏","topRight":"┓","bottomRight":"┛","bottomLeft":"┗","vertical":"┃","horizontal":"━"},"singleDouble":{"topLeft":"╓","topRight":"╖","bottomRight":"╜","bottomLeft":"╙","vertical":"║","horizontal":"─"},"doubleSingle":{"topLeft":"╒","topRight":"╕","bottomRight":"╛","bottomLeft":"╘","vertical":"│","horizontal":"═"},"classic":{"topLeft":"+","topRight":"+","bottomRight":"+","bottomLeft":"+","vertical":"|","horizontal":"-"}}');
     },
     2629: function(module) {
-      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"12.1.1","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
+      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"13.1.0","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
     }
   }, __webpack_module_cache__ = {};
   function __webpack_require__(moduleId) {
