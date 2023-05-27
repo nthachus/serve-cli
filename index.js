@@ -7253,25 +7253,23 @@
     },
     7908: function(module, __unused_webpack_exports, __webpack_require__) {
       var process = global.process;
-      function processOk(process) {
-        return process && "object" == typeof process && "function" == typeof process.removeListener && "function" == typeof process.emit && "function" == typeof process.reallyExit && "function" == typeof process.listeners && "function" == typeof process.kill && "number" == typeof process.pid && "function" == typeof process.on;
-      }
-      if (processOk(process)) {
+      if ("object" == typeof process && process) {
         var emitter, assert = __webpack_require__(9491), signals = __webpack_require__(5397), isWin = /^win/i.test(process.platform), EE = __webpack_require__(2361);
         "function" != typeof EE && (EE = EE.EventEmitter), process.__signal_exit_emitter__ ? emitter = process.__signal_exit_emitter__ : ((emitter = process.__signal_exit_emitter__ = new EE).count = 0, 
         emitter.emitted = {}), emitter.infinite || (emitter.setMaxListeners(1 / 0), emitter.infinite = !0), 
         module.exports = function(cb, opts) {
-          if (!processOk(global.process)) return function() {};
-          assert.equal(typeof cb, "function", "a callback must be provided for exit handler"), 
-          !1 === loaded && load();
-          var ev = "exit";
-          opts && opts.alwaysLast && (ev = "afterexit");
-          return emitter.on(ev, cb), function() {
-            emitter.removeListener(ev, cb), 0 === emitter.listeners("exit").length && 0 === emitter.listeners("afterexit").length && unload();
-          };
+          if (global.process === process) {
+            assert.equal(typeof cb, "function", "a callback must be provided for exit handler"), 
+            !1 === loaded && load();
+            var ev = "exit";
+            opts && opts.alwaysLast && (ev = "afterexit");
+            return emitter.on(ev, cb), function() {
+              emitter.removeListener(ev, cb), 0 === emitter.listeners("exit").length && 0 === emitter.listeners("afterexit").length && unload();
+            };
+          }
         };
         var unload = function() {
-          loaded && processOk(global.process) && (loaded = !1, signals.forEach((function(sig) {
+          loaded && global.process === process && (loaded = !1, signals.forEach((function(sig) {
             try {
               process.removeListener(sig, sigListeners[sig]);
             } catch (er) {}
@@ -7284,7 +7282,7 @@
         }, sigListeners = {};
         signals.forEach((function(sig) {
           sigListeners[sig] = function() {
-            processOk(global.process) && (process.listeners(sig).length === emitter.count && (unload(), 
+            process === global.process && (process.listeners(sig).length === emitter.count && (unload(), 
             emit("exit", null, sig), emit("afterexit", null, sig), isWin && "SIGHUP" === sig && (sig = "SIGINT"), 
             process.kill(process.pid, sig)));
           };
@@ -7292,7 +7290,7 @@
           return signals;
         };
         var loaded = !1, load = function() {
-          !loaded && processOk(global.process) && (loaded = !0, emitter.count += 1, signals = signals.filter((function(sig) {
+          loaded || process !== global.process || (loaded = !0, emitter.count += 1, signals = signals.filter((function(sig) {
             try {
               return process.on(sig, sigListeners[sig]), !0;
             } catch (er) {
@@ -7302,10 +7300,10 @@
         };
         module.exports.load = load;
         var originalProcessReallyExit = process.reallyExit, processReallyExit = function(code) {
-          processOk(global.process) && (process.exitCode = code || 0, emit("exit", process.exitCode, null), 
+          process === global.process && (process.exitCode = code || 0, emit("exit", process.exitCode, null), 
           emit("afterexit", process.exitCode, null), originalProcessReallyExit.call(process, process.exitCode));
         }, originalProcessEmit = process.emit, processEmit = function(ev, arg) {
-          if ("exit" === ev && processOk(global.process)) {
+          if ("exit" === ev && process === global.process) {
             void 0 !== arg && (process.exitCode = arg);
             var ret = originalProcessEmit.apply(this, arguments);
             return emit("exit", process.exitCode, null), emit("afterexit", process.exitCode, null), 
@@ -7313,9 +7311,7 @@
           }
           return originalProcessEmit.apply(this, arguments);
         };
-      } else module.exports = function() {
-        return function() {};
-      };
+      } else module.exports = function() {};
     },
     5397: function(module) {
       module.exports = [ "SIGABRT", "SIGALRM", "SIGHUP", "SIGINT", "SIGTERM" ], "win32" !== process.platform && module.exports.push("SIGVTALRM", "SIGXCPU", "SIGXFSZ", "SIGUSR2", "SIGTRAP", "SIGSYS", "SIGQUIT", "SIGIOT"), 
@@ -7569,7 +7565,7 @@
       module.exports = JSON.parse('{"single":{"topLeft":"┌","topRight":"┐","bottomRight":"┘","bottomLeft":"└","vertical":"│","horizontal":"─"},"double":{"topLeft":"╔","topRight":"╗","bottomRight":"╝","bottomLeft":"╚","vertical":"║","horizontal":"═"},"round":{"topLeft":"╭","topRight":"╮","bottomRight":"╯","bottomLeft":"╰","vertical":"│","horizontal":"─"},"bold":{"topLeft":"┏","topRight":"┓","bottomRight":"┛","bottomLeft":"┗","vertical":"┃","horizontal":"━"},"singleDouble":{"topLeft":"╓","topRight":"╖","bottomRight":"╜","bottomLeft":"╙","vertical":"║","horizontal":"─"},"doubleSingle":{"topLeft":"╒","topRight":"╕","bottomRight":"╛","bottomLeft":"╘","vertical":"│","horizontal":"═"},"classic":{"topLeft":"+","topRight":"+","bottomRight":"+","bottomLeft":"+","vertical":"|","horizontal":"-"}}');
     },
     2629: function(module) {
-      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"13.1.0","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
+      module.exports = JSON.parse('{"name":"@nthachus/serve","version":"13.1.1","description":"CLI bundle of vercel/serve, static file serving and directory listing"}');
     }
   }, __webpack_module_cache__ = {};
   function __webpack_require__(moduleId) {
