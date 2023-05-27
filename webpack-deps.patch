@@ -1,0 +1,348 @@
+--- a/node_modules/ansi-styles/index.js
++++ b/node_modules/ansi-styles/index.js
+@@ -162,4 +162 @@ function assembleStyles() {
+-Object.defineProperty(module, 'exports', {
+-	enumerable: true,
+-	get: assembleStyles
+-});
++module.exports = assembleStyles();
+--- a/node_modules/chalk/index.js
++++ b/node_modules/chalk/index.js
+@@ -55 +55 @@ if (isSimpleWindowsTerm) {
+-for (const key of Object.keys(ansiStyles)) {
++Object.keys(ansiStyles).forEach(key => {
+@@ -63,2 +63,2 @@ for (const key of Object.keys(ansiStyles)) {
+ 	};
+-}
++});
+@@ -73,4 +73,4 @@ ansiStyles.color.closeRe = new RegExp(escapeStringRegexp(ansiStyles.color.close)
+-for (const model of Object.keys(ansiStyles.color.ansi)) {
++Object.keys(ansiStyles.color.ansi).forEach(model => {
+ 	if (skipModels.has(model)) {
+-		continue;
++		return;
+ 	}
+@@ -91,2 +91,2 @@ for (const model of Object.keys(ansiStyles.color.ansi)) {
+ 	};
+-}
++});
+@@ -95,4 +95,4 @@ ansiStyles.bgColor.closeRe = new RegExp(escapeStringRegexp(ansiStyles.bgColor.cl
+-for (const model of Object.keys(ansiStyles.bgColor.ansi)) {
++Object.keys(ansiStyles.bgColor.ansi).forEach(model => {
+ 	if (skipModels.has(model)) {
+-		continue;
++		return;
+ 	}
+@@ -114,2 +114,2 @@ for (const model of Object.keys(ansiStyles.bgColor.ansi)) {
+ 	};
+-}
++});
+--- a/node_modules/execa/index.js
++++ b/node_modules/execa/index.js
+@@ -4 +4 @@ const childProcess = require('child_process');
+-const crossSpawn = require('cross-spawn');
++const crossSpawn = { _parse: require('cross-spawn/lib/parse'), _enoent: require('cross-spawn/lib/enoent') };
+@@ -319 +319 @@ module.exports = (cmd, args, opts) => {
+-module.exports.stdout = (...args) => module.exports(...args).then(x => x.stdout);
++module.exports.stdout = function() { return module.exports.apply(null, arguments).then(x => x.stdout); };
+@@ -322 +322 @@ module.exports.stdout = (...args) => module.exports(...args).then(x => x.stdout)
+-module.exports.stderr = (...args) => module.exports(...args).then(x => x.stderr);
++module.exports.stderr = function() { return module.exports.apply(null, arguments).then(x => x.stderr); };
+--- a/node_modules/is-fullwidth-code-point/index.js
++++ b/node_modules/is-fullwidth-code-point/index.js
+@@ -4 +4 @@
+-const isFullwidthCodePoint = codePoint => {
++var isFullwidthCodePoint = codePoint => {
+--- a/node_modules/registry-auth-token/base64.js
++++ b/node_modules/registry-auth-token/base64.js
+@@ -1 +1,2 @@
+-const safeBuffer = require('safe-buffer').Buffer
++'use strict'
++var safeBuffer = require('safe-buffer').Buffer
+--- a/node_modules/serve-handler/src/directory.js
++++ b/node_modules/serve-handler/src/directory.js
+@@ -1,3 +1,3 @@
+-(function(){function directory(it
++function directory(it
+ ) {
+-var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : (function(doNotSkipEncoded) {
++var encodeHTML = (function(doNotSkipEncoded) {
+@@ -9,8 +9,3 @@ var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : (function(do
+-	}());var out='<!DOCTYPE html><html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Files within '+encodeHTML(it.directory)+'</title> <style>body { margin: 0; padding: 30px; background: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased;}main { max-width: 920px;}header { display: flex; justify-content: space-between; flex-wrap: wrap;}h1 { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}header h1 a { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}h1 i { font-style: normal;}ul { margin: 0 0 0 -2px; padding: 20px 0 0 0;}ul li { list-style: none; font-size: 14px; display: flex; justify-content: space-between;}a { text-decoration: none;}ul a { color: #000; padding: 10px 5px; margin: 0 -5px; white-space: nowrap; overflow: hidden; display: block; width: 100%; text-overflow: ellipsis;}header a { color: #0076FF; font-size: 11px; font-weight: 400; display: inline-block; line-height: 20px;}svg { height: 13px; vertical-align: text-bottom;}ul a::before { display: inline-block; vertical-align: middle; margin-right: 10px; width: 24px; text-align: center; line-height: 12px;}ul a.file::before { content: url("data:image/svg+xml;utf8,<svg width=\'15\' height=\'19\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z\' fill=\'black\'/></svg>");}ul a:hover { text-decoration: underline;}ul a.folder::before { content: url("data:image/svg+xml;utf8,<svg width=\'20\' height=\'16\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z\' fill=\'black\'/></svg>");}ul a.lambda::before { content: url("data:image/svg+xml; utf8,<svg width=\'15\' height=\'19\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M3.5 14.4354H5.31622L7.30541 9.81311H7.43514L8.65315 13.0797C9.05676 14.1643 9.55405 14.5 10.7 14.5C11.0171 14.5 11.291 14.4677 11.5 14.4032V13.1572C11.3847 13.1766 11.2622 13.2024 11.1541 13.2024C10.6351 13.2024 10.3829 13.0281 10.1595 12.4664L8.02613 7.07586C7.21171 5.01646 6.54865 4.5 5.11441 4.5C4.83333 4.5 4.62432 4.53228 4.37207 4.59038V5.83635C4.56667 5.81052 4.66036 5.79761 4.77568 5.79761C5.64775 5.79761 5.9 6.0042 6.4045 7.19852L6.64234 7.77954L3.5 14.4354Z\' fill=\'black\'/><rect x=\'0.5\' y=\'0.5\' width=\'14\' height=\'18\' rx=\'2.5\' stroke=\'black\'/></svg>");}ul a.file.gif::before,ul a.file.jpg::before,ul a.file.png::before,ul a.file.svg::before { content: url("data:image/svg+xml;utf8,<svg width=\'16\' height=\'16\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' stroke=\'black\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'6\' y=\'6\' width=\'68\' height=\'68\' rx=\'5\' ry=\'5\'/><circle cx=\'24\' cy=\'24\' r=\'8\'/><path d=\'M73 49L59 34 37 52m16 20L27 42 7 58\'/></svg>");}::selection { background-color: #79FFE1; color: #000;}::-moz-selection { background-color: #79FFE1; color: #000;}@media (min-width: 768px) { ul {display: flex;flex-wrap: wrap; } ul li {width: 230px;padding-right: 20px; }}@media (min-width: 992px) { body {padding: 45px; } h1, header h1 a {font-size: 15px; } ul li {font-size: 13px;box-sizing: border-box;justify-content: flex-start; }}</style> </head> <body> <main> <header> <h1> <i>Index of&nbsp;</i> ';var arr1=it.paths;if(arr1){var value,index=-1,l1=arr1.length-1;while(index<l1){value=arr1[index+=1];out+=' <a href="/'+encodeHTML(value.url)+'">'+encodeHTML(value.name)+'</a> ';} } out+=' </h1> </header> <ul id="files"> ';var arr2=it.files;if(arr2){var value,index=-1,l2=arr2.length-1;while(index<l2){value=arr2[index+=1];out+=' <li> <a href="'+encodeHTML(value.relative)+'" title="'+encodeHTML(value.title)+'" class="'+encodeHTML(value.type)+' '+encodeHTML(value.ext)+'">'+encodeHTML(value.base)+'</a> </li> ';} } out+=' </ul></main> </body></html>';return out;
+-}var itself=directory, _encodeHTML=(function(doNotSkipEncoded) {
+-		var encodeHTMLRules = { "&": "&#38;", "<": "&#60;", ">": "&#62;", '"': "&#34;", "'": "&#39;", "/": "&#47;" },
+-			matchHTML = doNotSkipEncoded ? /[&<>"'\/]/g : /&(?!#?\w+;)|<|>|"|'|\//g;
+-		return function(code) {
+-			return code ? code.toString().replace(matchHTML, function(m) {return encodeHTMLRules[m] || m;}) : "";
+-		};
+-	}());if(typeof module!=='undefined' && module.exports) module.exports=itself;else if(typeof define==='function')define(function(){return itself;});else {window.render=window.render||{};window.render['directory']=itself;}}());
+\ No newline at end of file
++	}());var out='<!DOCTYPE html><html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Files within '+encodeHTML(it.directory)+'</title> <style>body { margin: 0; padding: 30px; background: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased;}main { max-width: 920px;}header { display: flex; justify-content: space-between; flex-wrap: wrap;}h1 { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}header h1 a { font-size: 18px; font-weight: 500; margin-top: 0; color: #000;}h1 i { font-style: normal;}ul { margin: 0 0 0 -2px; padding: 20px 0 0 0;}ul li { list-style: none; font-size: 14px; display: flex; justify-content: space-between;}a { text-decoration: none;}ul a { color: #000; padding: 10px 5px; margin: 0 -5px; white-space: nowrap; overflow: hidden; display: block; width: 100%; text-overflow: ellipsis;}header a { color: #0076FF; font-size: 11px; font-weight: 400; display: inline-block; line-height: 20px;}svg { height: 13px; vertical-align: text-bottom;}ul a::before { display: inline-block; vertical-align: middle; margin-right: 10px; width: 24px; text-align: center; line-height: 12px;}ul a.file::before { content: url("data:image/svg+xml;utf8,<svg width=\'15\' height=\'19\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M10 8C8.34 8 7 6.66 7 5V1H3c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8h-4zM8 5c0 1.1.9 2 2 2h3.59L8 1.41V5zM3 0h5l7 7v9c0 1.66-1.34 3-3 3H3c-1.66 0-3-1.34-3-3V3c0-1.66 1.34-3 3-3z\' fill=\'black\'/></svg>");}ul a:hover { text-decoration: underline;}ul a.folder::before { content: url("data:image/svg+xml;utf8,<svg width=\'20\' height=\'16\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M18.784 3.87a1.565 1.565 0 0 0-.565-.356V2.426c0-.648-.523-1.171-1.15-1.171H8.996L7.908.25A.89.89 0 0 0 7.302 0H2.094C1.445 0 .944.523.944 1.171v2.3c-.21.085-.398.21-.565.356a1.348 1.348 0 0 0-.377 1.004l.398 9.83C.42 15.393 1.048 16 1.8 16h15.583c.753 0 1.36-.586 1.4-1.339l.398-9.83c.021-.313-.125-.69-.397-.962zM1.843 3.41V1.191c0-.146.104-.272.25-.272H7.26l1.234 1.088c.083.042.167.104.293.104h8.282c.125 0 .25.126.25.272V3.41H1.844zm15.54 11.712H1.78a.47.47 0 0 1-.481-.46l-.397-9.83c0-.147.041-.252.125-.356a.504.504 0 0 1 .377-.147H17.78c.125 0 .272.063.377.147.083.083.125.209.125.334l-.418 9.83c-.021.272-.23.482-.481.482z\' fill=\'black\'/></svg>");}ul a.directory { font-weight: bold; }ul a.directory::before { content: "";}ul a.file.gif::before,ul a.file.jpg::before,ul a.file.png::before,ul a.file.svg::before { content: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'15.2\' height=\'19\' viewBox=\'0 0 409.6 512\'><path d=\'M256.14 0H64A64 64 0 0 0 0 64v384a64 64 0 0 0 64 64h281.6a64 64 0 0 0 64-64V153.6zm104.15 140.8H307.2a38.44 38.44 0 0 1-38.4-38.4V49.08zM384 448a38.44 38.44 0 0 1-38.4 38.4H64A38.44 38.44 0 0 1 25.6 448V64A38.44 38.44 0 0 1 64 25.6h179.2v76.8a64 64 0 0 0 64 64H384zM275.2 243.2H134.4a32 32 0 0 0-32 32v115.2a32 32 0 0 0 32 32h140.8a32 32 0 0 0 32-32V275.2a32 32 0 0 0-32-32zm6.4 147.2a6.41 6.41 0 0 1-6.4 6.4H134.4a6.41 6.41 0 0 1-6.4-6.4V275.2a6.41 6.41 0 0 1 6.4-6.4h140.8a6.41 6.41 0 0 1 6.4 6.4zM140.8 384h128l-38.4-64-38.4 38.4-12.8-12.8z\'/></svg>");}::selection { background-color: #79FFE1; color: #000;}::-moz-selection { background-color: #79FFE1; color: #000;}@media (min-width: 768px) { ul {display: flex;flex-wrap: wrap; } ul li {width: 230px;padding-right: 20px; }}@media (min-width: 992px) { body {padding: 45px; } h1, header h1 a {font-size: 15px; } ul li {font-size: 13px;box-sizing: border-box;justify-content: flex-start; }}</style> </head> <body> <main> <header> <h1> <i>Index of&nbsp;</i> ';var arr1=it.paths;if(arr1){var value,index=-1,l1=arr1.length-1;while(index<l1){value=arr1[index+=1];out+=' <a href="/'+encodeHTML(value.url)+'">'+encodeHTML(value.name)+'</a> ';} } out+=' </h1> </header> <ul id="files"> ';var arr2=it.files;if(arr2){var value,index=-1,l2=arr2.length-1;while(index<l2){value=arr2[index+=1];out+=' <li> <a href="'+encodeHTML(value.relative)+'" title="'+encodeHTML(value.title)+'" class="'+encodeHTML(value.type)+' '+encodeHTML(value.ext)+'">'+encodeHTML(value.base)+'</a> </li> ';} } out+=' </ul></main> </body></html>';return out;
++}
++module.exports=directory;
+\ No newline at end of file
+--- a/node_modules/serve-handler/src/error.js
++++ b/node_modules/serve-handler/src/error.js
+@@ -1,10 +1,5 @@
+-(function(){function error(it
++function error(it
+ ) {
+-var out='<!DOCTYPE html><head> <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/> <style> body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; } main, aside, section { display: flex; justify-content: center; align-items: center; flex-direction: column; } main { height: 100%; } aside { background: #000; flex-shrink: 1; padding: 30px 20px; } aside p { margin: 0; color: #999999; font-size: 14px; line-height: 24px; } aside a { color: #fff; text-decoration: none; } section span { font-size: 24px; font-weight: 500; display: block; border-bottom: 1px solid #EAEAEA; text-align: center; padding-bottom: 20px; width: 100px; } section p { font-size: 14px; font-weight: 400; } section span + p { margin: 20px 0 0 0; } @media (min-width: 768px) { section { height: 40px; flex-direction: row; } section span, section p { height: 100%; line-height: 40px; } section span { border-bottom: 0; border-right: 1px solid #EAEAEA; padding: 0 20px 0 0; width: auto; } section span + p { margin: 0; padding-left: 20px; } aside { padding: 50px 0; } aside p { max-width: 520px; text-align: center; } } </style></head><body> <main> <section> <span>'+(it.statusCode)+'</span> <p>'+(it.message)+'</p> </section> </main></body>';return out;
+-}var itself=error, _encodeHTML=(function(doNotSkipEncoded) {
+-		var encodeHTMLRules = { "&": "&#38;", "<": "&#60;", ">": "&#62;", '"': "&#34;", "'": "&#39;", "/": "&#47;" },
+-			matchHTML = doNotSkipEncoded ? /[&<>"'\/]/g : /&(?!#?\w+;)|<|>|"|'|\//g;
+-		return function(code) {
+-			return code ? code.toString().replace(matchHTML, function(m) {return encodeHTMLRules[m] || m;}) : "";
+-		};
+-	}());if(typeof module!=='undefined' && module.exports) module.exports=itself;else if(typeof define==='function')define(function(){return itself;});else {window.render=window.render||{};window.render['error']=itself;}}());
+\ No newline at end of file
++var out='<!DOCTYPE html><html lang="en"><head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width, initial-scale=1"/> <title>Error</title> <style> body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; } main, aside, section { display: flex; justify-content: center; align-items: center; flex-direction: column; } main { height: 100%; } aside { background: #000; flex-shrink: 1; padding: 30px 20px; } aside p { margin: 0; color: #999999; font-size: 14px; line-height: 24px; } aside a { color: #fff; text-decoration: none; } section span { font-size: 24px; font-weight: 500; display: block; border-bottom: 1px solid #EAEAEA; text-align: center; padding-bottom: 20px; width: 100px; } section p { font-size: 14px; font-weight: 400; } section span + p { margin: 20px 0 0 0; } @media (min-width: 768px) { section { height: 40px; flex-direction: row; } section span, section p { height: 100%; line-height: 40px; } section span { border-bottom: 0; border-right: 1px solid #EAEAEA; padding: 0 20px 0 0; width: auto; } section span + p { margin: 0; padding-left: 20px; } aside { padding: 50px 0; } aside p { max-width: 520px; text-align: center; } } </style></head><body> <main> <section> <span>'+(it.statusCode)+'</span> <p>'+(it.message)+'</p> </section> </main></body></html>';return out;
++}
++module.exports=error;
+\ No newline at end of file
+--- a/node_modules/serve-handler/src/index.js
++++ b/node_modules/serve-handler/src/index.js
+@@ -2 +2 @@
+-const {promisify} = require('util');
++const promisify = require('util').promisify || require('tiny-promisify');
+@@ -361 +361 @@ const renderDirectory = async (current, acceptsJSON, handlers, methods, config,
+-		details.relative = path.join(relativePath, details.base);
++		details.relative = path.join(config.virtualPath ? `/${config.virtualPath}` : '', relativePath, details.base);
+@@ -424 +424 @@ const renderDirectory = async (current, acceptsJSON, handlers, methods, config,
+-		const relative = path.join('/', ...directoryPath, '..', slashSuffix);
++		const relative = path.join(`/${config.virtualPath || ''}`, ...directoryPath, '..', slashSuffix);
+@@ -452 +452 @@ const renderDirectory = async (current, acceptsJSON, handlers, methods, config,
+-			url: index === 0 ? '' : parents.join('/') + slashSuffix
++			url: (config.virtualPath ? `${config.virtualPath}/` : '') + (index === 0 ? '' : parents.join('/') + slashSuffix)
+--- a/node_modules/serve/bin/serve.js
++++ b/node_modules/serve/bin/serve.js
+@@ -8 +8 @@ const fs = require('fs');
+-const {promisify} = require('util');
++const promisify = require('util').promisify || require('tiny-promisify');
+@@ -81,2 +81,4 @@ const getHelp = () => chalk`
+ 
++      --virtual-path                      Virtual directory for the server
++
+       -d, --debug                         Show debugging information
+@@ -179,2 +181,2 @@ const getNetworkAddress = () => {
+-		for (const interface of interfaces[name]) {
+-			const {address, family, internal} = interface;
++		for (const netInterface of interfaces[name]) {
++			const {address, family, internal} = netInterface;
+@@ -193,2 +195,7 @@ const startEndpoint = (endpoint, config, args, previous) => {
+ 
++	const virtualPath = args['--virtual-path']
++		? new RegExp(`^([^/]*//[^/]+)?/${args['--virtual-path'].replace(/[^\w\s]/g, '\\$&')}(/|$)`, 'i')
++		: null;
++
+ 	const serverHandler = async (request, response) => {
++		if (virtualPath) request.url = request.url.replace(virtualPath, '$1/');
+@@ -228,2 +235,4 @@ const startEndpoint = (endpoint, config, args, previous) => {
+ 
++		const addressSuffix = args['--virtual-path'] ? `/${args['--virtual-path']}` : '';
++
+ 		let localAddress = null;
+@@ -233 +242 @@ const startEndpoint = (endpoint, config, args, previous) => {
+-			localAddress = details;
++			localAddress = details + addressSuffix;
+@@ -238,2 +247,2 @@ const startEndpoint = (endpoint, config, args, previous) => {
+-			localAddress = `${httpMode}://${address}:${details.port}`;
+-			networkAddress = ip ? `${httpMode}://${ip}:${details.port}` : null;
++			localAddress = `${httpMode}://${address}:${details.port}${addressSuffix}`;
++			networkAddress = ip ? `${httpMode}://${ip}:${details.port}${addressSuffix}` : null;
+@@ -345,2 +354,2 @@ const loadConfig = async (cwd, entry, args) => {
+-		const {public} = config;
+-		config.public = path.relative(cwd, (public ? path.resolve(entry, public) : entry));
++		const publicDir = config.public;
++		config.public = path.relative(cwd, (publicDir ? path.resolve(entry, publicDir) : entry));
+@@ -363,2 +372,3 @@ const loadConfig = async (cwd, entry, args) => {
+ 	config.etag = !args['--no-etag'];
++	config.virtualPath = args['--virtual-path'];
+ 
+@@ -375,2 +385,3 @@ const loadConfig = async (cwd, entry, args) => {
+ 			'--listen': [parseEndpoint],
++			'--virtual-path': String,
+ 			'--single': Boolean,
+@@ -424,2 +435,4 @@ const loadConfig = async (cwd, entry, args) => {
+ 
++	if (args['--virtual-path']) args['--virtual-path'] = args['--virtual-path'].replace(/^\/|\/$/g, '');
++
+ 	if (args._.length > 1) {
+--- a/node_modules/signal-exit/index.js
++++ b/node_modules/signal-exit/index.js
+@@ -5,3 +5,4 @@
++'use strict'
+ var process = global.process
+ 
+-const processOk = function (process) {
++function processOk(process) {
+--- a/node_modules/strip-ansi/index.js
++++ b/node_modules/strip-ansi/index.js
+@@ -2 +2 @@
+-const ansiRegex = require('ansi-regex');
++var ansiRegex = require('ansi-regex');
+--- a/node_modules/tiny-promisify/index.js
++++ b/node_modules/tiny-promisify/index.js
+@@ -8 +8 @@ function promisify (fn, options) {
+-  const opts = Object.assign({
++  var opts = Object.assign({
+@@ -14 +14 @@ function promisify (fn, options) {
+-    const callArgs = Array.prototype.slice.call(arguments);
++    var callArgs = Array.prototype.slice.call(arguments);
+--- a/node_modules/update-check/index.js
++++ b/node_modules/update-check/index.js
+@@ -5 +5 @@ const fs = require('fs');
+-const {promisify} = require('util');
++const promisify = require('util').promisify || require('tiny-promisify');
+--- a/node_modules/uri-js/dist/es5/uri.all.js
++++ b/node_modules/uri-js/dist/es5/uri.all.js
+@@ -2,5 +2 @@
+-(function (global, factory) {
+-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+-	(factory((global.URI = global.URI || {})));
+-}(this, (function (exports) { 'use strict';
++'use strict';
+@@ -9,3 +5 @@ function merge() {
+-    for (var _len = arguments.length, sets = Array(_len), _key = 0; _key < _len; _key++) {
+-        sets[_key] = arguments[_key];
+-    }
++    var sets = Array.prototype.slice.call(arguments);
+@@ -152,37 +146,0 @@ var IRI_PROTOCOL = buildExps(true);
+-var slicedToArray = function () {
+-  function sliceIterator(arr, i) {
+-    var _arr = [];
+-    var _n = true;
+-    var _d = false;
+-    var _e = undefined;
+-
+-    try {
+-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+-        _arr.push(_s.value);
+-
+-        if (i && _arr.length === i) break;
+-      }
+-    } catch (err) {
+-      _d = true;
+-      _e = err;
+-    } finally {
+-      try {
+-        if (!_n && _i["return"]) _i["return"]();
+-      } finally {
+-        if (_d) throw _e;
+-      }
+-    }
+-
+-    return _arr;
+-  }
+-
+-  return function (arr, i) {
+-    if (Array.isArray(arr)) {
+-      return arr;
+-    } else if (Symbol.iterator in Object(arr)) {
+-      return sliceIterator(arr, i);
+-    } else {
+-      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+-    }
+-  };
+-}();
+@@ -202,9 +159,0 @@ var slicedToArray = function () {
+-var toConsumableArray = function (arr) {
+-  if (Array.isArray(arr)) {
+-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+-
+-    return arr2;
+-  } else {
+-    return Array.from(arr);
+-  }
+-};
+@@ -345 +293 @@ var ucs2encode = function ucs2encode(array) {
+-	return String.fromCodePoint.apply(String, toConsumableArray(array));
++	return String.fromCodePoint.apply(String, Array.from(array));
+@@ -513,7 +461 @@ var encode = function encode(input) {
+-	var _iteratorNormalCompletion = true;
+-	var _didIteratorError = false;
+-	var _iteratorError = undefined;
+-
+-	try {
+-		for (var _iterator = input[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+-			var _currentValue2 = _step.value;
++	for (var _currentValue2 of input) {
+@@ -525,14 +467,0 @@ var encode = function encode(input) {
+-	} catch (err) {
+-		_didIteratorError = true;
+-		_iteratorError = err;
+-	} finally {
+-		try {
+-			if (!_iteratorNormalCompletion && _iterator.return) {
+-				_iterator.return();
+-			}
+-		} finally {
+-			if (_didIteratorError) {
+-				throw _iteratorError;
+-			}
+-		}
+-	}
+@@ -557,7 +485 @@ var encode = function encode(input) {
+-		var _iteratorNormalCompletion2 = true;
+-		var _didIteratorError2 = false;
+-		var _iteratorError2 = undefined;
+-
+-		try {
+-			for (var _iterator2 = input[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+-				var currentValue = _step2.value;
++		for (var currentValue of input) {
+@@ -572,14 +494,0 @@ var encode = function encode(input) {
+-		} catch (err) {
+-			_didIteratorError2 = true;
+-			_iteratorError2 = err;
+-		} finally {
+-			try {
+-				if (!_iteratorNormalCompletion2 && _iterator2.return) {
+-					_iterator2.return();
+-				}
+-			} finally {
+-				if (_didIteratorError2) {
+-					throw _iteratorError2;
+-				}
+-			}
+-		}
+@@ -595,7 +503 @@ var encode = function encode(input) {
+-		var _iteratorNormalCompletion3 = true;
+-		var _didIteratorError3 = false;
+-		var _iteratorError3 = undefined;
+-
+-		try {
+-			for (var _iterator3 = input[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+-				var _currentValue = _step3.value;
++		for (var _currentValue of input) {
+@@ -626,14 +528,0 @@ var encode = function encode(input) {
+-		} catch (err) {
+-			_didIteratorError3 = true;
+-			_iteratorError3 = err;
+-		} finally {
+-			try {
+-				if (!_iteratorNormalCompletion3 && _iterator3.return) {
+-					_iterator3.return();
+-				}
+-			} finally {
+-				if (_didIteratorError3) {
+-					throw _iteratorError3;
+-				}
+-			}
+-		}
+@@ -802 +690 @@ function _normalizeIPv4(host, protocol) {
+-    var _matches = slicedToArray(matches, 2),
++    var _matches = matches,
+@@ -814 +702 @@ function _normalizeIPv6(host, protocol) {
+-    var _matches2 = slicedToArray(matches, 3),
++    var _matches2 = matches,
+@@ -820 +708 @@ function _normalizeIPv6(host, protocol) {
+-            _address$toLowerCase$2 = slicedToArray(_address$toLowerCase$, 2),
++            _address$toLowerCase$2 = _address$toLowerCase$,
+@@ -1222 +1110 @@ var handler$2 = {
+-                _wsComponents$resourc2 = slicedToArray(_wsComponents$resourc, 2),
++                _wsComponents$resourc2 = _wsComponents$resourc,
+@@ -1442,2 +1330 @@ Object.defineProperty(exports, '__esModule', { value: true });
+-})));
+ //# sourceMappingURL=uri.all.js.map
