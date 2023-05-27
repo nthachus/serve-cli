@@ -168,14 +168,6 @@
 +	if (args['--virtual-path']) args['--virtual-path'] = args['--virtual-path'].replace(/^\/|\/$/g, '');
 +
  	if (args._.length > 1) {
---- a/node_modules/signal-exit/index.js
-+++ b/node_modules/signal-exit/index.js
-@@ -5,3 +5,4 @@
-+'use strict'
- var process = global.process
- 
--const processOk = function (process) {
-+function processOk(process) {
 --- a/node_modules/strip-ansi/index.js
 +++ b/node_modules/strip-ansi/index.js
 @@ -2 +2 @@

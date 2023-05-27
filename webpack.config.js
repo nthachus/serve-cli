@@ -37,7 +37,6 @@ module.exports = {
           /node_modules[\\/](boxen|camelcase|string|term|widest)\b/,
           /node_modules[\\/](arg|clipboardy|is-(wsl|docker)|serve|update)\b/,
         ],
-        // exclude: /node_modules[\\/](ajv|color|debug|isexe|negotiator|signal)\b/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -79,9 +78,9 @@ module.exports = {
         options: { search: /\brequire\('minimist'\)\(process\.argv\b([\w.]|\(\w*\))*\)/, replace: '{}' },
       },
       {
-        test: /node_modules[\\/](ini.ini|content-disposition.index)\.js$/i,
+        test: /node_modules[\\/](ini.ini|(mime-types|content-disposition).index)\.js$/i,
         loader: 'webpack/lib/replace-loader',
-        options: { search: /^(exports\.(stringify|safe)|module\.exports\.parse) *=/gm, replace: '//$&' },
+        options: { search: /^(exports\.(stringify|safe|extension)|module\.exports\.parse) *=/gm, replace: '//$&' },
       },*/
     ],
   },
